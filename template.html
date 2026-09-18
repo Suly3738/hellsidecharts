@@ -27,12 +27,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #050405; --ink: #0d0a0b; --ink-2: #16100f;
+    --bg: #050405; --ink: #0d0a0b;
     --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.16); --line-red: rgba(210,18,46,.45);
     --text: #e9e2e2; --muted: #9a8f93; --dim: #5a5155; --bright: #fff;
     --red: #d2122e; --red-2: #ff2d4a; --blood: #6d0918; --ember: #ff6a1f; --flame: #ffb347;
     --silver: #cfcfd8; --bronze: #c98a4b;
     --up: #6ee7a2; --down: #ff5c6c;
+    --t0: #ff6a1f; --t1: #ff2d4a; --t2: #c40f3a; --t3: #f2f2f7;
     --display: "Pirata One", "Times New Roman", serif;
     --cond: "Oswald", "Arial Narrow", sans-serif;
     --sans: "Barlow", -apple-system, "Segoe UI", system-ui, sans-serif;
@@ -47,41 +48,40 @@
   ::selection { background: var(--red); color: #fff; }
   img { display: block; }
 
-  /* tło: żar + czerwona mgła (canvas), ziarno */
+  /* tło: żar + czerwona mgła (lekki canvas 2D, sprite'y, 30 kl./s) i statyczna łuna */
   #embers { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-  .grain { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: .06; mix-blend-mode: screen;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .glowbg { position: fixed; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(70% 40% at 60% 110%, rgba(210,18,46,.22), transparent 70%); }
 
   /* pasek z przewijanym tekstem (ticker) */
   .ticker { position: relative; z-index: 3; height: 30px; overflow: hidden; background: var(--red); color: #fff; border-bottom: 1px solid #000;
     font: 600 12px/30px var(--cond); letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
-  .ticker .track { display: inline-block; padding-left: 100%; animation: ticker 60s linear infinite; }
+  .ticker .track { display: inline-block; padding-left: 100vw; animation: ticker 70s linear infinite; will-change: transform; }
   .ticker span { margin: 0 22px; }
   .ticker b { color: #1a0004; }
   @keyframes ticker { to { transform: translateX(-100%); } }
 
   /* boczne menu (desktop) */
-  .side { position: fixed; top: 30px; left: 0; bottom: 0; width: var(--side); z-index: 5; display: flex; flex-direction: column; padding: 26px 22px 22px;
-    background: linear-gradient(180deg, rgba(5,4,5,.96), rgba(5,4,5,.9)); border-right: 1px solid var(--line); }
-  .side .logo img { width: 100%; height: auto; filter: drop-shadow(0 0 16px rgba(255,45,74,.4)); }
-  .side .date { margin: 18px 0 22px; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: 500 12px/1.5 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .side { position: fixed; top: 30px; left: 0; bottom: 0; width: var(--side); z-index: 5; display: flex; flex-direction: column; padding: 22px 22px 18px; background: rgba(5,4,5,.94); border-right: 1px solid var(--line); overflow-y: auto; }
+  .side .logo img { width: 100%; height: auto; }
+  .side .date { margin: 14px 0 16px; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: 500 12px/1.5 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   .side .date b { display: block; color: var(--bright); }
-  .side .live { color: var(--up); }
-  .side .live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--up); margin-right: 8px; box-shadow: 0 0 8px var(--up); vertical-align: 1px; animation: blink 2.2s infinite; }
+  .live { color: var(--up); }
+  .live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--up); margin-right: 8px; box-shadow: 0 0 8px var(--up); vertical-align: 1px; animation: blink 2.2s infinite; }
   @keyframes blink { 50% { opacity: .3; } }
-  .menu { display: flex; flex-direction: column; gap: 2px; }
-  .menu a { display: grid; grid-template-columns: 30px 1fr; align-items: baseline; padding: 9px 10px; border-left: 2px solid transparent; font: 600 15px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: .2s; }
+  .menu { display: flex; flex-direction: column; gap: 1px; }
+  .menu a { display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 8px 10px; border-left: 2px solid transparent; font: 600 14px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: color .2s, background .2s; }
   .menu a i { font: 400 13px/1 var(--display); color: var(--dim); font-style: normal; }
   .menu a:hover { color: var(--text); background: rgba(255,255,255,.03); }
-  .menu a.on { color: var(--bright); border-left-color: var(--red-2); background: linear-gradient(90deg, rgba(210,18,46,.18), transparent); text-shadow: 0 0 12px rgba(255,45,74,.5); }
+  .menu a.on { color: var(--bright); border-left-color: var(--red-2); background: linear-gradient(90deg, rgba(210,18,46,.18), transparent); }
   .menu a.on i { color: var(--red-2); }
-  .side .yt { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border: 1px solid var(--line-red); font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--bright); transition: .2s; }
+  .menu a.hot { color: var(--flame); }
+  .side .yt { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border: 1px solid var(--line-red); font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--bright); transition: background .2s; }
   .side .yt svg { width: 18px; height: 18px; fill: var(--red-2); }
-  .side .yt:hover { background: var(--red); border-color: var(--red-2); box-shadow: 0 0 24px rgba(210,18,46,.5); }
+  .side .yt:hover { background: var(--red); }
   .side .yt:hover svg { fill: #fff; }
 
   /* menu mobilne */
-  .mob { display: none; position: sticky; top: 0; z-index: 5; background: rgba(5,4,5,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .mob { display: none; position: sticky; top: 0; z-index: 5; background: rgba(5,4,5,.96); border-bottom: 1px solid var(--line); }
   .mob .in { display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 14px; }
   .mob img { height: 28px; width: auto; }
   .mob nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
@@ -95,67 +95,81 @@
   .sec-head h2 { margin: 0; font: 400 clamp(40px, 5.2vw, 72px)/.95 var(--display); letter-spacing: .02em; color: var(--bright); }
   .sec-head h2 small { display: block; margin-bottom: 8px; font: 600 12px/1 var(--cond); letter-spacing: .34em; text-transform: uppercase; color: var(--red-2); }
   .sec-head h2 em { font-style: normal; color: var(--red-2); }
-  .sec-head p { margin: 0 0 8px; max-width: 420px; font: 500 13px/1.5 var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .sec-head p { margin: 0 0 8px; max-width: 460px; font: 500 13px/1.5 var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
   /* hero – numer 1 */
-  .hero { position: relative; min-height: 78vh; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 30px; padding: 60px 40px 50px; border: 0; overflow: hidden; isolation: isolate; }
-  .hero-bg { position: absolute; inset: -40px; z-index: -2; background: var(--art) center/cover; filter: blur(22px) saturate(.35) brightness(.42); transform: scale(1.05); }
-  .hero-tint { position: absolute; inset: 0; z-index: -1; background:
-    linear-gradient(90deg, rgba(5,4,5,.96) 0%, rgba(5,4,5,.72) 45%, rgba(5,4,5,.35) 100%),
-    linear-gradient(180deg, rgba(5,4,5,.2), rgba(5,4,5,.95)),
-    radial-gradient(60% 60% at 80% 50%, rgba(210,18,46,.35), transparent 70%); }
+  .hero { position: relative; min-height: 78vh; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 30px; padding: 60px 40px 50px; border: 0; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--art) center/cover; opacity: .32; } /* miniatura 120 px rozciągnięta = darmowe rozmycie, bez filtra */
+  .hero-tint { position: absolute; inset: 0; z-index: 0; background:
+    linear-gradient(90deg, rgba(5,4,5,.96) 0%, rgba(5,4,5,.7) 45%, rgba(5,4,5,.3) 100%),
+    linear-gradient(180deg, rgba(5,4,5,.15), rgba(5,4,5,.96)),
+    radial-gradient(60% 60% at 80% 50%, rgba(210,18,46,.3), transparent 70%); }
+  .hero > .txt, .hero > .vinyl-wrap { position: relative; z-index: 1; }
   .eyebrow { display: inline-flex; align-items: center; gap: 12px; font: 600 12px/1 var(--cond); letter-spacing: .36em; text-transform: uppercase; color: var(--red-2); }
-  .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--red-2); box-shadow: 0 0 8px var(--red-2); }
+  .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--red-2); }
   .hero .num { margin: 14px 0 0; font: 400 clamp(120px, 17vw, 240px)/.8 var(--display); letter-spacing: -.02em;
-    background: linear-gradient(180deg, #fff 0%, #d0d0d8 40%, #5f5f6a 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 0 30px rgba(255,45,74,.25)); }
+    background: linear-gradient(180deg, #fff 0%, #d0d0d8 40%, #5f5f6a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero .song { margin: 6px 0 0; font: 400 clamp(36px, 5vw, 74px)/1 var(--display); color: var(--bright); text-shadow: 0 6px 30px rgba(0,0,0,.8); }
   .hero .artist { margin-top: 8px; font: 700 clamp(16px, 1.6vw, 22px)/1.2 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--flame); }
   .hero .stats { display: flex; flex-wrap: wrap; gap: 14px 34px; margin-top: 28px; }
   .hero .stats div { font: 500 12px/1.3 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
   .hero .stats b { display: block; margin-bottom: 4px; font: 600 34px/1 var(--cond); letter-spacing: 0; color: var(--bright); }
   .hero .stats .hot b { color: var(--up); } .hero .stats .fire b { color: var(--ember); }
-  .hero .cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 30px; padding: 14px 24px; background: var(--red); color: #fff; font: 600 13px/1 var(--cond); letter-spacing: .26em; text-transform: uppercase;
-    box-shadow: 0 0 30px rgba(210,18,46,.5); transition: .2s; }
-  .hero .cta:hover { background: var(--red-2); transform: translateY(-2px); box-shadow: 0 0 44px rgba(255,45,74,.7); }
-  .hero .cta svg { width: 16px; height: 16px; fill: #fff; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .cta { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; background: var(--red); color: #fff; font: 600 13px/1 var(--cond); letter-spacing: .26em; text-transform: uppercase; border: 1px solid var(--red); cursor: pointer;
+    box-shadow: 0 0 30px rgba(210,18,46,.45); transition: background .2s, transform .2s; }
+  .cta:hover { background: var(--red-2); transform: translateY(-2px); }
+  .cta.ghost { background: transparent; border-color: var(--line-2); box-shadow: none; color: var(--text); }
+  .cta.ghost:hover { border-color: var(--red-2); }
+  .cta svg { width: 16px; height: 16px; fill: currentColor; }
 
   /* winyl */
   .vinyl-wrap { position: relative; justify-self: center; width: min(520px, 42vw); aspect-ratio: 1; }
-  .vinyl { position: absolute; inset: 0; border-radius: 50%; animation: spin 14s linear infinite;
+  .vinyl { position: absolute; inset: 0; border-radius: 50%; cursor: pointer; animation: spin 14s linear infinite; will-change: transform;
     background:
       radial-gradient(circle, transparent 0 17.5%, #1a1a1c 17.5% 18.2%, transparent 18.2%),
       repeating-radial-gradient(circle, #0a0a0b 0 1.6px, #1a1a1d 1.6px 2.4px, #0e0e10 2.4px 4px);
-    box-shadow: 0 30px 80px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.06) inset, 0 0 60px rgba(210,18,46,.2); }
+    box-shadow: 0 30px 80px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.06) inset; }
   .vinyl::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 20deg, transparent 0 8%, rgba(255,255,255,.10) 12%, transparent 18% 48%, rgba(255,255,255,.07) 53%, transparent 58% 100%); }
   .vinyl .label { position: absolute; inset: 31%; border-radius: 50%; overflow: hidden; border: 3px solid #050405; box-shadow: 0 0 0 2px rgba(255,255,255,.08); background: var(--art) center/cover; }
   .vinyl .label::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, transparent 55%, rgba(0,0,0,.5)); }
   .vinyl .hole { position: absolute; inset: 48.4%; border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 2px #2a2a2e; }
-  .vinyl-wrap .glow { position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(210,18,46,.28), transparent 62%); filter: blur(8px); z-index: -1; animation: pulse 5s ease-in-out infinite; }
-  .vinyl-wrap .arm { position: absolute; right: -6%; top: -4%; width: 8px; height: 46%; background: linear-gradient(180deg, #c9c9d0, #6d6d76); transform-origin: top center; transform: rotate(-22deg); box-shadow: 0 8px 20px rgba(0,0,0,.6); }
+  .vinyl-wrap .glow { position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(210,18,46,.32), transparent 60%); z-index: -1; }
+  .vinyl-wrap .hint { position: absolute; left: 50%; bottom: -34px; transform: translateX(-50%); font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .vinyl-wrap .arm { position: absolute; right: -6%; top: -4%; width: 8px; height: 46%; background: linear-gradient(180deg, #c9c9d0, #6d6d76); transform-origin: top center; transform: rotate(-22deg); }
   .vinyl-wrap .arm::before { content: ""; position: absolute; top: -14px; left: -10px; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #e6e6ec, #4a4a52); }
   .vinyl-wrap .arm::after { content: ""; position: absolute; bottom: -10px; left: -6px; width: 20px; height: 22px; background: linear-gradient(180deg, #8a0f22, #3e0510); }
   @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes pulse { 50% { opacity: .55; transform: scale(.94); } }
+
+  /* odtwarzacz w stronie */
+  .player { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 20px; background: rgba(5,4,5,.9); }
+  .player.open { display: grid; }
+  .pbox { position: relative; width: min(960px, 100%); }
+  .pbox .frame { aspect-ratio: 16/9; background: #000; border: 1px solid var(--line-red); box-shadow: 0 0 60px rgba(210,18,46,.3); }
+  .pbox iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .pbox .ptitle { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font: 400 22px/1.1 var(--display); color: var(--bright); }
+  .pbox .ptitle span { font: 600 12px/1.2 var(--cond); letter-spacing: .24em; text-transform: uppercase; color: var(--flame); }
+  .pbox .close { position: absolute; right: 0; top: -44px; background: none; border: 1px solid var(--line-2); color: var(--text); padding: 6px 12px; cursor: pointer; font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; }
+  .pbox .close:hover { border-color: var(--red-2); color: #fff; }
 
   /* pasek liczb */
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .strip div { padding: 20px 40px; border-right: 1px solid var(--line); font: 500 11px/1.3 var(--cond); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
   .strip div:last-child { border-right: 0; }
   .strip b { display: block; margin-bottom: 6px; font: 600 38px/1 var(--cond); letter-spacing: 0; color: var(--bright); }
+  .strip b.sm { font-size: 24px; padding: 7px 0; }
   .strip small { display: block; margin-top: 4px; letter-spacing: .08em; text-transform: none; color: var(--up); font-size: 12px; }
 
   /* Top 10 – plakaty */
   .posters { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-  .poster { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #000; border: 1px solid var(--line-2); isolation: isolate;
-    transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s; animation: rise .5s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i) * 45ms); }
-  .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(1.05); transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .4s; }
-  .poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, transparent 30%, rgba(5,4,5,.35) 55%, rgba(5,4,5,.97) 100%); }
-  .poster:hover { transform: translateY(-8px); border-color: var(--red-2); box-shadow: 0 24px 50px rgba(0,0,0,.7), 0 0 40px rgba(210,18,46,.3); }
-  .poster:hover img { transform: scale(1.08); filter: saturate(1) contrast(1.1); }
-  .poster .rk { position: absolute; z-index: 2; left: 10px; top: -4px; font: 400 clamp(56px, 6vw, 84px)/1 var(--display); line-height: 1;
-    background: linear-gradient(180deg, #fff, #8a8a95); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 3px 0 rgba(0,0,0,.9)); }
-  .poster.r1 .rk { background: linear-gradient(180deg, #ffd8b0, var(--ember) 45%, var(--red)); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 14px rgba(255,90,31,.7)); }
+  .poster { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #000; border: 1px solid var(--line-2); transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s; }
+  .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.3) 0%, transparent 30%, rgba(5,4,5,.35) 55%, rgba(5,4,5,.97) 100%); }
+  .poster:hover { transform: translateY(-8px); border-color: var(--red-2); }
+  .poster:hover img { transform: scale(1.08); }
+  .poster .rk { position: absolute; z-index: 2; left: 10px; top: -4px; font: 400 clamp(56px, 6vw, 84px)/1 var(--display);
+    background: linear-gradient(180deg, #fff, #8a8a95); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .poster.r1 .rk { background: linear-gradient(180deg, #ffd8b0, var(--ember) 45%, var(--red)); -webkit-background-clip: text; background-clip: text; }
   .poster.r2 .rk { background: linear-gradient(180deg, #fff, #c4c4cf 50%, #6f6f7c); -webkit-background-clip: text; background-clip: text; }
   .poster.r3 .rk { background: linear-gradient(180deg, #f5cd9f, var(--bronze) 50%, #6d3f1a); -webkit-background-clip: text; background-clip: text; }
   .poster .mv { position: absolute; z-index: 2; right: 10px; top: 10px; }
@@ -165,42 +179,18 @@
   .poster .v { margin-top: 10px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font: 500 11px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
   .poster .v b { font: 600 20px/1 var(--cond); letter-spacing: 0; color: var(--bright); }
   .poster .v i { font-style: normal; color: var(--up); letter-spacing: .04em; }
-  .poster .tag { position: absolute; z-index: 2; left: 10px; bottom: 100%; }
-  .mv { padding: 5px 8px; font: 600 11px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; background: rgba(5,4,5,.75); border: 1px solid; backdrop-filter: blur(4px); }
+  .mv { padding: 5px 8px; font: 600 11px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; background: rgba(5,4,5,.8); border: 1px solid; }
   .mv.up { color: var(--up); border-color: rgba(110,231,162,.5); }
   .mv.down { color: var(--down); border-color: rgba(255,92,108,.5); }
   .mv.same { color: var(--muted); border-color: var(--line-2); }
-  .mv.new { color: var(--flame); border-color: rgba(255,179,71,.6); text-shadow: 0 0 8px rgba(255,179,71,.6); }
+  .mv.new { color: var(--flame); border-color: rgba(255,179,71,.6); }
   .tagnew { display: inline-block; padding: 3px 7px; margin-left: 8px; vertical-align: 3px; font: 700 10px/1 var(--cond); letter-spacing: .2em; color: #1a0004; background: var(--flame); }
-  @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
 
-  /* Top 100 – księga */
-  .ledger { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); counter-reset: none; }
-  .ledger li { position: relative; display: grid; grid-template-columns: 64px 64px 1fr auto 150px 44px; align-items: center; gap: 16px; min-height: 64px; padding: 10px 0; border-bottom: 1px solid var(--line); overflow: hidden; isolation: isolate; transition: background .2s; }
-  .ledger li::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; background: var(--art) right center/40% auto no-repeat; -webkit-mask: linear-gradient(90deg, transparent 40%, #000); mask: linear-gradient(90deg, transparent 40%, #000); filter: saturate(.6); transition: opacity .3s; }
-  .ledger li:hover { background: rgba(210,18,46,.06); }
-  .ledger li:hover::before { opacity: .35; }
-  .ledger li.hidden { display: none; }
-  .ledger .rk { font: 400 30px/1 var(--display); color: var(--silver); text-align: center; }
-  .ledger li.r1 .rk { color: var(--red-2); text-shadow: 0 0 14px rgba(255,45,74,.6); }
-  .ledger li.r2 .rk { color: #fff; } .ledger li.r3 .rk { color: var(--bronze); }
-  .ledger .mv { justify-self: center; min-width: 52px; text-align: center; }
-  .ledger .t { min-width: 0; }
-  .ledger .song { font: 400 22px/1.1 var(--display); color: var(--bright); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .ledger .artist { margin-top: 2px; font: 600 12px/1.2 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--flame); }
-  .ledger .meta { display: flex; gap: 14px; font: 500 11px/1.2 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
-  .ledger .meta span::before { content: "†"; color: var(--red); margin-right: 5px; }
-  .ledger .views { text-align: right; }
-  .ledger .views b { display: block; font: 600 22px/1 var(--cond); color: var(--bright); }
-  .ledger .views small { display: block; margin-top: 2px; font: 500 11px/1 var(--cond); letter-spacing: .1em; color: var(--muted); }
-  .ledger .views small.plus { color: var(--up); } .ledger .views small.pct { color: var(--ember); }
-  .ledger .go { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line-2); color: var(--muted); transition: .2s; }
-  .ledger .go svg { width: 18px; height: 18px; fill: currentColor; }
-  .ledger .go:hover { background: var(--red); border-color: var(--red-2); color: #fff; }
-  .search { position: relative; }
-  .search input { width: 300px; max-width: 100%; padding: 10px 12px 10px 38px; background: transparent; border: 0; border-bottom: 1px solid var(--line-2); color: var(--text); font: 500 15px/1 var(--sans); outline: none; transition: border-color .2s; }
-  .search input:focus { border-bottom-color: var(--red-2); }
-  .search svg { position: absolute; left: 10px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); fill: var(--muted); }
+  /* certyfikat – odznaka (romb) */
+  .cert { display: inline-flex; align-items: center; gap: 8px; font: 600 11px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--c); }
+  .cert::before { content: ""; width: 9px; height: 9px; transform: rotate(45deg); background: var(--c); box-shadow: 0 0 10px var(--c); }
+  .cert.t0 { --c: var(--t0); } .cert.t1 { --c: var(--t1); } .cert.t2 { --c: var(--t2); } .cert.t3 { --c: var(--t3); }
+  .poster .cert { margin-top: 8px; }
 
   /* Rosnące – dwie kolumny wielkich liczb */
   .rising { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; border-top: 1px solid var(--line-2); }
@@ -210,18 +200,18 @@
   .rising .song { font: 400 20px/1.1 var(--display); color: var(--bright); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .rising .artist { font: 600 11px/1.2 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--flame); }
   .rising .d { text-align: right; }
-  .rising .d b { display: block; font: 600 28px/1 var(--cond); color: var(--ember); text-shadow: 0 0 16px rgba(255,106,31,.4); }
+  .rising .d b { display: block; font: 600 28px/1 var(--cond); color: var(--ember); }
   .rising .d small { font: 500 11px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
   /* Artyści – półka */
   .shelf { display: flex; gap: 14px; overflow-x: auto; padding: 4px 4px 18px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--red) transparent; }
-  .acard { position: relative; flex: 0 0 240px; aspect-ratio: 3/4; scroll-snap-align: start; overflow: hidden; border: 1px solid var(--line-2); background: #000; isolation: isolate; transition: transform .3s, border-color .3s; animation: rise .5s backwards; animation-delay: calc(var(--i) * 50ms); }
-  .acard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.5) brightness(.75); transition: transform .6s, filter .4s; }
-  .acard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,4,5,.1), rgba(5,4,5,.2) 40%, rgba(5,4,5,.97) 78%); }
+  .acard { position: relative; flex: 0 0 240px; aspect-ratio: 3/4; scroll-snap-align: start; overflow: hidden; border: 1px solid var(--line-2); background: #000; transition: transform .3s, border-color .3s; }
+  .acard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: transform .6s, opacity .4s; }
+  .acard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,4,5,.1), rgba(5,4,5,.25) 40%, rgba(5,4,5,.97) 78%); }
   .acard:hover { transform: translateY(-6px); border-color: var(--red-2); }
-  .acard:hover img { transform: scale(1.06); filter: saturate(.9) brightness(.9); }
+  .acard:hover img { transform: scale(1.06); opacity: .9; }
   .acard .rk { position: absolute; z-index: 2; left: 12px; top: 4px; font: 400 54px/1 var(--display); color: rgba(255,255,255,.9); text-shadow: 0 3px 0 #000; }
-  .acard.r1 .rk { color: var(--red-2); text-shadow: 0 0 16px rgba(255,45,74,.6), 0 3px 0 #000; }
+  .acard.r1 .rk { color: var(--red-2); }
   .acard .body { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 14px; }
   .acard .name { font: 400 30px/1 var(--display); color: var(--bright); }
   .acard .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
@@ -230,10 +220,10 @@
   .acard .hit { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line-2); font: 500 12px/1.3 var(--sans); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .acard .hit b { color: var(--flame); font-weight: 600; }
 
-  /* Nowości – najnowszy duży + półka */
+  /* Nowości */
   .latest { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: stretch; }
-  .fresh { position: relative; min-height: 360px; overflow: hidden; border: 1px solid var(--line-2); isolation: isolate; }
-  .fresh img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.8); transition: transform .8s; }
+  .fresh { position: relative; min-height: 360px; overflow: hidden; border: 1px solid var(--line-2); }
+  .fresh img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
   .fresh:hover img { transform: scale(1.04); }
   .fresh::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,4,5,.1) 30%, rgba(5,4,5,.95)); }
   .fresh .body { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; padding: 24px; }
@@ -243,9 +233,9 @@
   .fresh .artist { margin-top: 6px; font: 600 14px/1.2 var(--cond); letter-spacing: .28em; text-transform: uppercase; color: var(--flame); }
   .fresh .m { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font: 500 13px/1.3 var(--sans); color: var(--muted); }
   .fresh .m b { color: var(--bright); }
-  .fresh .cta { position: absolute; z-index: 3; right: 18px; top: 18px; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--red); box-shadow: 0 0 26px rgba(210,18,46,.6); transition: .2s; }
-  .fresh .cta:hover { transform: scale(1.1); background: var(--red-2); }
-  .fresh .cta svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+  .fresh .play { position: absolute; z-index: 3; right: 18px; top: 18px; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--red); cursor: pointer; transition: transform .2s, background .2s; }
+  .fresh .play:hover { transform: scale(1.1); background: var(--red-2); }
+  .fresh .play svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
   .queue { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line-2); }
   .queue li { display: grid; grid-template-columns: 110px 1fr auto; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
   .queue img { width: 110px; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--line-2); }
@@ -254,13 +244,36 @@
   .queue .when { margin-top: 3px; font: 500 11px/1 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
   .queue .v { text-align: right; font: 600 18px/1 var(--cond); color: var(--bright); }
   .queue .v small { display: block; margin-top: 3px; font: 500 10px/1 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .queue .note { padding: 16px 0; color: var(--dim); font: 500 12px/1.4 var(--cond); letter-spacing: .14em; text-transform: uppercase; display: block; }
+
+  /* Certyfikaty */
+  .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
+  .tier { position: relative; padding: 22px 18px 18px; border: 1px solid var(--line-2); text-align: center; overflow: hidden; }
+  .tier::before { content: ""; position: absolute; left: 50%; top: -30px; width: 60px; height: 60px; transform: translateX(-50%) rotate(45deg); background: var(--c); opacity: .9; }
+  .tier .n { margin-top: 26px; font: 400 34px/1 var(--display); color: var(--bright); }
+  .tier .th { margin-top: 6px; font: 600 12px/1 var(--cond); letter-spacing: .24em; text-transform: uppercase; color: var(--c); }
+  .tier .cnt { margin-top: 10px; font: 500 11px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .tier.t0 { --c: var(--t0); } .tier.t1 { --c: var(--t1); } .tier.t2 { --c: var(--t2); } .tier.t3 { --c: var(--t3); }
+  .certgrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .h3 { margin: 0 0 12px; font: 600 12px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--red-2); }
+  .certs, .nexts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+  .certs li, .nexts li { display: grid; grid-template-columns: 96px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .certs img, .nexts img { width: 96px; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--line-2); }
+  .certs .song, .nexts .song { font: 400 20px/1.1 var(--display); color: var(--bright); }
+  .certs .artist, .nexts .artist { font: 600 11px/1.2 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--flame); }
+  .certs .when { margin-top: 4px; font: 500 11px/1 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+  .nexts .bar { position: relative; height: 3px; margin-top: 8px; background: var(--line-2); }
+  .nexts .bar i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--p); background: linear-gradient(90deg, var(--ember), var(--red-2)); }
+  .nexts .d { text-align: right; }
+  .nexts .d b { display: block; font: 600 24px/1 var(--cond); color: var(--bright); }
+  .nexts .d small { font: 500 10px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
 
   /* Kronika */
   .chron { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
   .reigns { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
   .reigns li { display: grid; grid-template-columns: 22px 96px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
   .reigns .dot { width: 10px; height: 10px; transform: rotate(45deg); background: var(--dim); }
-  .reigns li:first-child .dot { background: var(--red-2); box-shadow: 0 0 12px var(--red-2); animation: blink 2.2s infinite; }
+  .reigns li:first-child .dot { background: var(--red-2); }
   .reigns img { width: 96px; aspect-ratio: 16/9; object-fit: cover; border: 1px solid var(--line-2); }
   .reigns .song { font: 400 20px/1.1 var(--display); color: var(--bright); }
   .reigns .artist { font: 600 11px/1.2 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--flame); }
@@ -272,37 +285,56 @@
   .facts div { padding: 18px 16px; border-right: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); font: 500 10px/1.3 var(--cond); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .facts b { display: block; margin-bottom: 6px; font: 600 22px/1.1 var(--cond); letter-spacing: 0; color: var(--bright); }
 
+  /* Współpraca */
+  .coop { position: relative; overflow: hidden; background: linear-gradient(180deg, transparent, rgba(210,18,46,.08)); }
+  .coop .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .coop h2 { margin: 0; font: 400 clamp(44px, 6vw, 84px)/.95 var(--display); color: var(--bright); }
+  .coop h2 em { font-style: normal; color: var(--red-2); }
+  .coop p.lead { margin: 18px 0 0; font: 500 16px/1.6 var(--sans); color: var(--text); max-width: 520px; }
+  .coop ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; max-width: 520px; }
+  .coop li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; font: 500 14px/1.5 var(--sans); color: var(--muted); }
+  .coop li::before { content: "†"; font: 400 20px/1 var(--display); color: var(--red-2); }
+  .coop li b { color: var(--bright); font-weight: 600; }
+  .joinbox { text-align: center; }
+  .join { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 26px 54px; margin: 30px 0 14px;
+    background: linear-gradient(180deg, #ff2d4a, #8f0c22); color: #fff; border: 1px solid #ff6b80; font: 400 clamp(30px, 3.2vw, 46px)/1 var(--display); letter-spacing: .04em;
+    box-shadow: 0 0 40px rgba(210,18,46,.55), 0 18px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.35); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+  .join:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 0 70px rgba(255,45,74,.8), 0 24px 50px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.35); }
+  .join .horn { position: absolute; top: -30px; width: 54px; height: 66px; transition: transform .3s; }
+  .join .horn.l { left: -10px; } .join .horn.r { right: -10px; transform: scaleX(-1); }
+  .join:hover .horn.l { transform: translateY(-4px) rotate(-6deg); } .join:hover .horn.r { transform: translateY(-4px) scaleX(-1) rotate(-6deg); }
+  .join .tail { position: absolute; left: 50%; bottom: -22px; width: 14px; height: 24px; transform: translateX(-50%); background: linear-gradient(180deg, #8f0c22, transparent); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .joinbox .sub { font: 600 12px/1.5 var(--cond); letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
+  .joinbox .sub b { color: #5865f2; }
+
   .empty { padding: 40px 20px; border: 1px dashed var(--line-2); text-align: center; font: 500 13px/1.6 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   .empty b { display: block; margin-bottom: 4px; font: 400 32px/1.1 var(--display); letter-spacing: .02em; text-transform: none; color: var(--red-2); }
-  .posters .empty { grid-column: 1 / -1; }
+  .posters .empty, .rising .empty { grid-column: 1 / -1; }
 
-  /* stopka z wielkim napisem */
+  /* stopka */
   footer { position: relative; padding: 70px 40px 40px; border-top: 1px solid var(--line); overflow: hidden; text-align: center; color: var(--muted); }
-  footer .big { position: absolute; left: 50%; bottom: -8%; transform: translateX(-50%); font: 400 clamp(90px, 18vw, 260px)/1 var(--display); letter-spacing: .04em; white-space: nowrap;
-    color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.07); pointer-events: none; }
+  footer .big { position: absolute; left: 50%; bottom: -8%; transform: translateX(-50%); font: 400 clamp(90px, 18vw, 260px)/1 var(--display); letter-spacing: .04em; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.07); pointer-events: none; }
   footer .legend { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font: 500 12px/1.4 var(--cond); letter-spacing: .1em; text-transform: uppercase; }
   footer .legend b { display: inline-block; margin-right: 6px; padding: 2px 6px; border: 1px solid; }
   footer .lg.up { color: var(--up); border-color: rgba(110,231,162,.4); } footer .lg.deb { color: var(--flame); border-color: rgba(255,179,71,.5); } footer .lg.new { color: #1a0004; background: var(--flame); border-color: var(--flame); }
   footer .stamp { position: relative; margin-top: 16px; font-size: 12px; }
   footer .stamp a { color: var(--text); border-bottom: 1px solid var(--red); }
-  footer .est { position: relative; margin-top: 26px; font: 400 22px/1 var(--display); letter-spacing: .22em; color: var(--red-2); text-shadow: 0 0 14px rgba(255,45,74,.4); }
+  footer .est { position: relative; margin-top: 26px; font: 400 22px/1 var(--display); letter-spacing: .22em; color: var(--red-2); }
 
-  @media (max-width: 1200px) { .posters { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 1200px) { .posters { grid-template-columns: repeat(4, 1fr); } .tiers { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 980px) {
     .side { display: none; }
     .mob { display: block; }
     main { margin-left: 0; }
     section { padding: 40px 18px; }
     .hero { grid-template-columns: 1fr; min-height: 0; padding: 36px 18px 30px; }
-    .vinyl-wrap { width: min(320px, 70vw); order: -1; }
+    .vinyl-wrap { width: min(300px, 66vw); order: -1; margin-bottom: 30px; }
     .vinyl-wrap .arm { display: none; }
     .strip { grid-template-columns: repeat(2, 1fr); }
     .strip div { padding: 16px 18px; } .strip div:nth-child(2) { border-right: 0; } .strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
     .posters { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .rising, .latest, .chron { grid-template-columns: 1fr; }
-    .ledger li { grid-template-columns: 44px 1fr auto; gap: 10px; }
-    .ledger .mv, .ledger .meta, .ledger .go { display: none; }
-    .ledger .song { font-size: 19px; white-space: normal; }
+    .rising, .latest, .chron, .certgrid, .coop .grid { grid-template-columns: 1fr; }
+    .join { padding: 22px 40px; }
     footer { padding: 50px 18px 30px; }
   }
   @media (max-width: 560px) {
@@ -312,15 +344,14 @@
     .hero .num { font-size: 110px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ticker .track, .vinyl, .vinyl-wrap .glow, .side .live::before, .reigns li:first-child .dot { animation: none; }
-    .poster, .acard { animation: none; }
+    .ticker .track, .vinyl, .live::before { animation: none; }
     html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
 <canvas id="embers" aria-hidden="true"></canvas>
-<div class="grain" aria-hidden="true"></div>
+<div class="glowbg" aria-hidden="true"></div>
 
 <div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
 
@@ -329,12 +360,13 @@
   <div class="date"><span>Notowanie</span><b id="chart-date"></b><span id="prev-date"></span><br><span class="live">Aktualizacja co godzinę</span></div>
   <nav class="menu" id="menu">
     <a href="#top1"><i>I</i>Na szczycie</a>
-    <a href="#now"><i>II</i>Top 10 Now</a>
-    <a href="#all"><i>III</i>Top 100</a>
-    <a href="#rising"><i>IV</i>Rosnące</a>
-    <a href="#artists"><i>V</i>Artyści</a>
-    <a href="#latest"><i>VI</i>Nowości</a>
+    <a href="#now"><i>II</i>Top 10</a>
+    <a href="#rising"><i>III</i>Rosnące</a>
+    <a href="#artists"><i>IV</i>Artyści</a>
+    <a href="#latest"><i>V</i>Nowości</a>
+    <a href="#certs"><i>VI</i>Certyfikaty</a>
     <a href="#chronicle"><i>VII</i>Kronika</a>
+    <a href="#coop" class="hot"><i>VIII</i>Współpraca</a>
   </nav>
   <a class="yt" id="channel-link-2" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>Kanał YouTube</a>
 </aside>
@@ -343,24 +375,18 @@
   <div class="in">
     <a href="#top1"><img src="logo.png?v=1" alt="Hellside Records"></a>
     <nav id="menu-m">
-      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#all">Top 100</a><a href="#rising">Rosnące</a><a href="#artists">Artyści</a><a href="#latest">Nowości</a><a href="#chronicle">Kronika</a>
+      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Artyści</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#coop">Współpraca</a>
     </nav>
   </div>
 </div>
 
 <main>
-  <section class="hero" id="top1"><div class="hero-bg" id="hero-bg"></div><div class="hero-tint"></div><div id="hero"></div><div class="vinyl-wrap" id="vinyl"></div></section>
+  <section class="hero" id="top1"><div class="hero-bg" id="hero-bg"></div><div class="hero-tint"></div><div class="txt" id="hero"></div><div class="vinyl-wrap" id="vinyl"></div></section>
   <div class="strip" id="strip"></div>
 
   <section id="now">
-    <div class="sec-head"><h2><small>Notowanie</small>Top <em>10</em> Now</h2><p>Najnowsze wydania wytwórni · według wyświetleń</p></div>
+    <div class="sec-head"><h2><small>Notowanie</small>Top <em>10</em></h2><p>Utwory wytwórni · według wyświetleń · ruch tydzień do tygodnia</p></div>
     <div class="posters" id="list-now"></div>
-  </section>
-
-  <section id="all">
-    <div class="sec-head"><h2><small>Cały katalog</small>Top <em>100</em> All Time</h2>
-      <label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg><input id="search" type="search" placeholder="Szukaj utworu lub artysty…" autocomplete="off"></label></div>
-    <ol class="ledger" id="list-all"></ol>
   </section>
 
   <section id="rising">
@@ -378,13 +404,54 @@
     <div class="latest"><div id="featured"></div><ol class="queue" id="list-latest"></ol></div>
   </section>
 
+  <section id="certs">
+    <div class="sec-head"><h2><small>Odznaczenia</small>Piekielne <em>Certyfikaty</em></h2><p>Każdy numer Hellside zdobywa certyfikat po przekroczeniu progu wyświetleń – automatycznie, z datą</p></div>
+    <div class="tiers" id="tiers"></div>
+    <div class="certgrid">
+      <div><div class="h3">Zdobyte certyfikaty</div><ol class="certs" id="list-certs"></ol></div>
+      <div><div class="h3">Najbliżej kolejnego progu</div><ol class="nexts" id="list-next"></ol></div>
+    </div>
+  </section>
+
   <section id="chronicle">
     <div class="sec-head"><h2><small>Historia</small>Kronika</h2><p>Kto i jak długo rządził na szczycie</p></div>
     <div class="chron"><ol class="reigns" id="list-reigns"></ol><div class="facts" id="facts"></div></div>
   </section>
 
+  <section class="coop" id="coop">
+    <div class="grid">
+      <div>
+        <h2>Nagrywasz?<br>Dołącz do <em>Hellside</em>.</h2>
+        <p class="lead">Szukamy ludzi, którzy robią muzykę na serio. Wbijaj na nasz Discord, pokaż, co masz – porozmawiamy o współpracy.</p>
+        <ul>
+          <li><span><b>Wydanie na kanale</b> – Twój numer trafia na oficjalny kanał Hellside Records.</span></li>
+          <li><span><b>Miejsce w notowaniu</b> – od pierwszego dnia liczysz się w Top 10, Rosnących i rankingu artystów.</span></li>
+          <li><span><b>Piekielne Certyfikaty</b> – Żar, Ogień, Piekło, Inferno: odznaczenia za wyświetlenia, z datą, na zawsze na stronie.</span></li>
+          <li><span><b>Ekipa</b> – producenci, wokaliści, grafika; ogarniamy rzeczy razem.</span></li>
+        </ul>
+      </div>
+      <div class="joinbox">
+        <a class="join" id="join" href="#" target="_blank" rel="noopener">
+          <svg class="horn l" viewBox="0 0 54 66" aria-hidden="true"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f4f8"/><stop offset=".5" stop-color="#8e8e9a"/><stop offset="1" stop-color="#3a0710"/></linearGradient></defs><path fill="url(#hg)" d="M50 66C32 60 18 48 10 32 5 22 3 12 6 0c6 12 12 22 22 30 10 9 18 16 22 36Z"/></svg>
+          Dołącz do nas!
+          <svg class="horn r" viewBox="0 0 54 66" aria-hidden="true"><path fill="url(#hg)" d="M50 66C32 60 18 48 10 32 5 22 3 12 6 0c6 12 12 22 22 30 10 9 18 16 22 36Z"/></svg>
+          <span class="tail"></span>
+        </a>
+        <div class="sub">Zaproszenie na <b>Discord</b> · otwarte dla każdego</div>
+      </div>
+    </div>
+  </section>
+
   <footer id="foot"></footer>
 </main>
+
+<div class="player" id="player" role="dialog" aria-modal="true" aria-label="Odtwarzacz">
+  <div class="pbox">
+    <button class="close" id="pclose">Zamknij ✕</button>
+    <div class="frame" id="pframe"></div>
+    <div class="ptitle" id="ptitle"></div>
+  </div>
+</div>
 
 <script>
 const DATA = /*__DATA__*/null;
@@ -395,10 +462,13 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'
 const days = (n) => n === 1 ? '1 dzień' : `${n} dni`;
 const plural = (n, one, few, many) => n === 1 ? one : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? few : many;
 const big = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-const YT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>';
+const tiny = (id) => `https://i.ytimg.com/vi/${id}/default.jpg`;
 const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+const YT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>';
 const rk = (pos) => pos <= 3 ? ` r${pos}` : '';
 const emptyBox = (title, text) => `<div class="empty"><b>${title}</b>${text}</div>`;
+const TIERS = (DATA && DATA.config.tiers) || [];
+const certBadge = (t) => t === null || t === undefined || !TIERS[t] ? '' : `<span class="cert t${t}" title="Certyfikat za ${nf.format(TIERS[t].views)} wyświetleń">${esc(TIERS[t].name)}</span>`;
 
 function moveBadge(e) {
   if (e.move === null) return '<span class="mv same" title="Pierwsze notowanie">—</span>';
@@ -408,34 +478,19 @@ function moveBadge(e) {
   return '<span class="mv same" title="Bez zmian">=</span>';
 }
 
-function poster(e, i) {
-  const delta = e.viewsDelta !== null && e.viewsDelta > 0 ? `<i>+${nf.format(e.viewsDelta)}</i>` : '';
-  return `<a class="poster${rk(e.pos)}" style="--i:${i}" href="${esc(e.url)}" target="_blank" rel="noopener" title="${esc(e.title)}">
+function poster(e) {
+  const delta = e.viewsDelta !== null && e.viewsDelta > 0 ? `<i>+${nf.format(e.viewsDelta)}</i>` : '<span>wyśw.</span>';
+  return `<a class="poster${rk(e.pos)}" href="${esc(e.url)}" target="_blank" rel="noopener" title="${esc(e.title)}">
     <img loading="lazy" src="${big(e.id)}" alt="">
     <span class="rk">${e.pos}</span>
     ${moveBadge(e)}
     <div class="body">
       <div class="song">${esc(e.song)}${e.isLatest ? '<span class="tagnew">NEW</span>' : ''}</div>
       <div class="artist">${esc(e.artist || '—')}</div>
-      <div class="v"><b>${nf.format(e.views)}</b>${delta || '<span>wyśw.</span>'}</div>
+      <div class="v"><b>${nf.format(e.views)}</b>${delta}</div>
+      ${certBadge(e.tier)}
     </div>
   </a>`;
-}
-
-function ledgerRow(e) {
-  const meta = [];
-  if (e.weeks > 1) meta.push(`${e.weeks} ${plural(e.weeks, 'tydz.', 'tyg.', 'tyg.')} w notowaniu`);
-  if (e.peak < e.pos) meta.push(`szczyt #${e.peak}`);
-  if (e.publishedText) meta.push(esc(e.publishedText));
-  const delta = e.viewsDelta !== null && e.viewsDelta > 0 ? `<small class="plus">+${nf.format(e.viewsDelta)} / tydz.</small>` : '<small>wyświetleń</small>';
-  return `<li class="${rk(e.pos).trim()}" style="--art:url('${esc(e.thumb)}')" data-q="${esc((e.artist + ' ' + e.song).toLowerCase())}">
-    <div class="rk">${e.pos}</div>
-    ${moveBadge(e)}
-    <div class="t"><div class="song" title="${esc(e.title)}">${esc(e.song)}${e.isLatest ? '<span class="tagnew">NEW</span>' : ''}</div><div class="artist">${esc(e.artist || '—')}</div></div>
-    <div class="meta">${meta.map(m => `<span>${m}</span>`).join('')}</div>
-    <div class="views"><b>${nf.format(e.views)}</b>${delta}</div>
-    <a class="go" href="${esc(e.url)}" target="_blank" rel="noopener" title="Otwórz na YouTube">${YT}</a>
-  </li>`;
 }
 
 function risingRow(e) {
@@ -447,8 +502,8 @@ function risingRow(e) {
   </li>`;
 }
 
-function artistCard(a, i) {
-  return `<a class="acard${a.pos === 1 ? ' r1' : ''}" style="--i:${i}" href="${esc(a.top.url)}" target="_blank" rel="noopener" title="Największy hit: ${esc(a.top.title)}">
+function artistCard(a) {
+  return `<a class="acard${a.pos === 1 ? ' r1' : ''}" href="${esc(a.top.url)}" target="_blank" rel="noopener" title="Największy hit: ${esc(a.top.title)}">
     <img loading="lazy" src="${big(a.top.id)}" alt="">
     <span class="rk">${a.pos}</span>
     <div class="body">
@@ -457,7 +512,7 @@ function artistCard(a, i) {
         <div><b>${nf.format(a.views)}</b><span>wyświetleń</span></div>
         <div><b>${a.tracks}</b><span>${plural(a.tracks, 'utwór', 'utwory', 'utworów')}</span></div>
         <div><b>${a.share}%</b><span>udział</span></div>
-        <div><b>${a.bestPos ? '#' + a.bestPos : '—'}</b><span>all time</span></div>
+        <div><b>${a.bestPos ? '#' + a.bestPos : '—'}</b><span>najwyżej</span></div>
       </div>
       <div class="hit">Hit: <b>${esc(a.top.song)}</b> · ${nf.format(a.top.views)} wyśw.</div>
     </div>
@@ -472,7 +527,7 @@ function renderLatest(entries) {
   const delta = f.viewsDelta !== null && f.viewsDelta > 0 ? `<span><b>+${nf.format(f.viewsDelta)}</b> w tym tygodniu</span>` : '';
   box.innerHTML = `<div class="fresh">
     <img src="${esc(f.thumbLarge)}" alt="">
-    <a class="cta" href="${esc(f.url)}" target="_blank" rel="noopener" title="Słuchaj na YouTube">${PLAY}</a>
+    <button class="play" type="button" data-play="${esc(f.id)}" data-title="${esc(f.song)}" data-artist="${esc(f.artist)}" title="Odtwórz tutaj">${PLAY}</button>
     <div class="body">
       <span class="badge${f.isNew ? '' : ' old'}">${f.isNew ? 'Świeżo wydane' : 'Najnowsze wydanie'}</span>
       <div class="song">${esc(f.song)}</div>
@@ -484,14 +539,14 @@ function renderLatest(entries) {
     <a href="${esc(e.url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(e.thumb)}" alt=""></a>
     <div><div class="song">${esc(e.song)}</div><div class="artist">${esc(e.artist || '—')}</div><div class="when">${e.isNew ? 'Nowe · ' : ''}${esc(e.publishedText)}</div></div>
     <div class="v">${nf.format(e.views)}<small>wyśw.</small></div>
-  </li>`).join('') || '<li style="padding:16px 0;color:var(--dim);font:500 12px/1.4 var(--cond);letter-spacing:.14em;text-transform:uppercase">Kolejne wydania pojawią się tutaj</li>';
+  </li>`).join('') || '<li class="note">Kolejne wydania pojawią się tutaj</li>';
 }
 
 function renderHero(e, T) {
   const hero = document.getElementById('hero');
   const vinyl = document.getElementById('vinyl');
   if (!e) { hero.innerHTML = emptyBox('Piekło dopiero się rozgrzewa', 'Brak utworów w notowaniu.'); vinyl.innerHTML = ''; return; }
-  document.getElementById('hero-bg').style.setProperty('--art', `url('${big(e.id)}')`);
+  document.getElementById('hero-bg').style.setProperty('--art', `url('${tiny(e.id)}')`);
   const delta = e.viewsDelta !== null && e.viewsDelta > 0 ? `<div class="hot"><b>+${nf.format(e.viewsDelta)}</b>w tym tygodniu</div>` : '';
   const share = T.labelViews ? Math.round(e.views / T.labelViews * 1000) / 10 : null;
   hero.innerHTML = `
@@ -505,17 +560,38 @@ function renderHero(e, T) {
       <div class="fire"><b>${days(e.daysAtTop || 1)}</b>na szczycie</div>
       ${share !== null && T.tracks > 1 ? `<div><b>${share}%</b>wyświetleń wytwórni</div>` : ''}
     </div>
-    <a class="cta" href="${esc(e.url)}" target="_blank" rel="noopener">${PLAY} Słuchaj na YouTube</a>`;
-  vinyl.innerHTML = `<div class="glow"></div><a class="vinyl" href="${esc(e.url)}" target="_blank" rel="noopener" style="--art:url('${big(e.id)}')" title="${esc(e.title)}"><span class="label"></span><span class="hole"></span></a><div class="arm"></div>`;
+    <div class="ctas">
+      <button class="cta" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}">${PLAY} Odpal tutaj</button>
+      <a class="cta ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${YT} Na YouTube</a>
+    </div>`;
+  vinyl.innerHTML = `<div class="glow"></div><button class="vinyl" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}" style="--art:url('${big(e.id)}');border:0;padding:0" title="Odtwórz: ${esc(e.title)}"><span class="label"></span><span class="hole"></span></button><div class="arm"></div><div class="hint">Kliknij winyl, żeby odpalić</div>`;
 }
 
-function renderStrip(T) {
+function renderStrip(T, D) {
   const delta = T.viewsDelta !== null && T.viewsDelta > 0 ? `<small>+${nf.format(T.viewsDelta)} w tym tygodniu</small>` : '';
+  const last = D.latest?.[0];
   document.getElementById('strip').innerHTML = `
     <div><b>${nf.format(T.labelViews)}</b>wyświetleń wytwórni${delta}</div>
     <div><b>${nf.format(T.tracks)}</b>${plural(T.tracks, 'utwór', 'utwory', 'utworów')}</div>
     <div><b>${nf.format(T.artists)}</b>${plural(T.artists, 'artysta', 'artystów', 'artystów')}</div>
-    <div><b>${T.subscribers !== null ? nf.format(T.subscribers) : '—'}</b>subskrybentów</div>`;
+    <div><b class="sm">${last ? esc(last.publishedText) : '—'}</b>ostatnie wydanie</div>`;
+}
+
+function renderCerts(D) {
+  const counts = TIERS.map((_, i) => (D.certs || []).filter(c => c.tier === i).length);
+  document.getElementById('tiers').innerHTML = TIERS.map((t, i) => `<div class="tier t${i}">
+      <div class="n">${esc(t.name)}</div><div class="th">${nf.format(t.views)} wyświetleń</div>
+      <div class="cnt">${counts[i] ? `${counts[i]} ${plural(counts[i], 'utwór', 'utwory', 'utworów')}` : 'jeszcze nikt'}</div>
+    </div>`).join('');
+  document.getElementById('list-certs').innerHTML = (D.certs || []).length ? D.certs.map(c => `<li>
+      <a href="${esc(c.url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(c.thumb)}" alt=""></a>
+      <div><div class="song">${esc(c.song)}</div><div class="artist">${esc(c.artist || '—')}</div><div class="when">${certBadge(c.tier)} · ${esc(c.dateText)} · ${nf.format(c.views)} wyśw.</div></div>
+    </li>`).join('') : emptyBox('Pierwszy certyfikat czeka', `Próg ${TIERS[0] ? esc(TIERS[0].name) + ': ' + nf.format(TIERS[0].views) + ' wyświetleń' : ''}. Kto pierwszy?`);
+  document.getElementById('list-next').innerHTML = (D.nextCerts || []).length ? D.nextCerts.map(n => `<li>
+      <a href="${esc(n.url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(n.thumb)}" alt=""></a>
+      <div><div class="song">${esc(n.song)}</div><div class="artist">${esc(n.artist || '—')}</div><div class="bar"><i style="--p:${n.progress}%"></i></div></div>
+      <div class="d"><b>${nf.format(n.missing)}</b><small>do ${esc(n.nextName)}</small></div>
+    </li>`).join('') : emptyBox('Wszystko na maksie', 'Każdy numer ma najwyższy certyfikat.');
 }
 
 function renderChronicle(reigns, T) {
@@ -537,15 +613,28 @@ function renderChronicle(reigns, T) {
 }
 
 function renderTicker(D, T) {
-  const parts = [];
-  parts.push(`<b>Hellside Records</b> Official Charts`);
-  parts.push(`Notowanie z ${fmtDate(D.chartDate)}`);
+  const parts = [`<b>Hellside Records</b> Official Charts`, `Notowanie z ${fmtDate(D.chartDate)}`];
   D.now.slice(0, 5).forEach(e => parts.push(`#${e.pos} ${esc(e.artist)} – ${esc(e.song)} <b>${nf.format(e.views)}</b>`));
   parts.push(`<b>${nf.format(T.labelViews)}</b> wyświetleń wytwórni`);
-  if (T.subscribers !== null) parts.push(`<b>${nf.format(T.subscribers)}</b> subskrybentów`);
   if (D.latest?.[0]) parts.push(`Najnowsze: ${esc(D.latest[0].artist)} – ${esc(D.latest[0].song)}`);
+  if (D.nextCerts?.[0]) parts.push(`${esc(D.nextCerts[0].song)}: <b>${nf.format(D.nextCerts[0].missing)}</b> wyśw. do certyfikatu ${esc(D.nextCerts[0].nextName)}`);
+  parts.push(`Nagrywasz? <b>Dołącz do nas</b> na Discordzie`);
   const html = parts.map(p => `<span>${p}</span><span>†</span>`).join('');
   document.getElementById('ticker').innerHTML = html + html;
+}
+
+/* odtwarzacz w stronie (iframe YouTube ładowany dopiero po kliknięciu) */
+function openPlayer(id, title, artist) {
+  const p = document.getElementById('player');
+  document.getElementById('pframe').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="${esc(title)}"></iframe>`;
+  document.getElementById('ptitle').innerHTML = `<div>${esc(title)}</div><span>${esc(artist || '')}</span>`;
+  p.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePlayer() {
+  document.getElementById('player').classList.remove('open');
+  document.getElementById('pframe').innerHTML = '';
+  document.body.style.overflow = '';
 }
 
 function init() {
@@ -553,26 +642,28 @@ function init() {
   const T = DATA.totals || {};
   document.getElementById('channel-link').href = DATA.channel.url;
   document.getElementById('channel-link-2').href = DATA.channel.url;
+  document.getElementById('join').href = DATA.config.discord || '#';
   document.title = `Hellside Charts – notowanie ${fmtDate(DATA.chartDate)}`;
   document.getElementById('chart-date').textContent = fmtDate(DATA.chartDate);
   document.getElementById('prev-date').textContent = DATA.prevDate ? `vs ${fmtDate(DATA.prevDate)}` : 'pierwsze notowanie';
 
   renderTicker(DATA, T);
   renderHero(DATA.now[0], T);
-  renderStrip(T);
+  renderStrip(T, DATA);
   document.getElementById('list-now').innerHTML = DATA.now.length ? DATA.now.map(poster).join('') : emptyBox('Piekło dopiero się rozgrzewa', 'Brak utworów w notowaniu.');
-  document.getElementById('list-all').innerHTML = DATA.allTime.length ? DATA.allTime.map(ledgerRow).join('') : emptyBox('Piekło dopiero się rozgrzewa', 'Brak utworów w notowaniu.');
   document.getElementById('list-rising').innerHTML = (DATA.rising || []).length ? DATA.rising.map(risingRow).join('')
-    : `<li style="grid-column:1/-1;display:block;padding:0;border:0">${emptyBox('Żar się tli', DATA.prevDate ? 'W tym tygodniu żaden utwór nie zyskał wyświetleń.' : 'Przyrosty pojawią się po pierwszym tygodniu notowania.')}</li>`;
+    : emptyBox('Żar się tli', DATA.prevDate ? 'W tym tygodniu żaden utwór nie zyskał wyświetleń.' : 'Przyrosty pojawią się po pierwszym tygodniu notowania.');
   document.getElementById('list-artists').innerHTML = (DATA.artists || []).length ? DATA.artists.map(artistCard).join('') : emptyBox('Pusta scena', 'Brak wykonawców.');
   renderLatest(DATA.latest || []);
+  renderCerts(DATA);
   renderChronicle(DATA.reigns || [], T);
 
-  const search = document.getElementById('search');
-  search.addEventListener('input', () => {
-    const q = search.value.trim().toLowerCase();
-    document.querySelectorAll('#list-all li').forEach(r => r.classList.toggle('hidden', !!q && !r.dataset.q.includes(q)));
+  document.addEventListener('click', (ev) => {
+    const b = ev.target.closest('[data-play]');
+    if (b) { ev.preventDefault(); openPlayer(b.dataset.play, b.dataset.title, b.dataset.artist); return; }
+    if (ev.target.id === 'player' || ev.target.id === 'pclose') closePlayer();
   });
+  document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closePlayer(); });
 
   const estYear = T.channelCreatedAt ? new Date(T.channelCreatedAt).getFullYear() : new Date(DATA.chartDate).getFullYear();
   document.getElementById('foot').innerHTML = `
@@ -600,32 +691,39 @@ function init() {
     sections.forEach(s => io.observe(s));
   }
   setOn('top1');
-  links.forEach(l => l.addEventListener('click', () => { const t = document.querySelector(l.getAttribute('href')); t?.scrollIntoView({ block: 'start' }); }));
 }
 init();
 
-/* ---------- tło: unoszący się żar + czerwona mgła (canvas 2D) ---------- */
+/* ---------- tło: żar + mgła. Lekko: sprite'y zamiast shadowBlur, ~60 cząstek, 30 kl./s, pauza gdy karta ukryta ---------- */
 (function embers() {
   const canvas = document.getElementById('embers');
   const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W = 0, H = 0, dpr = 1, parts = [], fog = [], raf = null, last = 0;
+  let W = 0, H = 0, parts = [], fog = [], raf = null, last = 0, acc = 0;
+
+  function sprite(size, color) {
+    const c = document.createElement('canvas'); c.width = c.height = size;
+    const g = c.getContext('2d'); const r = size / 2;
+    const grad = g.createRadialGradient(r, r, 0, r, r, r);
+    grad.addColorStop(0, color.replace('A', '1')); grad.addColorStop(.35, color.replace('A', '.55')); grad.addColorStop(1, color.replace('A', '0'));
+    g.fillStyle = grad; g.fillRect(0, 0, size, size);
+    return c;
+  }
+  const SP = [sprite(32, 'rgba(255,120,40,A)'), sprite(32, 'rgba(255,45,74,A)')];
+  const FOG = sprite(256, 'rgba(210,18,46,A)');
 
   function resize() {
-    dpr = Math.min(devicePixelRatio || 1, 1.5);
     W = innerWidth; H = innerHeight;
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(Math.min(150, W * H / 13000));
+    canvas.width = W; canvas.height = H; // 1:1, bez DPR – tła nie trzeba renderować w retina
+    const n = Math.round(Math.min(60, W * H / 22000));
     parts = Array.from({ length: n }, () => spawn(true));
-    fog = Array.from({ length: 5 }, (_, i) => ({ x: Math.random() * W, y: H - Math.random() * H * .5, r: 240 + Math.random() * 280, vx: (Math.random() - .5) * 8, vy: -(3 + Math.random() * 5), a: .05 + Math.random() * .05, p: i }));
+    fog = Array.from({ length: 4 }, (_, i) => ({ x: Math.random() * W, y: H - Math.random() * H * .5, r: 260 + Math.random() * 260, vx: (Math.random() - .5) * 8, vy: -(3 + Math.random() * 5), a: .10 + Math.random() * .08, p: i }));
   }
   function spawn(anywhere) {
     const hot = Math.random() < .3;
-    return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: hot ? 1.2 + Math.random() * 1.8 : .6 + Math.random() * 1.2,
-      vy: 12 + Math.random() * 30, vx: (Math.random() - .5) * 10, sway: Math.random() * Math.PI * 2, sw: 8 + Math.random() * 16,
-      life: 0, ttl: 8 + Math.random() * 10, hue: hot ? 18 + Math.random() * 14 : 350 + Math.random() * 20, tw: 2 + Math.random() * 4 };
+    return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, s: hot ? 7 + Math.random() * 8 : 4 + Math.random() * 5, k: hot ? 0 : 1,
+      vy: 12 + Math.random() * 30, vx: (Math.random() - .5) * 10, sway: Math.random() * Math.PI * 2, sw: 8 + Math.random() * 16, life: 0, ttl: 8 + Math.random() * 10, tw: 2 + Math.random() * 4 };
   }
   function draw(dt, t) {
     ctx.clearRect(0, 0, W, H);
@@ -633,10 +731,8 @@ init();
     for (const f of fog) {
       f.x += f.vx * dt; f.y += f.vy * dt;
       if (f.y + f.r < 0) { f.y = H + f.r; f.x = Math.random() * W; }
-      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
-      const a = f.a * (0.75 + 0.25 * Math.sin(t / 1400 + f.p));
-      g.addColorStop(0, `rgba(210,18,46,${a})`); g.addColorStop(1, 'rgba(210,18,46,0)');
-      ctx.fillStyle = g; ctx.fillRect(f.x - f.r, f.y - f.r, f.r * 2, f.r * 2);
+      ctx.globalAlpha = f.a * (0.75 + 0.25 * Math.sin(t / 1400 + f.p));
+      ctx.drawImage(FOG, f.x - f.r, f.y - f.r, f.r * 2, f.r * 2);
     }
     for (let i = 0; i < parts.length; i++) {
       const p = parts[i];
@@ -644,19 +740,17 @@ init();
       p.y -= p.vy * dt; p.x += (p.vx + Math.sin(p.sway) * p.sw) * dt;
       if (p.y < -10 || p.life > p.ttl) { parts[i] = spawn(false); continue; }
       const fade = Math.min(1, p.life / 1.2) * Math.min(1, (p.ttl - p.life) / 2);
-      const tw = 0.6 + 0.4 * Math.sin(t / 1000 * p.tw + i);
-      const a = fade * tw * 0.9;
-      ctx.fillStyle = `hsla(${p.hue},100%,${p.r > 1.5 ? 62 : 55}%,${a})`;
-      ctx.shadowColor = `hsla(${p.hue},100%,55%,${a})`; ctx.shadowBlur = p.r * 5;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = fade * (0.6 + 0.4 * Math.sin(t / 1000 * p.tw + i));
+      ctx.drawImage(SP[p.k], p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
     }
-    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = 'source-over';
   }
   function loop(t) {
-    const dt = Math.min(.05, (t - last) / 1000 || 0); last = t;
-    draw(dt, t);
     raf = requestAnimationFrame(loop);
+    const dt = Math.min(.05, (t - last) / 1000 || 0); last = t;
+    acc += dt; if (acc < 1 / 30) return; // 30 kl./s wystarczy dla tła
+    draw(acc, t); acc = 0;
   }
   function start() { if (!raf && !reduced) { last = performance.now(); raf = requestAnimationFrame(loop); } }
   function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }

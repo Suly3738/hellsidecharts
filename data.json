@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T22:43:53.872Z",
+  "generatedAt": "2026-09-18T22:55:51.577Z",
   "chartDate": "2026-09-19",
   "prevDate": null,
   "channel": {
@@ -14,7 +14,26 @@
     "excludeKeyword": "",
     "nowSize": 10,
     "allTimeSize": 100,
-    "latestSize": 6
+    "latestSize": 6,
+    "tiers": [
+      {
+        "name": "Żar",
+        "views": 1000
+      },
+      {
+        "name": "Ogień",
+        "views": 5000
+      },
+      {
+        "name": "Piekło",
+        "views": 25000
+      },
+      {
+        "name": "Inferno",
+        "views": 100000
+      }
+    ],
+    "discord": "https://discord.gg/rWgXWJJSd"
   },
   "stats": {
     "source": "YouTube Data API",
@@ -53,7 +72,24 @@
       "peak": 1,
       "weeks": 1,
       "viewsDelta": null,
-      "daysAtTop": 1
+      "daysAtTop": 1,
+      "tier": null
+    }
+  ],
+  "certs": [],
+  "nextCerts": [
+    {
+      "id": "PqJv58Venx0",
+      "artist": "740FREDO",
+      "song": "WEDNESDAY!",
+      "title": "740FREDO - WEDNESDAY!",
+      "views": 234,
+      "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
+      "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
+      "nextTier": 0,
+      "nextName": "Żar",
+      "missing": 766,
+      "progress": 23
     }
   ],
   "allTime": [

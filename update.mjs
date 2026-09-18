@@ -385,6 +385,29 @@ for (const s of history.snapshots) {
 reigns.reverse();
 const daysAtTop = reigns.reduce((m, r) => { m[r.id] = (m[r.id] ?? 0) + r.days; return m; }, {});
 
+// certyfikaty: progi wyświetleń (config.tiers); data zdobycia = pierwsza migawka, w której utwór przekroczył próg
+const tiers = (cfg.tiers ?? []).slice().sort((a, b) => a.views - b.views);
+const tierOf = (views) => { let t = -1; tiers.forEach((x, i) => { if (views >= x.views) t = i; }); return t; };
+const certifiedAt = (id, threshold) => {
+  for (const s of history.snapshots) { const v = s.views?.[id]; if (typeof v === 'number' && v >= threshold) return s.date; }
+  return chartDate;
+};
+const certs = allTimePool
+  .map(v => ({ v, t: tierOf(v.views) }))
+  .filter(x => x.t >= 0)
+  .sort((a, b) => b.t - a.t || byViews(a.v, b.v))
+  .map(({ v, t }) => ({ id: v.id, artist: v.artist, song: v.song, title: v.title, views: v.views, url: v.url, thumb: v.thumb,
+    tier: t, tierName: tiers[t].name, date: certifiedAt(v.id, tiers[t].views), dateText: fmtDate(certifiedAt(v.id, tiers[t].views)) }));
+const nextCerts = allTimePool
+  .map(v => ({ v, t: tierOf(v.views) }))
+  .filter(x => x.t < tiers.length - 1)
+  .map(({ v, t }) => { const n = tiers[t + 1]; const from = t >= 0 ? tiers[t].views : 0;
+    return { id: v.id, artist: v.artist, song: v.song, title: v.title, views: v.views, url: v.url, thumb: v.thumb,
+      nextTier: t + 1, nextName: n.name, missing: n.views - v.views, progress: Math.min(100, Math.round((v.views - from) / (n.views - from) * 100)) }; })
+  .sort((a, b) => a.missing - b.missing)
+  .slice(0, cfg.nextCertsSize ?? 5);
+const tierById = Object.fromEntries(certs.map(c => [c.id, c.tier]));
+
 const prevTotal = prev ? allTimePool.reduce((s, v) => s + (typeof prev.views?.[v.id] === 'number' ? prev.views[v.id] : v.views), 0) : null;
 const totals = {
   labelViews,
@@ -410,6 +433,8 @@ const data = {
     nowSize: cfg.nowSize,
     allTimeSize: cfg.allTimeSize,
     latestSize: cfg.latestSize ?? 3,
+    tiers,
+    discord: cfg.discord ?? null,
   },
   stats: {
     source: apiKey ? 'YouTube Data API' : 'youtubei.js',
@@ -420,7 +445,9 @@ const data = {
     allTimePoolSize: allTimePool.length,
   },
   totals,
-  now: enrich(now, 'now').map(e => ({ ...e, daysAtTop: daysAtTop[e.id] ?? 0 })),
+  now: enrich(now, 'now').map(e => ({ ...e, daysAtTop: daysAtTop[e.id] ?? 0, tier: tierById[e.id] ?? null })),
+  certs,
+  nextCerts,
   allTime: enrich(allTime, 'allTime'),
   rising,
   artists,
@@ -444,6 +471,7 @@ fs.writeFileSync(p('index.html'), template.replace('/*__DATA__*/null', json).rep
 fs.writeFileSync(p('version.json'), JSON.stringify({ build }));
 
 log(`Gotowe. Notowanie z ${chartDate}: Top ${now.length} Now, Top ${allTime.length} All Time, ${latest.length} najnowszych wydań, ${artists.length} wykonawców, ${rising.length} rosnących (odniesienie: ${prev?.date ?? '—'}).`);
+log(`Certyfikaty: ${certs.length}, najbliżej progu: ${nextCerts[0] ? `${nextCerts[0].title} (brakuje ${nextCerts[0].missing} do ${nextCerts[0].nextName})` : '—'}`);
 log(`Wykluczone (${data.stats.excluded.length}): ${data.stats.excluded.map(e => e.title).join(' | ') || '—'}`);
 log('#1 Now: ' + (now[0] ? `${now[0].title} (${now[0].views} wyśw.)` : '—'));
 log('#1 All Time: ' + (allTime[0] ? `${allTime[0].title} (${allTime[0].views} wyśw.)` : '—'));

@@ -10,5 +10,25 @@
   "excludeArtists": [],
   "excludeCaseSensitive": true,
   "applyExcludeToNow": true,
-  "concurrency": 4
+  "concurrency": 4,
+  "discord": "https://discord.gg/rWgXWJJSd",
+  "tiers": [
+    {
+      "name": "Żar",
+      "views": 1000
+    },
+    {
+      "name": "Ogień",
+      "views": 5000
+    },
+    {
+      "name": "Piekło",
+      "views": 25000
+    },
+    {
+      "name": "Inferno",
+      "views": 100000
+    }
+  ],
+  "nextCertsSize": 5
 }

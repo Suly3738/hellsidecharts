@@ -7,8 +7,10 @@ Strona: https://suly3738.github.io/hellsidecharts/ · Repozytorium: https://gith
 ## Co jest na stronie
 
 - **Na szczycie** – aktualny #1 z liczbą dni na szczycie.
-- **Top 10 Now** – wydania od utworu `nowStartVideoId` włącznie (wszystko nowsze), według wyświetleń.
-- **Top 100 All Time** – cały kanał (bez wykluczeń), z wyszukiwarką.
+- **Top 10** – wydania od utworu `nowStartVideoId` włącznie (wszystko nowsze), według wyświetleń.
+- **Piekielne Certyfikaty** – progi wyświetleń z `config.tiers` (Żar 1000 · Ogień 5000 · Piekło 25 000 · Inferno 100 000), data zdobycia z migawek, lista „najbliżej progu”.
+- **Współpraca** – przycisk „Dołącz do nas!” → Discord (`config.discord`).
+- **Odtwarzacz w stronie** – klik w winyl / „Odpal tutaj” ładuje iframe YouTube (nocookie).
 - **Rosnące** – największe przyrosty wyświetleń tydzień do tygodnia (pojawia się po pierwszym tygodniu).
 - **Artyści** – ranking wykonawców: suma wyświetleń, liczba utworów, udział, największy hit.
 - **Nowości** – ostatnie wydania (`latestSize`), znacznik NEW w notowaniach.
