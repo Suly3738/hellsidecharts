@@ -39,7 +39,9 @@
     --sans: "Barlow", -apple-system, "Segoe UI", system-ui, sans-serif;
     --side: 250px;
   }
+  :root { --cur: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%20%3Cg%20transform%3D%22translate(16%2016)%20rotate(-45)%20scale(.8)%20translate(-14%20-18)%22%3E%20%3Cpath%20d%3D%22M14%201%20L25.5%2015%20C29%2023%2023.5%2033%2014%2035%20C4.5%2033%20-1%2023%202.5%2015%20Z%22%20fill%3D%22%2316100f%22%20stroke%3D%22%23e9e2e2%22%20stroke-width%3D%222.2%22%20stroke-linejoin%3D%22round%22%2F%3E%20%3Cpath%20d%3D%22M14%201%20L25.5%2015%20C29%2023%2023.5%2033%2014%2035%20C4.5%2033%20-1%2023%202.5%2015%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%22.8%22%20stroke-linejoin%3D%22round%22%2F%3E%20%3Ccircle%20cx%3D%2214%22%20cy%3D%2220%22%20r%3D%226.2%22%20fill%3D%22%233a0008%22%20stroke%3D%22%23ff2d4a%22%20stroke-width%3D%221.8%22%2F%3E%20%3Ccircle%20cx%3D%2214%22%20cy%3D%2220%22%20r%3D%222.4%22%20fill%3D%22%23ff2d4a%22%2F%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E") 6 6, auto; --cur-hand: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%20%3Cg%20transform%3D%22translate(16%2016)%20rotate(-45)%20scale(.75)%20translate(-12%20-18)%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cg%20stroke%3D%22%23000%22%20stroke-width%3D%225%22%3E%3Cpath%20d%3D%22M12%200%20V36%22%2F%3E%3Cpath%20d%3D%22M5%2012%20V5%20Q5%201%209%201%22%2F%3E%3Cpath%20d%3D%22M19%2012%20V5%20Q19%201%2015%201%22%2F%3E%3Cpath%20d%3D%22M4%2012%20H20%22%2F%3E%3C%2Fg%3E%20%3Cg%20stroke%3D%22%23ff2d4a%22%20stroke-width%3D%222.4%22%3E%3Cpath%20d%3D%22M12%200%20V36%22%2F%3E%3Cpath%20d%3D%22M5%2012%20V5%20Q5%201%209%201%22%2F%3E%3Cpath%20d%3D%22M19%2012%20V5%20Q19%201%2015%201%22%2F%3E%3Cpath%20d%3D%22M4%2012%20H20%22%2F%3E%3C%2Fg%3E%20%3Cpath%20d%3D%22M12%2022%20V36%22%20stroke%3D%22%23e9e2e2%22%20stroke-width%3D%221%22%2F%3E%20%3C%2Fg%3E%20%3C%2Fsvg%3E") 6 6, pointer; }
   * { box-sizing: border-box; }
+  html, body { cursor: var(--cur); }
   html { color-scheme: dark; scroll-behavior: smooth; }
   html, body { margin: 0; color: var(--text); font: 15px/1.45 var(--sans); background: var(--bg); }
   body { position: relative; min-height: 100vh; overflow-x: hidden; }
@@ -468,6 +470,10 @@
   footer .stamp { position: relative; margin-top: 16px; font-size: 12px; }
   footer .stamp a { color: var(--text); border-bottom: 1px solid var(--red); }
   footer .est { position: relative; margin-top: 26px; font: 400 22px/1 var(--display); letter-spacing: .22em; color: var(--red-2); }
+
+  /* widły diabła nad wszystkim, co się klika (nadpisuje wcześniejsze cursor: pointer) */
+  a, button, [role="button"], [data-play], [data-tier], .tier, .cert, .diploma, .poster, .acard, .vinyl, .fresh .play, .pbox .close, .cbox .close, .menu a, .mob nav a { cursor: var(--cur-hand); }
+  input, textarea { cursor: text; }
 
   @media (max-width: 1200px) { .posters { grid-template-columns: repeat(4, 1fr); } .tiers { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 980px) {
