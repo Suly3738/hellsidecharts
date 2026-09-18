@@ -1,0 +1,14 @@
+{
+  "channelUrl": "https://www.youtube.com/@HELLSIDERECORDS",
+  "nowStartVideoId": "PqJv58Venx0",
+  "nowStartVideoTitle": "740FREDO - WEDNESDAY!",
+  "nowSize": 10,
+  "allTimeSize": 100,
+  "latestSize": 6,
+  "risingSize": 10,
+  "excludeKeyword": "",
+  "excludeArtists": [],
+  "excludeCaseSensitive": true,
+  "applyExcludeToNow": true,
+  "concurrency": 4
+}
