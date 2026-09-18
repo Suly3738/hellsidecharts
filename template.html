@@ -180,6 +180,22 @@
   .pbox .close { position: absolute; right: 0; top: -44px; background: none; border: 1px solid var(--line-2); color: var(--text); padding: 6px 12px; cursor: pointer; font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; }
   .pbox .close:hover { border-color: var(--red-2); color: #fff; }
 
+  /* okno certyfikatu */
+  .cmodal { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 20px; background: rgba(5,4,5,.92); overflow-y: auto; }
+  .cmodal.open { display: grid; }
+  .cbox { position: relative; width: min(900px, 100%); margin: auto; padding: 44px 0 20px; }
+  .cbox .close { position: absolute; right: 0; top: 0; background: none; border: 1px solid var(--line-2); color: var(--text); padding: 6px 12px; cursor: pointer; font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; }
+  .cbox .close:hover { border-color: var(--red-2); color: #fff; }
+  .chead { display: grid; grid-template-columns: auto 1fr; gap: 6px 22px; align-items: center; margin-bottom: 22px; }
+  .chead .big { grid-row: 1 / 3; width: 70px; height: 70px; transform: rotate(45deg); background: var(--c); box-shadow: 0 0 40px var(--c); margin: 8px 10px 8px 8px; }
+  .chead h3 { margin: 0; font: 400 clamp(36px, 5vw, 56px)/1 var(--display); color: var(--bright); }
+  .chead h3 em { font-style: normal; color: var(--c); }
+  .chead p { margin: 0; font: 500 13px/1.5 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .chead.t0 { --c: var(--t0); } .chead.t1 { --c: var(--t1); } .chead.t2 { --c: var(--t2); } .chead.t3 { --c: var(--t3); } .chead.t4 { --c: var(--t4); }
+  .cbox .diplomas { gap: 18px; }
+  .diploma.sample { position: relative; }
+  .diploma.sample::after { content: "WZÓR · jeszcze nikt nie zdobył"; position: absolute; z-index: 3; left: 50%; top: 50%; padding: 8px 16px; transform: translate(-50%,-50%) rotate(-12deg); border: 2px solid var(--c); color: var(--c); background: rgba(5,4,5,.7); font: 700 13px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; }
+
   /* pasek liczb */
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .strip div { padding: 20px 40px; border-right: 1px solid var(--line); font: 500 11px/1.3 var(--cond); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
@@ -294,10 +310,13 @@
   .tier:hover::after { animation: sweep .9s ease-out; }
   .tier:hover .n { text-shadow: 0 0 18px color-mix(in srgb, var(--c) 80%, transparent); }
   @keyframes sweep { to { transform: translateX(120%); } }
-  .cert { transition: text-shadow .3s; }
+  .cert { transition: text-shadow .3s; cursor: pointer; }
   .cert::before { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
   .cert:hover { text-shadow: 0 0 12px var(--c); }
   .cert:hover::before { transform: rotate(225deg) scale(1.4); box-shadow: 0 0 18px var(--c), 0 0 34px var(--c); }
+  .tier { cursor: pointer; }
+  .tier .see { position: absolute; left: 0; right: 0; bottom: 0; padding: 7px; font: 600 10px/1 var(--cond); letter-spacing: .26em; text-transform: uppercase; color: #fff; background: var(--c); opacity: 0; transform: translateY(100%); transition: .25s; }
+  .tier:hover .see { opacity: 1; transform: none; }
   .tier .n { margin-top: 26px; font: 400 34px/1 var(--display); color: var(--bright); }
   .tier .th { margin-top: 6px; font: 600 12px/1 var(--cond); letter-spacing: .24em; text-transform: uppercase; color: var(--c); }
   .tier .cnt { margin-top: 10px; font: 500 11px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
@@ -493,10 +512,10 @@
   <div class="date"><span>Notowanie</span><b id="chart-date"></b><span id="prev-date"></span><br><span class="live">Aktualizacja co godzinę</span></div>
   <nav class="menu" id="menu">
     <a href="#top1"><i>I</i>Na szczycie</a>
-    <a href="#now"><i>II</i>Top 10</a>
-    <a href="#rising"><i>III</i>Rosnące</a>
-    <a href="#artists"><i>IV</i>Diabły</a>
-    <a href="#latest"><i>V</i>Nowości</a>
+    <a href="#latest"><i>II</i>Nowości</a>
+    <a href="#now"><i>III</i>Top 10</a>
+    <a href="#rising"><i>IV</i>Rosnące</a>
+    <a href="#artists"><i>V</i>Diabły</a>
     <a href="#certs"><i>VI</i>Certyfikaty</a>
     <a href="#chronicle"><i>VII</i>Kronika</a>
     <a href="#about"><i>VIII</i>O nas</a>
@@ -509,7 +528,7 @@
   <div class="in">
     <a href="#top1"><img src="logo.png?v=1" alt="Hellside Records"></a>
     <nav id="menu-m">
-      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Diabły</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#about">O nas</a><a href="#coop">Współpraca</a>
+      <a href="#top1">#1</a><a href="#latest">Nowości</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Diabły</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#about">O nas</a><a href="#coop">Współpraca</a>
     </nav>
   </div>
 </div>
@@ -517,6 +536,11 @@
 <main>
   <section class="hero" id="top1"><div class="hero-bg" id="hero-bg"></div><div class="hero-tint"></div><div class="txt" id="hero"></div><div class="vinyl-wrap" id="vinyl"></div></section>
   <div class="strip" id="strip"></div>
+
+  <section id="latest">
+    <div class="sec-head"><h2><small>Świeże</small>Nowości</h2><p>Ostatnie wydania wytwórni</p></div>
+    <div class="latest"><div id="featured"></div><ol class="queue" id="list-latest"></ol></div>
+  </section>
 
   <section id="now">
     <div class="sec-head"><h2><small>Notowanie</small>Top <em>10</em></h2><p>Utwory wytwórni · według wyświetleń · ruch tydzień do tygodnia</p></div>
@@ -531,11 +555,6 @@
   <section id="artists">
     <div class="sec-head"><h2><small>Skład</small>Diabły</h2><p>Ranking diabłów Hellside · suma wyświetleń · przewiń w bok</p></div>
     <div class="shelf" id="list-artists"></div>
-  </section>
-
-  <section id="latest">
-    <div class="sec-head"><h2><small>Świeże</small>Nowości</h2><p>Ostatnie wydania wytwórni</p></div>
-    <div class="latest"><div id="featured"></div><ol class="queue" id="list-latest"></ol></div>
   </section>
 
   <section id="certs">
@@ -607,6 +626,14 @@
   <footer id="foot"></footer>
 </main>
 
+<div class="cmodal" id="cmodal" role="dialog" aria-modal="true" aria-label="Certyfikat">
+  <div class="cbox">
+    <button class="close" id="cclose">Zamknij ✕</button>
+    <div class="chead" id="chead"></div>
+    <div class="diplomas" id="clist"></div>
+  </div>
+</div>
+
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Odtwarzacz">
   <div class="pbox">
     <button class="close" id="pclose">Zamknij ✕</button>
@@ -630,7 +657,7 @@ const YT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0
 const rk = (pos) => pos <= 3 ? ` r${pos}` : '';
 const emptyBox = (title, text) => `<div class="empty"><b>${title}</b>${text}</div>`;
 const TIERS = (DATA && DATA.config.tiers) || [];
-const certBadge = (t) => t === null || t === undefined || !TIERS[t] ? '' : `<span class="cert t${t}" title="Certyfikat za ${nf.format(TIERS[t].views)} wyświetleń">${esc(TIERS[t].name)}</span>`;
+const certBadge = (t) => t === null || t === undefined || !TIERS[t] ? '' : `<span class="cert t${t}" data-tier="${t}" title="Certyfikat za ${nf.format(TIERS[t].views)} wyświetleń – kliknij, żeby zobaczyć">${esc(TIERS[t].name)}</span>`;
 
 // planszetka z tablicy Ouija: czubek wskazuje kierunek, w soczewce liczba miejsc
 function planchette(dir, label) {
@@ -771,9 +798,10 @@ function diploma(c) {
 
 function renderCerts(D) {
   const counts = TIERS.map((_, i) => (D.certs || []).filter(c => c.tier === i).length);
-  document.getElementById('tiers').innerHTML = TIERS.map((t, i) => `<div class="tier t${i}">
+  document.getElementById('tiers').innerHTML = TIERS.map((t, i) => `<div class="tier t${i}" data-tier="${i}" role="button" tabindex="0">
       <div class="n">${esc(t.name)}</div><div class="th">${nf.format(t.views)} wyświetleń</div>
       <div class="cnt">${counts[i] ? `${counts[i]} ${plural(counts[i], 'utwór', 'utwory', 'utworów')}` : 'jeszcze nikt'}</div>
+      <div class="see">Kliknij · zobacz certyfikat</div>
     </div>`).join('');
   document.getElementById('list-certs').innerHTML = (D.certs || []).length ? D.certs.map(diploma).join('') : emptyBox('Pierwszy certyfikat czeka', `Próg ${TIERS[0] ? esc(TIERS[0].name) + ': ' + nf.format(TIERS[0].views) + ' wyświetleń' : ''}. Kto pierwszy?`);
   document.getElementById('list-next').innerHTML = (D.nextCerts || []).length ? D.nextCerts.map(n => `<li>
@@ -810,6 +838,24 @@ function renderTicker(D, T) {
   parts.push(`Nagrywasz? <b>Dołącz do nas!</b>`);
   const html = parts.map(p => `<span>${p}</span><span>†</span>`).join('');
   document.getElementById('ticker').innerHTML = html + html;
+}
+
+/* okno certyfikatu: kto dostał dany stopień + wygląd dyplomu (wzór, gdy jeszcze nikt) */
+function openCerts(i) {
+  const tier = TIERS[i]; if (!tier) return;
+  const list = (DATA.certs || []).filter(c => c.tier === i);
+  const head = document.getElementById('chead');
+  head.className = 'chead t' + i;
+  head.innerHTML = `<div class="big"></div><h3>Certyfikat <em>${esc(tier.name)}</em></h3><p>Za przekroczenie ${nf.format(tier.views)} wyświetleń · ${list.length ? `${list.length} ${plural(list.length, 'utwór zdobył', 'utwory zdobyły', 'utworów zdobyło')} ten stopień` : 'jeszcze nikt nie przekroczył progu – tak wygląda ten certyfikat'}</p>`;
+  document.getElementById('clist').innerHTML = list.length
+    ? list.map(diploma).join('')
+    : diploma({ tier: i, artist: 'Twoje imię', song: 'Twój numer', title: 'Wzór certyfikatu', thumb: 'logo.png?v=1', url: DATA.channel.url, dateText: '— — —', id: '0000' }).replace('class="diploma', 'class="diploma sample');
+  document.getElementById('cmodal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCerts() {
+  document.getElementById('cmodal').classList.remove('open');
+  if (!document.getElementById('player').classList.contains('open')) document.body.style.overflow = '';
 }
 
 /* odtwarzacz w stronie (iframe YouTube ładowany dopiero po kliknięciu) */
@@ -861,8 +907,14 @@ function init() {
       return;
     }
     if (ev.target.id === 'player' || ev.target.id === 'pclose') closePlayer();
+    if (ev.target.id === 'cmodal' || ev.target.id === 'cclose') { closeCerts(); return; }
+    const c = ev.target.closest('[data-tier]');
+    if (c) { ev.preventDefault(); ev.stopPropagation(); openCerts(Number(c.dataset.tier)); }
   });
-  document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closePlayer(); });
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') { closePlayer(); closeCerts(); }
+    if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.matches('.tier[data-tier]')) { ev.preventDefault(); openCerts(Number(ev.target.dataset.tier)); }
+  });
 
   // dyplomy pochylają się za kursorem (tylko transform – tanie)
   document.getElementById('list-certs').addEventListener('mousemove', (ev) => {
