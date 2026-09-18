@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T22:56:39.274Z",
+  "generatedAt": "2026-09-18T23:01:55.566Z",
   "chartDate": "2026-09-19",
   "prevDate": null,
   "channel": {
@@ -18,19 +18,23 @@
     "tiers": [
       {
         "name": "Żar",
-        "views": 1000
+        "views": 100
       },
       {
         "name": "Ogień",
-        "views": 5000
+        "views": 250
       },
       {
         "name": "Piekło",
-        "views": 25000
+        "views": 500
       },
       {
         "name": "Inferno",
-        "views": 100000
+        "views": 1000
+      },
+      {
+        "name": "Czeluść",
+        "views": 5000
       }
     ],
     "discord": "https://discord.gg/rWgXWJJSd"
@@ -73,10 +77,24 @@
       "weeks": 1,
       "viewsDelta": null,
       "daysAtTop": 1,
-      "tier": null
+      "tier": 0
     }
   ],
-  "certs": [],
+  "certs": [
+    {
+      "id": "PqJv58Venx0",
+      "artist": "740FREDO",
+      "song": "WEDNESDAY!",
+      "title": "740FREDO - WEDNESDAY!",
+      "views": 234,
+      "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
+      "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
+      "tier": 0,
+      "tierName": "Żar",
+      "date": "2026-09-19",
+      "dateText": "19 wrz 2026"
+    }
+  ],
   "nextCerts": [
     {
       "id": "PqJv58Venx0",
@@ -86,10 +104,10 @@
       "views": 234,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
-      "nextTier": 0,
-      "nextName": "Żar",
-      "missing": 766,
-      "progress": 23
+      "nextTier": 1,
+      "nextName": "Ogień",
+      "missing": 16,
+      "progress": 89
     }
   ],
   "allTime": [

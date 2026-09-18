@@ -33,7 +33,7 @@
     --red: #d2122e; --red-2: #ff2d4a; --blood: #6d0918; --ember: #ff6a1f; --flame: #ffb347;
     --silver: #cfcfd8; --bronze: #c98a4b;
     --up: #6ee7a2; --down: #ff5c6c;
-    --t0: #ff6a1f; --t1: #ff2d4a; --t2: #c40f3a; --t3: #f2f2f7;
+    --t0: #ff6a1f; --t1: #ff2d4a; --t2: #c40f3a; --t3: #f2f2f7; --t4: #b06cff;
     --display: "Pirata One", "Times New Roman", serif;
     --cond: "Oswald", "Arial Narrow", sans-serif;
     --sans: "Barlow", -apple-system, "Segoe UI", system-ui, sans-serif;
@@ -189,7 +189,7 @@
   /* certyfikat – odznaka (romb) */
   .cert { display: inline-flex; align-items: center; gap: 8px; font: 600 11px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--c); }
   .cert::before { content: ""; width: 9px; height: 9px; transform: rotate(45deg); background: var(--c); box-shadow: 0 0 10px var(--c); }
-  .cert.t0 { --c: var(--t0); } .cert.t1 { --c: var(--t1); } .cert.t2 { --c: var(--t2); } .cert.t3 { --c: var(--t3); }
+  .cert.t0 { --c: var(--t0); } .cert.t1 { --c: var(--t1); } .cert.t2 { --c: var(--t2); } .cert.t3 { --c: var(--t3); } .cert.t4 { --c: var(--t4); }
   .poster .cert { margin-top: 8px; }
 
   /* Rosnące – dwie kolumny wielkich liczb */
@@ -247,13 +247,13 @@
   .queue .note { padding: 16px 0; color: var(--dim); font: 500 12px/1.4 var(--cond); letter-spacing: .14em; text-transform: uppercase; display: block; }
 
   /* Certyfikaty */
-  .tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
+  .tiers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px; }
   .tier { position: relative; padding: 22px 18px 18px; border: 1px solid var(--line-2); text-align: center; overflow: hidden; }
   .tier::before { content: ""; position: absolute; left: 50%; top: -30px; width: 60px; height: 60px; transform: translateX(-50%) rotate(45deg); background: var(--c); opacity: .9; }
   .tier .n { margin-top: 26px; font: 400 34px/1 var(--display); color: var(--bright); }
   .tier .th { margin-top: 6px; font: 600 12px/1 var(--cond); letter-spacing: .24em; text-transform: uppercase; color: var(--c); }
   .tier .cnt { margin-top: 10px; font: 500 11px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-  .tier.t0 { --c: var(--t0); } .tier.t1 { --c: var(--t1); } .tier.t2 { --c: var(--t2); } .tier.t3 { --c: var(--t3); }
+  .tier.t0 { --c: var(--t0); } .tier.t1 { --c: var(--t1); } .tier.t2 { --c: var(--t2); } .tier.t3 { --c: var(--t3); } .tier.t4 { --c: var(--t4); }
   .certgrid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
   .h3 { margin: 0 0 12px; font: 600 12px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--red-2); }
   .certs, .nexts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
@@ -284,6 +284,22 @@
   .facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line-2); border-left: 1px solid var(--line-2); align-content: start; }
   .facts div { padding: 18px 16px; border-right: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); font: 500 10px/1.3 var(--cond); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .facts b { display: block; margin-bottom: 6px; font: 600 22px/1.1 var(--cond); letter-spacing: 0; color: var(--bright); }
+
+  /* O nas */
+  .about .grid { display: grid; grid-template-columns: 1fr 300px; gap: 50px; align-items: start; }
+  .about .txt { column-count: 2; column-gap: 40px; font: 400 16px/1.7 var(--sans); color: var(--text); }
+  .about .txt p { margin: 0 0 18px; break-inside: avoid; }
+  .about .txt p:first-child::first-letter { float: left; margin: 6px 10px 0 0; font: 400 74px/.8 var(--display); color: var(--red-2); }
+  .about .txt b { color: var(--bright); font-weight: 600; }
+  .about blockquote { margin: 0 0 30px; padding: 22px 0 22px 26px; border-left: 3px solid var(--red-2); font: 400 clamp(24px, 2.4vw, 34px)/1.2 var(--display); color: var(--bright); }
+  .about blockquote small { display: block; margin-top: 10px; font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+  .about .card { position: sticky; top: 24px; border: 1px solid var(--line-2); background: rgba(13,10,11,.8); }
+  .about .card img { width: 100%; height: auto; padding: 26px 30px 10px; }
+  .about .card dl { margin: 0; padding: 0 22px 22px; display: grid; gap: 12px; }
+  .about .card dt { font: 600 10px/1 var(--cond); letter-spacing: .26em; text-transform: uppercase; color: var(--red-2); }
+  .about .card dd { margin: 3px 0 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); font: 600 17px/1.2 var(--cond); color: var(--bright); }
+  .about .card dd:last-child { border-bottom: 0; padding-bottom: 0; }
+  .about .card dd small { display: block; margin-top: 2px; font: 500 12px/1.3 var(--sans); color: var(--muted); }
 
   /* Współpraca */
   .coop { position: relative; overflow: hidden; background: linear-gradient(180deg, transparent, rgba(210,18,46,.08)); }
@@ -321,7 +337,7 @@
   footer .stamp a { color: var(--text); border-bottom: 1px solid var(--red); }
   footer .est { position: relative; margin-top: 26px; font: 400 22px/1 var(--display); letter-spacing: .22em; color: var(--red-2); }
 
-  @media (max-width: 1200px) { .posters { grid-template-columns: repeat(4, 1fr); } .tiers { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1200px) { .posters { grid-template-columns: repeat(4, 1fr); } .tiers { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 980px) {
     .side { display: none; }
     .mob { display: block; }
@@ -333,7 +349,10 @@
     .strip { grid-template-columns: repeat(2, 1fr); }
     .strip div { padding: 16px 18px; } .strip div:nth-child(2) { border-right: 0; } .strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
     .posters { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .rising, .latest, .chron, .certgrid, .coop .grid { grid-template-columns: 1fr; }
+    .rising, .latest, .chron, .certgrid, .coop .grid, .about .grid { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: repeat(2, 1fr); }
+    .about .txt { column-count: 1; }
+    .about .card { position: static; }
     .join { padding: 22px 40px; }
     footer { padding: 50px 18px 30px; }
   }
@@ -366,7 +385,8 @@
     <a href="#latest"><i>V</i>Nowości</a>
     <a href="#certs"><i>VI</i>Certyfikaty</a>
     <a href="#chronicle"><i>VII</i>Kronika</a>
-    <a href="#coop" class="hot"><i>VIII</i>Współpraca</a>
+    <a href="#about"><i>VIII</i>O nas</a>
+    <a href="#coop" class="hot"><i>IX</i>Współpraca</a>
   </nav>
   <a class="yt" id="channel-link-2" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>Kanał YouTube</a>
 </aside>
@@ -375,7 +395,7 @@
   <div class="in">
     <a href="#top1"><img src="logo.png?v=1" alt="Hellside Records"></a>
     <nav id="menu-m">
-      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Artyści</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#coop">Współpraca</a>
+      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Artyści</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#about">O nas</a><a href="#coop">Współpraca</a>
     </nav>
   </div>
 </div>
@@ -418,6 +438,34 @@
     <div class="chron"><ol class="reigns" id="list-reigns"></ol><div class="facts" id="facts"></div></div>
   </section>
 
+  <section class="about" id="about">
+    <div class="sec-head"><h2><small>Historia</small>O <em>nas</em></h2><p>Skąd wzięło się Hellside Records</p></div>
+    <div class="grid">
+      <div>
+        <blockquote>„Hellside” to druga strona Los Santos — ambicja, presja, pieniądze, problemy i ludzie, którzy musieli walczyć o swoją pozycję.<small>Fredo Willson · założyciel</small></blockquote>
+        <div class="txt">
+          <p><b>Hellside Records</b> powstało w Los Santos jako niezależne studio nagraniowe stworzone przez <b>Fredo Willsona</b>. Fredo od najmłodszych lat interesował się muzyką i uliczną kulturą Davis. Z czasem zaczął traktować muzykę nie tylko jako sposób na wyrażanie siebie, ale również jako możliwość zbudowania własnej marki i pozycji w mieście.</p>
+          <p>Początkowo Hellside Records nie było profesjonalną wytwórnią. Fredo wynajął niewielkie pomieszczenie na Davis — dokładnie w <b>hotelu Tahitian</b> — i własnymi środkami stworzył tam pierwsze studio. Sprzęt był podstawowy, a nagrania powstawały głównie nocami. To właśnie tam Fredo zaczął nagrywać pierwsze numery oraz zapraszać lokalnych artystów związanych z uliczną sceną muzyczną.</p>
+          <p>Nazwa „Hellside Records” miała symbolizować drugą stronę Los Santos — ambicję, presję, pieniądze, problemy oraz ludzi, którzy musieli walczyć o swoją pozycję. Fredo chciał stworzyć miejsce, w którym artyści nie musieliby udawać kogoś, kim nie są.</p>
+          <p>Wraz ze wzrostem popularności Fredo studio zaczęło przyciągać kolejnych artystów. Hellside Records przestało być zwykłym miejscem do nagrywania, a zaczęło funkcjonować jako mała niezależna marka muzyczna. Fredo zajmował się nie tylko nagrywaniem własnych kawałków, ale również organizacją sesji, promocją artystów, mixem i masterem czy ogarnianiem klipów.</p>
+          <p>Jednym z najważniejszych momentów w historii studia było rozpoczęcie współpracy z osobami z jego najbliższego otoczenia. Dzięki temu Hellside Records zaczęło budować własny, rozpoznawalny styl. Studio stało się miejscem spotkań lokalnych raperów, producentów i ludzi zainteresowanych muzyką.</p>
+          <p>Fredo od początku nie chciał tworzyć kolejnego zwykłego studia. Jego celem było zbudowanie niezależnej wytwórni, która będzie miała własną tożsamość i wpływ na scenę muzyczną Los Santos.</p>
+          <p>Z czasem Hellside Records zaczęło pojawiać się coraz częściej. Pierwsze klipy, mixtape'y i występy sprawiły, że nazwa studia zaczęła być kojarzona z undergroundową sceną Los Santos.</p>
+        </div>
+      </div>
+      <aside class="card">
+        <img src="logo.png?v=1" alt="Hellside Records">
+        <dl>
+          <dt>Założyciel</dt><dd>Fredo Willson</dd>
+          <dt>Miasto</dt><dd>Los Santos<small>dzielnica Davis</small></dd>
+          <dt>Pierwsze studio</dt><dd>Hotel Tahitian, Davis<small>nagrania głównie nocami</small></dd>
+          <dt>Scena</dt><dd>Underground Los Santos<small>rap · producenci · klipy · mixtape'y</small></dd>
+          <dt>Charakter</dt><dd>Niezależna wytwórnia<small>własna tożsamość, bez udawania</small></dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
   <section class="coop" id="coop">
     <div class="grid">
       <div>
@@ -426,7 +474,7 @@
         <ul>
           <li><span><b>Wydanie na kanale</b> – Twój numer trafia na oficjalny kanał Hellside Records.</span></li>
           <li><span><b>Miejsce w notowaniu</b> – od pierwszego dnia liczysz się w Top 10, Rosnących i rankingu artystów.</span></li>
-          <li><span><b>Piekielne Certyfikaty</b> – Żar, Ogień, Piekło, Inferno: odznaczenia za wyświetlenia, z datą, na zawsze na stronie.</span></li>
+          <li><span><b>Piekielne Certyfikaty</b> – Żar, Ogień, Piekło, Inferno, Czeluść: odznaczenia za wyświetlenia, z datą, na zawsze na stronie.</span></li>
           <li><span><b>Ekipa</b> – producenci, wokaliści, grafika; ogarniamy rzeczy razem.</span></li>
         </ul>
       </div>

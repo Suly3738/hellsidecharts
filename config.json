@@ -15,19 +15,23 @@
   "tiers": [
     {
       "name": "Żar",
-      "views": 1000
+      "views": 100
     },
     {
       "name": "Ogień",
-      "views": 5000
+      "views": 250
     },
     {
       "name": "Piekło",
-      "views": 25000
+      "views": 500
     },
     {
       "name": "Inferno",
-      "views": 100000
+      "views": 1000
+    },
+    {
+      "name": "Czeluść",
+      "views": 5000
     }
   ],
   "nextCertsSize": 5
