@@ -11,7 +11,7 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-18T23:02:33.258Z';
+  const BUILD = '2026-09-18T23:11:21.055Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
@@ -91,6 +91,12 @@
 
   main { position: relative; z-index: 2; margin-left: var(--side); }
   section { padding: 56px 40px; border-top: 1px solid var(--line); }
+  main section:not(.hero) > * { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  main section:not(.hero) > *:nth-child(2) { transition-delay: .12s; }
+  main section:not(.hero) > *:nth-child(3) { transition-delay: .22s; }
+  main section.in > * { opacity: 1; transform: none; }
+  main section:not(.hero)::before { content: ""; display: block; width: 0; height: 1px; margin: -57px 0 56px; background: linear-gradient(90deg, var(--red-2), var(--ember), transparent); transition: width 1.1s cubic-bezier(.2,.8,.2,1); }
+  main section.in::before { width: 100%; }
   .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
   .sec-head h2 { margin: 0; font: 400 clamp(40px, 5.2vw, 72px)/.95 var(--display); letter-spacing: .02em; color: var(--bright); }
   .sec-head h2 small { display: block; margin-bottom: 8px; font: 600 12px/1 var(--cond); letter-spacing: .34em; text-transform: uppercase; color: var(--red-2); }
@@ -122,6 +128,8 @@
   .cta.ghost { background: transparent; border-color: var(--line-2); box-shadow: none; color: var(--text); }
   .cta.ghost:hover { border-color: var(--red-2); }
   .cta svg { width: 16px; height: 16px; fill: currentColor; }
+  .cta.icon { padding: 14px 18px; }
+  .cta.icon svg { width: 22px; height: 22px; }
 
   /* winyl */
   .vinyl-wrap { position: relative; justify-self: center; width: min(520px, 42vw); aspect-ratio: 1; }
@@ -135,7 +143,15 @@
   .vinyl .label::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, transparent 55%, rgba(0,0,0,.5)); }
   .vinyl .hole { position: absolute; inset: 48.4%; border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 2px #2a2a2e; }
   .vinyl-wrap .glow { position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(210,18,46,.32), transparent 60%); z-index: -1; }
-  .vinyl-wrap .hint { position: absolute; left: 50%; bottom: -34px; transform: translateX(-50%); font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .vinyl-wrap .hint { position: absolute; left: 50%; bottom: -36px; transform: translateX(-50%); font: 600 12px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; white-space: nowrap;
+    background: linear-gradient(90deg, #ff6a1f, #ffb347, #ff2d4a, #ffd27a, #ff6a1f); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: emberflow 3s linear infinite, emberglow 1.6s ease-in-out infinite; }
+  @keyframes emberflow { to { background-position: 300% 0; } }
+  @keyframes emberglow {
+    0%, 100% { filter: drop-shadow(0 0 3px rgba(255,106,31,.7)) drop-shadow(0 -6px 10px rgba(255,45,74,.35)); }
+    35% { filter: drop-shadow(0 0 6px rgba(255,179,71,.95)) drop-shadow(0 -10px 14px rgba(255,90,31,.6)); }
+    65% { filter: drop-shadow(0 0 2px rgba(255,106,31,.5)) drop-shadow(0 -4px 8px rgba(255,45,74,.25)); }
+  }
   .vinyl-wrap .arm { position: absolute; right: -6%; top: -4%; width: 8px; height: 46%; background: linear-gradient(180deg, #c9c9d0, #6d6d76); transform-origin: top center; transform: rotate(-22deg); }
   .vinyl-wrap .arm::before { content: ""; position: absolute; top: -14px; left: -10px; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #e6e6ec, #4a4a52); }
   .vinyl-wrap .arm::after { content: ""; position: absolute; bottom: -10px; left: -6px; width: 20px; height: 22px; background: linear-gradient(180deg, #8a0f22, #3e0510); }
@@ -203,7 +219,7 @@
   .rising .d b { display: block; font: 600 28px/1 var(--cond); color: var(--ember); }
   .rising .d small { font: 500 11px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
-  /* Artyści – półka */
+  /* Diabły – półka */
   .shelf { display: flex; gap: 14px; overflow-x: auto; padding: 4px 4px 18px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--red) transparent; }
   .acard { position: relative; flex: 0 0 240px; aspect-ratio: 3/4; scroll-snap-align: start; overflow: hidden; border: 1px solid var(--line-2); background: #000; transition: transform .3s, border-color .3s; }
   .acard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .7; transition: transform .6s, opacity .4s; }
@@ -250,6 +266,18 @@
   .tiers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px; }
   .tier { position: relative; padding: 22px 18px 18px; border: 1px solid var(--line-2); text-align: center; overflow: hidden; }
   .tier::before { content: ""; position: absolute; left: 50%; top: -30px; width: 60px; height: 60px; transform: translateX(-50%) rotate(45deg); background: var(--c); opacity: .9; }
+  .tier { transition: border-color .3s, transform .3s, box-shadow .3s; cursor: default; }
+  .tier::before { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+  .tier::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.14) 50%, transparent 70%); transform: translateX(-120%); }
+  .tier:hover { border-color: var(--c); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.6), 0 0 34px color-mix(in srgb, var(--c) 45%, transparent); }
+  .tier:hover::before { transform: translateX(-50%) rotate(225deg) scale(1.18); box-shadow: 0 0 34px var(--c), 0 0 70px color-mix(in srgb, var(--c) 60%, transparent); }
+  .tier:hover::after { animation: sweep .9s ease-out; }
+  .tier:hover .n { text-shadow: 0 0 18px color-mix(in srgb, var(--c) 80%, transparent); }
+  @keyframes sweep { to { transform: translateX(120%); } }
+  .cert { transition: text-shadow .3s; }
+  .cert::before { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+  .cert:hover { text-shadow: 0 0 12px var(--c); }
+  .cert:hover::before { transform: rotate(225deg) scale(1.4); box-shadow: 0 0 18px var(--c), 0 0 34px var(--c); }
   .tier .n { margin-top: 26px; font: 400 34px/1 var(--display); color: var(--bright); }
   .tier .th { margin-top: 6px; font: 600 12px/1 var(--cond); letter-spacing: .24em; text-transform: uppercase; color: var(--c); }
   .tier .cnt { margin-top: 10px; font: 500 11px/1 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
@@ -321,7 +349,6 @@
   .join:hover .horn.l { transform: translateY(-4px) rotate(-6deg); } .join:hover .horn.r { transform: translateY(-4px) scaleX(-1) rotate(-6deg); }
   .join .tail { position: absolute; left: 50%; bottom: -22px; width: 14px; height: 24px; transform: translateX(-50%); background: linear-gradient(180deg, #8f0c22, transparent); clip-path: polygon(0 0, 100% 0, 50% 100%); }
   .joinbox .sub { font: 600 12px/1.5 var(--cond); letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
-  .joinbox .sub b { color: #5865f2; }
 
   .empty { padding: 40px 20px; border: 1px dashed var(--line-2); text-align: center; font: 500 13px/1.6 var(--cond); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
   .empty b { display: block; margin-bottom: 4px; font: 400 32px/1.1 var(--display); letter-spacing: .02em; text-transform: none; color: var(--red-2); }
@@ -363,7 +390,8 @@
     .hero .num { font-size: 110px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ticker .track, .vinyl, .live::before { animation: none; }
+    .ticker .track, .vinyl, .live::before, .vinyl-wrap .hint, .tier::before, .cert::before { animation: none; }
+    main section:not(.hero) > * { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
   }
 </style>
@@ -375,27 +403,27 @@
 <div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
 
 <aside class="side">
-  <a class="logo" id="channel-link" href="#" target="_blank" rel="noopener" title="Kanał YouTube Hellside Records"><img src="logo.png?v=1" alt="Hellside Records"></a>
+  <a class="logo" id="channel-link" href="#" target="_blank" rel="noopener" title="Nasze wydania"><img src="logo.png?v=1" alt="Hellside Records"></a>
   <div class="date"><span>Notowanie</span><b id="chart-date"></b><span id="prev-date"></span><br><span class="live">Aktualizacja co godzinę</span></div>
   <nav class="menu" id="menu">
     <a href="#top1"><i>I</i>Na szczycie</a>
     <a href="#now"><i>II</i>Top 10</a>
     <a href="#rising"><i>III</i>Rosnące</a>
-    <a href="#artists"><i>IV</i>Artyści</a>
+    <a href="#artists"><i>IV</i>Diabły</a>
     <a href="#latest"><i>V</i>Nowości</a>
     <a href="#certs"><i>VI</i>Certyfikaty</a>
     <a href="#chronicle"><i>VII</i>Kronika</a>
     <a href="#about"><i>VIII</i>O nas</a>
     <a href="#coop" class="hot"><i>IX</i>Współpraca</a>
   </nav>
-  <a class="yt" id="channel-link-2" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>Kanał YouTube</a>
+  <a class="yt" id="channel-link-2" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>Nasze wydania</a>
 </aside>
 
 <div class="mob">
   <div class="in">
     <a href="#top1"><img src="logo.png?v=1" alt="Hellside Records"></a>
     <nav id="menu-m">
-      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Artyści</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#about">O nas</a><a href="#coop">Współpraca</a>
+      <a href="#top1">#1</a><a href="#now">Top 10</a><a href="#rising">Rosnące</a><a href="#artists">Diabły</a><a href="#latest">Nowości</a><a href="#certs">Certyfikaty</a><a href="#chronicle">Kronika</a><a href="#about">O nas</a><a href="#coop">Współpraca</a>
     </nav>
   </div>
 </div>
@@ -415,7 +443,7 @@
   </section>
 
   <section id="artists">
-    <div class="sec-head"><h2><small>Skład</small>Artyści</h2><p>Ranking wykonawców · suma wyświetleń · przewiń w bok</p></div>
+    <div class="sec-head"><h2><small>Skład</small>Diabły</h2><p>Ranking diabłów Hellside · suma wyświetleń · przewiń w bok</p></div>
     <div class="shelf" id="list-artists"></div>
   </section>
 
@@ -470,7 +498,7 @@
     <div class="grid">
       <div>
         <h2>Nagrywasz?<br>Dołącz do <em>Hellside</em>.</h2>
-        <p class="lead">Szukamy ludzi, którzy robią muzykę na serio. Wbijaj na nasz Discord, pokaż, co masz – porozmawiamy o współpracy.</p>
+        <p class="lead">Szukamy ludzi, którzy robią muzykę na serio. Wbijaj do nas, pokaż, co masz – porozmawiamy o współpracy.</p>
         <ul>
           <li><span><b>Wydanie na kanale</b> – Twój numer trafia na oficjalny kanał Hellside Records.</span></li>
           <li><span><b>Miejsce w notowaniu</b> – od pierwszego dnia liczysz się w Top 10, Rosnących i rankingu artystów.</span></li>
@@ -485,7 +513,7 @@
           <svg class="horn r" viewBox="0 0 54 66" aria-hidden="true"><path fill="url(#hg)" d="M50 66C32 60 18 48 10 32 5 22 3 12 6 0c6 12 12 22 22 30 10 9 18 16 22 36Z"/></svg>
           <span class="tail"></span>
         </a>
-        <div class="sub">Zaproszenie na <b>Discord</b> · otwarte dla każdego</div>
+        <div class="sub">Otwarte dla każdego</div>
       </div>
     </div>
   </section>
@@ -502,7 +530,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-18T23:02:33.258Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":1,"excluded":[],"nowPoolSize":1,"allTimePoolSize":1},"totals":{"labelViews":234,"tracks":1,"artists":1,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":0}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":0,"tierName":"Żar","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":1,"nextName":"Ogień","missing":16,"progress":89}],"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":234,"share":100,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-18T23:11:21.055Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":1,"excluded":[],"nowPoolSize":1,"allTimePoolSize":1},"totals":{"labelViews":234,"tracks":1,"artists":1,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":0}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":0,"tierName":"Żar","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":1,"nextName":"Ogień","missing":16,"progress":89}],"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":234,"share":100,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -610,7 +638,7 @@ function renderHero(e, T) {
     </div>
     <div class="ctas">
       <button class="cta" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}">${PLAY} Odpal tutaj</button>
-      <a class="cta ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${YT} Na YouTube</a>
+      <a class="cta ghost icon" href="${esc(e.url)}" target="_blank" rel="noopener" title="Otwórz na YouTube">${YT}</a>
     </div>`;
   vinyl.innerHTML = `<div class="glow"></div><button class="vinyl" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}" style="--art:url('${big(e.id)}');border:0;padding:0" title="Odtwórz: ${esc(e.title)}"><span class="label"></span><span class="hole"></span></button><div class="arm"></div><div class="hint">Kliknij winyl, żeby odpalić</div>`;
 }
@@ -621,7 +649,7 @@ function renderStrip(T, D) {
   document.getElementById('strip').innerHTML = `
     <div><b>${nf.format(T.labelViews)}</b>wyświetleń wytwórni${delta}</div>
     <div><b>${nf.format(T.tracks)}</b>${plural(T.tracks, 'utwór', 'utwory', 'utworów')}</div>
-    <div><b>${nf.format(T.artists)}</b>${plural(T.artists, 'artysta', 'artystów', 'artystów')}</div>
+    <div><b>${nf.format(T.artists)}</b>${plural(T.artists, 'diabeł', 'diabły', 'diabłów')}</div>
     <div><b class="sm">${last ? esc(last.publishedText) : '—'}</b>ostatnie wydanie</div>`;
 }
 
@@ -666,7 +694,7 @@ function renderTicker(D, T) {
   parts.push(`<b>${nf.format(T.labelViews)}</b> wyświetleń wytwórni`);
   if (D.latest?.[0]) parts.push(`Najnowsze: ${esc(D.latest[0].artist)} – ${esc(D.latest[0].song)}`);
   if (D.nextCerts?.[0]) parts.push(`${esc(D.nextCerts[0].song)}: <b>${nf.format(D.nextCerts[0].missing)}</b> wyśw. do certyfikatu ${esc(D.nextCerts[0].nextName)}`);
-  parts.push(`Nagrywasz? <b>Dołącz do nas</b> na Discordzie`);
+  parts.push(`Nagrywasz? <b>Dołącz do nas!</b>`);
   const html = parts.map(p => `<span>${p}</span><span>†</span>`).join('');
   document.getElementById('ticker').innerHTML = html + html;
 }
@@ -701,7 +729,7 @@ function init() {
   document.getElementById('list-now').innerHTML = DATA.now.length ? DATA.now.map(poster).join('') : emptyBox('Piekło dopiero się rozgrzewa', 'Brak utworów w notowaniu.');
   document.getElementById('list-rising').innerHTML = (DATA.rising || []).length ? DATA.rising.map(risingRow).join('')
     : emptyBox('Żar się tli', DATA.prevDate ? 'W tym tygodniu żaden utwór nie zyskał wyświetleń.' : 'Przyrosty pojawią się po pierwszym tygodniu notowania.');
-  document.getElementById('list-artists').innerHTML = (DATA.artists || []).length ? DATA.artists.map(artistCard).join('') : emptyBox('Pusta scena', 'Brak wykonawców.');
+  document.getElementById('list-artists').innerHTML = (DATA.artists || []).length ? DATA.artists.map(artistCard).join('') : emptyBox('Pusta scena', 'Brak diabłów.');
   renderLatest(DATA.latest || []);
   renderCerts(DATA);
   renderChronicle(DATA.reigns || [], T);
@@ -739,6 +767,12 @@ function init() {
     sections.forEach(s => io.observe(s));
   }
   setOn('top1');
+
+  // sekcje wjeżdżają przy przewijaniu
+  if ('IntersectionObserver' in window) {
+    const rev = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rev.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: .08 });
+    sections.forEach(s => s.classList.contains('hero') ? s.classList.add('in') : rev.observe(s));
+  } else sections.forEach(s => s.classList.add('in'));
 }
 init();
 
