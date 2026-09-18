@@ -11,7 +11,7 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-18T23:38:58.443Z';
+  const BUILD = '2026-09-18T23:46:47.670Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
@@ -197,6 +197,63 @@
   .cbox .diplomas { gap: 18px; }
   .diploma.sample { position: relative; }
   .diploma.sample::after { content: "WZÓR · jeszcze nikt nie zdobył"; position: absolute; z-index: 3; left: 50%; top: 50%; padding: 8px 16px; transform: translate(-50%,-50%) rotate(-12deg); border: 2px solid var(--c); color: var(--c); background: rgba(5,4,5,.7); font: 700 13px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; }
+
+  /* korektor z płomieni pod hero */
+  .eq { position: relative; display: flex; align-items: flex-end; gap: 3px; height: 54px; padding: 0 40px; overflow: hidden; border-top: 1px solid var(--line); background: linear-gradient(180deg, rgba(210,18,46,.06), transparent); }
+  .eq i { flex: 1; height: 100%; transform-origin: bottom; transform: scaleY(var(--h)); background: linear-gradient(180deg, #ffd27a, var(--ember) 40%, var(--red) 80%); opacity: .85; animation: eqb var(--t) ease-in-out var(--d) infinite alternate; }
+  @keyframes eqb { from { transform: scaleY(var(--h)); } to { transform: scaleY(calc(var(--h) * .28)); } }
+  body.playing .eq i { animation-duration: calc(var(--t) * .45); }
+
+  /* wielkie numery sekcji w tle */
+  .sec-head { position: relative; }
+  .sec-head::before { content: attr(data-num); position: absolute; left: -14px; top: -44px; z-index: -1; font: 400 clamp(120px, 14vw, 200px)/1 var(--display); color: transparent; -webkit-text-stroke: 1px rgba(255,45,74,.16); pointer-events: none; }
+  section { position: relative; z-index: 0; }
+
+  /* wykres: wyświetlenia wytwórni dzień po dniu */
+  .chartbox { position: relative; margin-top: 34px; padding: 22px 22px 14px; border: 1px solid var(--line-2); background: rgba(13,10,11,.6); }
+  .chartbox .ct { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .chartbox .ct h3 { margin: 0; font: 400 24px/1 var(--display); color: var(--bright); }
+  .chartbox .ct span { font: 500 11px/1.4 var(--cond); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+  .chartbox svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .chartbox .grid line { stroke: rgba(255,255,255,.07); stroke-width: 1; }
+  .chartbox .axis text { font: 500 10px var(--cond); letter-spacing: .08em; fill: var(--muted); }
+  .chartbox .area { fill: url(#ag); }
+  .chartbox .line { fill: none; stroke: var(--red-2); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .chartbox .dot { fill: var(--bg); stroke: var(--red-2); stroke-width: 2; r: 4; }
+  .chartbox .dot.last { fill: var(--red-2); r: 5; }
+  .chartbox .cross { stroke: rgba(255,255,255,.35); stroke-width: 1; stroke-dasharray: 3 3; display: none; }
+  .chartbox .hit { fill: transparent; cursor: crosshair; }
+  .chartbox .tip { position: absolute; display: none; pointer-events: none; padding: 8px 10px; background: rgba(5,4,5,.95); border: 1px solid var(--line-red); font: 500 12px/1.4 var(--sans); color: var(--text); white-space: nowrap; transform: translate(-50%, calc(-100% - 12px)); }
+  .chartbox .tip b { display: block; font: 600 16px/1 var(--cond); color: var(--bright); }
+  .chartbox .note { margin-top: 10px; font: 500 11px/1.5 var(--cond); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+  .chartbox .anim { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); transition: stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1) .2s; }
+  section.in .chartbox .anim { stroke-dashoffset: 0; }
+
+  /* kalendarz tronu */
+  .throne-cal { margin-top: 26px; }
+  .throne-cal .days { display: flex; flex-wrap: wrap; gap: 4px; }
+  .throne-cal .day { width: 16px; height: 16px; background: var(--c); opacity: .9; transition: transform .15s; }
+  .throne-cal .day:hover { transform: scale(1.35); outline: 2px solid var(--bg); }
+  .throne-cal .day.today { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px #fff; }
+  .throne-cal .lg { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; font: 500 11px/1.4 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .throne-cal .lg i { display: inline-block; width: 10px; height: 10px; margin-right: 7px; background: var(--c); vertical-align: -1px; }
+
+  /* mała iskra w hero: wyświetlenia #1 dzień po dniu */
+  .hero .spark { margin-top: 18px; display: flex; align-items: center; gap: 14px; }
+  .hero .spark svg { width: 180px; height: 44px; overflow: visible; }
+  .hero .spark path { fill: none; stroke: var(--ember); stroke-width: 2; stroke-linejoin: round; }
+  .hero .spark circle { fill: var(--ember); }
+  .hero .spark span { font: 500 11px/1.4 var(--cond); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .hero .spark span b { display: block; color: var(--bright); font-size: 13px; letter-spacing: .1em; }
+
+  /* pierścień postępu do kolejnego certyfikatu */
+  .nexts .ring { position: relative; width: 58px; height: 58px; }
+  .nexts .ring svg { width: 58px; height: 58px; transform: rotate(-90deg); }
+  .nexts .ring circle { fill: none; stroke-width: 5; }
+  .nexts .ring .bg { stroke: rgba(255,255,255,.1); }
+  .nexts .ring .fg { stroke: var(--ember); stroke-linecap: round; stroke-dasharray: 160.2; stroke-dashoffset: calc(160.2 - 160.2 * var(--p) / 100); transition: stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1) .3s; }
+  .nexts .ring b { position: absolute; inset: 0; display: grid; place-items: center; font: 600 13px/1 var(--cond); color: var(--bright); }
+  .certgrid .nexts li { grid-template-columns: 58px 96px 1fr auto; }
 
   /* pasek liczb */
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -488,6 +545,9 @@
     .strip div { padding: 16px 18px; } .strip div:nth-child(2) { border-right: 0; } .strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
     .posters { grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .rising, .latest, .chron, .certgrid, .coop .grid, .about .grid { grid-template-columns: 1fr; }
+    .eq { padding: 0 18px; height: 40px; }
+    .sec-head::before { left: -6px; top: -30px; font-size: 100px; }
+    .certgrid .nexts li { grid-template-columns: 58px 1fr auto; } .nexts li > a { display: none; }
     .tiers { grid-template-columns: repeat(2, 1fr); }
     .about .txt { column-count: 1; }
     .about .card { position: static; }
@@ -501,7 +561,7 @@
     .hero .num { font-size: 110px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ticker .track, .vinyl, .live::before, .vinyl-wrap .hint, .tier::before, .cert::before { animation: none; }
+    .ticker .track, .vinyl, .live::before, .vinyl-wrap .hint, .tier::before, .cert::before, .eq i { animation: none; }
     main section:not(.hero) > * { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
   }
@@ -541,30 +601,31 @@
 
 <main>
   <section class="hero" id="top1"><div class="hero-bg" id="hero-bg"></div><div class="hero-tint"></div><div class="txt" id="hero"></div><div class="vinyl-wrap" id="vinyl"></div></section>
+  <div class="eq" id="eq" aria-hidden="true"></div>
   <div class="strip" id="strip"></div>
 
   <section id="latest">
-    <div class="sec-head"><h2><small>Świeże</small>Nowości</h2><p>Ostatnie wydania wytwórni</p></div>
+    <div class="sec-head" data-num="II"><h2><small>Świeże</small>Nowości</h2><p>Ostatnie wydania wytwórni</p></div>
     <div class="latest"><div id="featured"></div><ol class="queue" id="list-latest"></ol></div>
   </section>
 
   <section id="now">
-    <div class="sec-head"><h2><small>Notowanie</small>Top <em>10</em></h2><p>Utwory wytwórni · według wyświetleń · ruch tydzień do tygodnia</p></div>
+    <div class="sec-head" data-num="III"><h2><small>Notowanie</small>Top <em>10</em></h2><p>Utwory wytwórni · według wyświetleń · ruch tydzień do tygodnia</p></div>
     <div class="posters" id="list-now"></div>
   </section>
 
   <section id="rising">
-    <div class="sec-head"><h2><small>Tydzień do tygodnia</small>Rosnące</h2><p>Największy przyrost wyświetleń w ostatnim tygodniu</p></div>
+    <div class="sec-head" data-num="IV"><h2><small>Tydzień do tygodnia</small>Rosnące</h2><p>Największy przyrost wyświetleń w ostatnim tygodniu</p></div>
     <ol class="rising" id="list-rising"></ol>
   </section>
 
   <section id="artists">
-    <div class="sec-head"><h2><small>Skład</small>Diabły</h2><p>Ranking diabłów Hellside · suma wyświetleń · przewiń w bok</p></div>
+    <div class="sec-head" data-num="V"><h2><small>Skład</small>Diabły</h2><p>Ranking diabłów Hellside · suma wyświetleń · przewiń w bok</p></div>
     <div class="shelf" id="list-artists"></div>
   </section>
 
   <section id="certs">
-    <div class="sec-head"><h2><small>Odznaczenia</small>Piekielne <em>Certyfikaty</em></h2><p>Każdy numer Hellside zdobywa certyfikat po przekroczeniu progu wyświetleń – automatycznie, z datą</p></div>
+    <div class="sec-head" data-num="VI"><h2><small>Odznaczenia</small>Piekielne <em>Certyfikaty</em></h2><p>Każdy numer Hellside zdobywa certyfikat po przekroczeniu progu wyświetleń – automatycznie, z datą</p></div>
     <div class="tiers" id="tiers"></div>
     <div class="certgrid">
       <div><div class="h3">Zdobyte certyfikaty</div><div class="diplomas" id="list-certs"></div></div>
@@ -573,12 +634,13 @@
   </section>
 
   <section id="chronicle">
-    <div class="sec-head"><h2><small>Historia</small>Kronika</h2><p>Kto i jak długo rządził na szczycie</p></div>
-    <div class="chron"><ol class="reigns" id="list-reigns"></ol><div class="facts" id="facts"></div></div>
+    <div class="sec-head" data-num="VII"><h2><small>Historia</small>Kronika</h2><p>Kto i jak długo rządził na szczycie</p></div>
+    <div class="chron"><div><ol class="reigns" id="list-reigns"></ol><div class="throne-cal" id="throne-cal"></div></div><div class="facts" id="facts"></div></div>
+    <div class="chartbox" id="chart"></div>
   </section>
 
   <section class="about" id="about">
-    <div class="sec-head"><h2><small>Historia</small>O <em>nas</em></h2><p>Skąd wzięło się Hellside Records</p></div>
+    <div class="sec-head" data-num="VIII"><h2><small>Historia</small>O <em>nas</em></h2><p>Skąd wzięło się Hellside Records</p></div>
     <div class="grid">
       <div>
         <blockquote>„Hellside” to druga strona Los Santos — ambicja, presja, pieniądze, problemy i ludzie, którzy musieli walczyć o swoją pozycję.<small>Fredo Willson · założyciel</small></blockquote>
@@ -649,7 +711,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-18T23:38:58.443Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":1,"excluded":[],"nowPoolSize":1,"allTimePoolSize":1},"totals":{"labelViews":234,"tracks":1,"artists":1,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":0}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":0,"tierName":"Żar","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":1,"nextName":"Ogień","missing":16,"progress":89}],"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":234,"share":100,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-18T23:46:47.670Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":1,"excluded":[],"nowPoolSize":1,"allTimePoolSize":1},"totals":{"labelViews":234,"tracks":1,"artists":1,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":0}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":0,"tierName":"Żar","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":1,"nextName":"Ogień","missing":16,"progress":89}],"timeline":[{"date":"2026-09-19","total":234,"top":"PqJv58Venx0","topViews":234}],"tracks":{"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":234,"share":100,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":234,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -743,6 +805,16 @@ function renderLatest(entries) {
   </li>`).join('') || '<li class="note">Kolejne wydania pojawią się tutaj</li>';
 }
 
+function sparkline(T, e) {
+  const pts = (DATA.timeline || []).filter(p => p.top === e.id && typeof p.topViews === 'number').slice(-14);
+  if (pts.length < 2) return '';
+  const min = Math.min(...pts.map(p => p.topViews)), max = Math.max(...pts.map(p => p.topViews));
+  const x = (i) => 4 + 172 * i / (pts.length - 1), y = (v) => 40 - 36 * (max === min ? .5 : (v - min) / (max - min));
+  const d = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(p.topViews).toFixed(1)}`).join(' ');
+  const last = pts[pts.length - 1];
+  return `<div class="spark" title="Wyświetlenia #1 dzień po dniu (ostatnie ${pts.length} dni)"><svg viewBox="0 0 180 44" aria-hidden="true"><path d="${d}"/><circle cx="${x(pts.length - 1)}" cy="${y(last.topViews)}" r="4"/></svg><span><b>+${nf.format(last.topViews - pts[0].topViews)}</b>przez ${pts.length} dni na #1</span></div>`;
+}
+
 function renderHero(e, T) {
   const hero = document.getElementById('hero');
   const vinyl = document.getElementById('vinyl');
@@ -761,6 +833,7 @@ function renderHero(e, T) {
       <div class="fire"><b>${days(e.daysAtTop || 1)}</b>na szczycie</div>
       ${share !== null && T.tracks > 1 ? `<div><b>${share}%</b>wyświetleń wytwórni</div>` : ''}
     </div>
+    ${sparkline(T, e)}
     <div class="ctas">
       <button class="cta" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}">${PLAY} Odpal tutaj</button>
       <a class="cta ghost icon" href="${esc(e.url)}" target="_blank" rel="noopener" title="Otwórz na YouTube">${YT}</a>
@@ -768,6 +841,83 @@ function renderHero(e, T) {
   const spikes = Array.from({ length: 36 }, (_, i) => { const a = i / 36 * Math.PI * 2, b = a + Math.PI / 36; const R = i % 3 === 0 ? 50 : 46; return `${50 + Math.cos(a) * 36},${50 + Math.sin(a) * 36} ${50 + Math.cos(b) * R},${50 + Math.sin(b) * R}`; }).join(' ');
   const runes = 'HELLSIDE RECORDS † OFFICIAL CHARTS † LOS SANTOS † DAVIS † ';
   vinyl.innerHTML = `<div class="fire"></div><div class="glow"></div><button class="vinyl" type="button" data-play="${esc(e.id)}" data-title="${esc(e.song)}" data-artist="${esc(e.artist)}" style="--art:url('${big(e.id)}');border:0;padding:0" title="Odtwórz: ${esc(e.title)}"><svg class="spikes" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d4a"/><stop offset="1" stop-color="#5a0612"/></linearGradient></defs><polygon points="${spikes}" fill="url(#sg)"/></svg><span class="label"></span><span class="hole"></span><svg class="runes" viewBox="0 0 100 100" aria-hidden="true"><path id="rc" d="M50,50 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" fill="none"/><text><textPath href="#rc">${runes}</textPath></text></svg></button><div class="arm"></div><div class="hint">Kliknij winyl, żeby odpalić</div>`;
+}
+
+function renderEq() {
+  const n = innerWidth < 980 ? 34 : 64;
+  document.getElementById('eq').innerHTML = Array.from({ length: n }, (_, i) => {
+    const h = (0.25 + 0.75 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * .61))).toFixed(2);
+    return `<i style="--h:${h};--t:${(0.7 + (i * 37 % 100) / 100 * 1.1).toFixed(2)}s;--d:-${(i * 53 % 100) / 100 * 2}s"></i>`;
+  }).join('');
+}
+
+// wykres liniowy: wyświetlenia wytwórni dzień po dniu, z celownikiem i dymkiem
+function renderChart(D) {
+  const box = document.getElementById('chart');
+  const pts = (D.timeline || []).filter(p => typeof p.total === 'number');
+  const W = 900, H = 220, L = 46, R = 16, T = 14, B = 26;
+  const short = (iso) => new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' });
+  if (pts.length < 2) {
+    box.innerHTML = `<div class="ct"><h3>Wyświetlenia wytwórni dzień po dniu</h3><span>od ${pts[0] ? short(pts[0].date) : '—'}</span></div>
+      <svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" stroke="rgba(255,255,255,.12)"/>${pts[0] ? `<circle class="dot last" cx="${L + 20}" cy="${H - B - 60}" r="5"/><text x="${L + 34}" y="${H - B - 56}" fill="#e9e2e2" font-size="13" font-family="Oswald">${nf.format(pts[0].total)} · ${short(pts[0].date)}</text>` : ''}</svg>
+      <div class="note">Pierwszy punkt jest. Linia zacznie się rysować od jutra – każdy dzień dokłada kolejny.</div>`;
+    return;
+  }
+  const min = Math.min(...pts.map(p => p.total)), max = Math.max(...pts.map(p => p.total));
+  const lo = Math.max(0, min - (max - min) * .15 - 1), hi = max + (max - min) * .15 + 1;
+  const x = (i) => L + (W - L - R) * (pts.length === 1 ? .5 : i / (pts.length - 1));
+  const y = (v) => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+  const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(p.total).toFixed(1)}`).join(' ');
+  const area = path + ` L${x(pts.length - 1).toFixed(1)} ${H - B} L${L} ${H - B} Z`;
+  const ticks = 4, grid = [];
+  for (let k = 0; k <= ticks; k++) { const v = lo + (hi - lo) * k / ticks; grid.push(`<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 3}" text-anchor="end">${nf.format(Math.round(v))}</text>`); }
+  const step = Math.max(1, Math.ceil(pts.length / 8));
+  const xl = pts.map((p, i) => (i % step === 0 || i === pts.length - 1) ? `<text x="${x(i)}" y="${H - B + 16}" text-anchor="middle">${short(p.date)}</text>` : '').join('');
+  const dots = pts.map((p, i) => `<circle class="dot${i === pts.length - 1 ? ' last' : ''}" cx="${x(i)}" cy="${y(p.total)}"/>`).join('');
+  const len = pts.reduce((s, p, i) => i ? s + Math.hypot(x(i) - x(i - 1), y(p.total) - y(pts[i - 1].total)) : 0, 0);
+  const delta = pts[pts.length - 1].total - pts[0].total;
+  box.innerHTML = `<div class="ct"><h3>Wyświetlenia wytwórni dzień po dniu</h3><span>${short(pts[0].date)} – ${short(pts[pts.length - 1].date)} · ${delta >= 0 ? '+' : ''}${nf.format(delta)} w tym okresie</span></div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Wykres wyświetleń wytwórni">
+      <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2d4a" stop-opacity=".45"/><stop offset="1" stop-color="#ff2d4a" stop-opacity="0"/></linearGradient></defs>
+      <g class="grid">${grid.join('')}</g><g class="axis">${grid.map(g => g.replace(/<line[^>]*\/>/, '')).join('')}${xl}</g>
+      <path class="area" d="${area}"/><path class="line anim" d="${path}" style="--len:${len.toFixed(0)}"/>
+      <line class="cross" id="cross" y1="${T}" y2="${H - B}"/>${dots}
+      <rect class="hit" id="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}"/>
+    </svg><div class="tip" id="ctip"></div>`;
+  const svg = box.querySelector('svg'), tip = document.getElementById('ctip'), cross = document.getElementById('cross');
+  box.querySelector('#hit').addEventListener('mousemove', (ev) => {
+    const r = svg.getBoundingClientRect();
+    const fx = (ev.clientX - r.left) / r.width * W;
+    let i = 0; for (let k = 1; k < pts.length; k++) if (Math.abs(x(k) - fx) < Math.abs(x(i) - fx)) i = k;
+    const p = pts[i], d = i ? p.total - pts[i - 1].total : null;
+    cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.style.display = 'block';
+    tip.style.display = 'block'; tip.style.left = (x(i) / W * r.width) + 'px'; tip.style.top = (y(p.total) / H * r.height) + 'px';
+    tip.innerHTML = `<b>${nf.format(p.total)}</b>${fmtDate(p.date)}${d !== null ? ` · ${d >= 0 ? '+' : ''}${nf.format(d)} vs dzień wcześniej` : ''}${p.top && D.tracks?.[p.top] ? `<br>#1: ${esc(D.tracks[p.top].artist)} – ${esc(D.tracks[p.top].song)}` : ''}`;
+  });
+  box.querySelector('#hit').addEventListener('mouseleave', () => { tip.style.display = 'none'; cross.style.display = 'none'; });
+}
+
+// kalendarz tronu: jeden kwadrat na dzień, kolor = utwór na #1 (kolejność kolorów wg pierwszego pojawienia się)
+const CAL = ['#ff2d4a', '#2189b8', '#b8801a', '#8f4fe8', '#2fa86a', '#c9501c'];
+function renderThroneCal(D) {
+  const box = document.getElementById('throne-cal');
+  const pts = (D.timeline || []).filter(p => p.top);
+  if (!pts.length) { box.innerHTML = ''; return; }
+  const order = []; pts.forEach(p => { if (!order.includes(p.top)) order.push(p.top); });
+  const color = (id) => CAL[Math.min(order.indexOf(id), CAL.length - 1)];
+  const name = (id) => D.tracks?.[id] ? `${D.tracks[id].artist} – ${D.tracks[id].song}` : id;
+  box.innerHTML = `<div class="h3">Kalendarz tronu · ${pts.length} ${plural(pts.length, 'dzień', 'dni', 'dni')}</div>
+    <div class="days">${pts.map((p, i) => `<span class="day${i === pts.length - 1 ? ' today' : ''}" style="--c:${color(p.top)}" title="${esc(fmtDate(p.date))}: ${esc(name(p.top))}${p.topViews ? ' · ' + nf.format(p.topViews) + ' wyśw.' : ''}"></span>`).join('')}</div>
+    <div class="lg">${order.slice(0, CAL.length).map(id => `<span><i style="--c:${color(id)}"></i>${esc(name(id))}</span>`).join('')}</div>`;
+}
+
+// liczby nabijają się od zera, gdy wjeżdżają na ekran
+function countUp(el) {
+  const raw = el.textContent.replace(/\s|\u00a0/g, ''); if (!/^\d+$/.test(raw)) return;
+  const target = Number(raw); if (!target) return;
+  const t0 = performance.now(), dur = 1400;
+  const tick = (now) => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = nf.format(Math.round(target * e)); if (k < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
 }
 
 function renderStrip(T, D) {
@@ -811,8 +961,9 @@ function renderCerts(D) {
     </div>`).join('');
   document.getElementById('list-certs').innerHTML = (D.certs || []).length ? D.certs.map(diploma).join('') : emptyBox('Pierwszy certyfikat czeka', `Próg ${TIERS[0] ? esc(TIERS[0].name) + ': ' + nf.format(TIERS[0].views) + ' wyświetleń' : ''}. Kto pierwszy?`);
   document.getElementById('list-next').innerHTML = (D.nextCerts || []).length ? D.nextCerts.map(n => `<li>
+      <div class="ring" style="--p:${n.progress}" title="${n.progress}% drogi do ${esc(n.nextName)}"><svg viewBox="0 0 58 58"><circle class="bg" cx="29" cy="29" r="25.5"/><circle class="fg" cx="29" cy="29" r="25.5"/></svg><b>${n.progress}%</b></div>
       <a href="${esc(n.url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(n.thumb)}" alt=""></a>
-      <div><div class="song">${esc(n.song)}</div><div class="artist">${esc(n.artist || '—')}</div><div class="bar"><i style="--p:${n.progress}%"></i></div></div>
+      <div><div class="song">${esc(n.song)}</div><div class="artist">${esc(n.artist || '—')}</div></div>
       <div class="d"><b>${nf.format(n.missing)}</b><small>do ${esc(n.nextName)}</small></div>
     </li>`).join('') : emptyBox('Wszystko na maksie', 'Każdy numer ma najwyższy certyfikat.');
 }
@@ -870,11 +1021,13 @@ function openPlayer(id, title, artist) {
   document.getElementById('pframe').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="${esc(title)}"></iframe>`;
   document.getElementById('ptitle').innerHTML = `<div>${esc(title)}</div><span>${esc(artist || '')}</span>`;
   p.classList.add('open');
+  document.body.classList.add('playing');
   document.body.style.overflow = 'hidden';
 }
 function closePlayer() {
   document.querySelector('.vinyl-wrap')?.classList.remove('playing');
   document.getElementById('player').classList.remove('open');
+  document.body.classList.remove('playing');
   document.getElementById('pframe').innerHTML = '';
   document.body.style.overflow = '';
 }
@@ -899,6 +1052,10 @@ function init() {
   renderLatest(DATA.latest || []);
   renderCerts(DATA);
   renderChronicle(DATA.reigns || [], T);
+  renderThroneCal(DATA);
+  renderChart(DATA);
+  renderEq();
+  let eqTimer; addEventListener('resize', () => { clearTimeout(eqTimer); eqTimer = setTimeout(renderEq, 200); });
 
   document.addEventListener('click', (ev) => {
     const b = ev.target.closest('[data-play]');
@@ -963,6 +1120,8 @@ function init() {
   if ('IntersectionObserver' in window) {
     const rev = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rev.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: .08 });
     sections.forEach(s => s.classList.contains('hero') ? s.classList.add('in') : rev.observe(s));
+    const cnt = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { countUp(en.target); cnt.unobserve(en.target); } }), { threshold: .6 });
+    document.querySelectorAll('.strip b, .hero .stats b, .acard .nums b, .facts b').forEach(b => cnt.observe(b));
   } else sections.forEach(s => s.classList.add('in'));
 }
 init();
@@ -973,7 +1132,9 @@ init();
   const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W = 0, H = 0, parts = [], fog = [], raf = null, last = 0, acc = 0;
+  let W = 0, H = 0, parts = [], fog = [], raf = null, last = 0, acc = 0, mx = -9999, my = -9999;
+  addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  addEventListener('pointerleave', () => { mx = my = -9999; });
 
   function sprite(size, color) {
     const c = document.createElement('canvas'); c.width = c.height = size;
@@ -1010,6 +1171,8 @@ init();
     for (let i = 0; i < parts.length; i++) {
       const p = parts[i];
       p.life += dt; p.sway += dt * 1.2;
+      const dx = p.x - mx, dy = p.y - my, dd = dx * dx + dy * dy;
+      if (dd < 14400) { const f = (1 - Math.sqrt(dd) / 120) * 260 * dt; p.x += dx / Math.sqrt(dd || 1) * f; p.y += dy / Math.sqrt(dd || 1) * f; } // kursor rozgania żar
       p.y -= p.vy * dt; p.x += (p.vx + Math.sin(p.sway) * p.sw) * dt;
       if (p.y < -10 || p.life > p.ttl) { parts[i] = spawn(false); continue; }
       const fade = Math.min(1, p.life / 1.2) * Math.min(1, (p.ttl - p.life) / 2);

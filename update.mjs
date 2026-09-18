@@ -408,6 +408,15 @@ const nextCerts = allTimePool
   .slice(0, cfg.nextCertsSize ?? 5);
 const tierById = Object.fromEntries(certs.map(c => [c.id, c.tier]));
 
+// oś czasu: suma wyświetleń wytwórni i #1 w każdej zapisanej migawce (do wykresu i kalendarza tronu)
+const poolIds = new Set(allTimePool.map(v => v.id));
+const timeline = history.snapshots.map(s => ({
+  date: s.date,
+  total: Object.entries(s.views ?? {}).reduce((sum, [id, v]) => sum + (poolIds.has(id) && typeof v === 'number' ? v : 0), 0),
+  top: s.now?.[0] ?? null,
+  topViews: s.now?.[0] ? (s.views?.[s.now[0]] ?? null) : null,
+}));
+
 const prevTotal = prev ? allTimePool.reduce((s, v) => s + (typeof prev.views?.[v.id] === 'number' ? prev.views[v.id] : v.views), 0) : null;
 const totals = {
   labelViews,
@@ -448,6 +457,8 @@ const data = {
   now: enrich(now, 'now').map(e => ({ ...e, daysAtTop: daysAtTop[e.id] ?? 0, tier: tierById[e.id] ?? null })),
   certs,
   nextCerts,
+  timeline,
+  tracks: Object.fromEntries(allTimePool.map(v => [v.id, { artist: v.artist, song: v.song, thumb: v.thumb, url: v.url }])),
   allTime: enrich(allTime, 'allTime'),
   rising,
   artists,

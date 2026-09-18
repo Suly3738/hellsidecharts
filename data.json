@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T23:38:58.443Z",
+  "generatedAt": "2026-09-18T23:46:47.670Z",
   "chartDate": "2026-09-19",
   "prevDate": null,
   "channel": {
@@ -110,6 +110,22 @@
       "progress": 89
     }
   ],
+  "timeline": [
+    {
+      "date": "2026-09-19",
+      "total": 234,
+      "top": "PqJv58Venx0",
+      "topViews": 234
+    }
+  ],
+  "tracks": {
+    "PqJv58Venx0": {
+      "artist": "740FREDO",
+      "song": "WEDNESDAY!",
+      "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=PqJv58Venx0"
+    }
+  },
   "allTime": [
     {
       "pos": 1,
