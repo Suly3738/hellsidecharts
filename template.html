@@ -410,6 +410,12 @@
 
   /* dyplom */
   .diplomas { display: grid; gap: 22px; perspective: 1200px; }
+  /* lista zwinięta: widać tylko CERT_SHOW najwyższych dyplomów, reszta po kliknięciu „Pokaż wszystkie” */
+  .diplomas .diploma.fold { display: none; }
+  .diplomas.open .diploma.fold { display: block; animation: unfold .45s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes unfold { from { opacity: 0; transform: translateY(18px); } }
+  .morecerts { justify-content: center; margin-top: 4px; }
+  .morecerts small { font-weight: 500; letter-spacing: .12em; color: var(--muted); }
   .diploma { --c: var(--t0); --ink: #efe6dc; --paper: #120a0b; display: block; position: relative; aspect-ratio: 1.55; padding: 26px 30px; overflow: hidden; background: var(--paper); color: var(--ink);
     border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); transform-style: preserve-3d; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
     box-shadow: 0 30px 60px rgba(0,0,0,.65), 0 0 40px color-mix(in srgb, var(--c) 22%, transparent); }
@@ -1545,6 +1551,14 @@ function diploma(c) {
   </a>`;
 }
 
+const CERT_SHOW = 2; // tyle dyplomów widać bez rozwijania (najwyższe stopnie pierwsze)
+document.getElementById('list-certs').addEventListener('click', (ev) => {
+  const b = ev.target.closest('.morecerts'); if (!b) return;
+  const box = b.parentElement, open = box.classList.toggle('open');
+  b.setAttribute('aria-expanded', open);
+  b.innerHTML = open ? '<span>Zwiń certyfikaty</span>' : `<span>Pokaż wszystkie certyfikaty</span> <small>· jeszcze ${b.dataset.more}</small>`;
+  if (!open) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 function renderCerts(D) {
   const counts = TIERS.map((_, i) => (D.certs || []).filter(c => c.tier === i).length);
   document.getElementById('tiers').innerHTML = TIERS.map((t, i) => `<div class="tier t${i}" data-tier="${i}" role="button" tabindex="0">
@@ -1552,7 +1566,9 @@ function renderCerts(D) {
       <div class="cnt">${counts[i] ? `${counts[i]} ${plural(counts[i], 'utwór', 'utwory', 'utworów')}` : 'jeszcze nikt'}</div>
       <div class="see">Kliknij · zobacz certyfikat</div>
     </div>`).join('');
-  document.getElementById('list-certs').innerHTML = (D.certs || []).length ? D.certs.map(diploma).join('') : emptyBox('Pierwszy certyfikat czeka', `Próg ${TIERS[0] ? esc(TIERS[0].name) + ': ' + nf.format(TIERS[0].views) + ' wyświetleń' : ''}. Kto pierwszy?`);
+  const certs = D.certs || [], hidden = Math.max(0, certs.length - CERT_SHOW);
+  document.getElementById('list-certs').innerHTML = certs.length ? certs.map((c, i) => i < CERT_SHOW ? diploma(c) : diploma(c).replace('class="diploma', 'class="diploma fold')).join('')
+    + (hidden ? `<button class="cta ghost morecerts" type="button" aria-expanded="false" data-more="${hidden}"><span>Pokaż wszystkie certyfikaty</span> <small>· jeszcze ${hidden}</small></button>` : '') : emptyBox('Pierwszy certyfikat czeka', `Próg ${TIERS[0] ? esc(TIERS[0].name) + ': ' + nf.format(TIERS[0].views) + ' wyświetleń' : ''}. Kto pierwszy?`);
   document.getElementById('list-next').innerHTML = (D.nextCerts || []).length ? D.nextCerts.map(n => `<li>
       <div class="ring" style="--p:${n.progress}" title="${n.progress}% drogi do ${esc(n.nextName)}"><svg viewBox="0 0 58 58"><circle class="bg" cx="29" cy="29" r="25.5"/><circle class="fg" cx="29" cy="29" r="25.5"/></svg><b>${n.progress}%</b></div>
       <a href="${esc(n.url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(n.thumb)}" alt=""></a>
