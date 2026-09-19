@@ -12,6 +12,7 @@
   "applyExcludeToNow": true,
   "concurrency": 4,
   "discord": "https://discord.gg/rWgXWJJSd",
+  "introTrack": "1StnKcnwil4",
   "tiers": [
     {
       "name": "Żar",
