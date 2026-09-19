@@ -11,13 +11,13 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-19T01:15:21.502Z';
+  const BUILD = '2026-09-19T01:25:00.046Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
     let done = null; try { done = sessionStorage.getItem('hsc.reloaded'); } catch {}
     if (done === v.build) return;
-    try { sessionStorage.setItem('hsc.reloaded', v.build); } catch {}
+    try { sessionStorage.setItem('hsc.reloaded', v.build); sessionStorage.setItem('hsc.introSkip', '1'); } catch {}
     location.reload();
   }).catch(() => {});
 })();
@@ -560,6 +560,53 @@
     .acard { flex-basis: 200px; }
     .hero .num { font-size: 110px; }
   }
+  /* intro: demon ze złotym łańcuchem śmieje się, potem płynne przejście do strony. Same transformy/opacity – bez filtrów */
+  .intro { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; overflow: hidden; background: #030203; cursor: var(--cur-hand); user-select: none; }
+  .intro .fire { position: absolute; left: -10%; right: -10%; bottom: 0; height: 48vh; transform-origin: bottom; background: radial-gradient(55% 100% at 50% 100%, rgba(255,106,31,.34), rgba(210,18,46,.16) 48%, transparent 76%); animation: introFire 1.5s ease-in-out infinite alternate; }
+  .intro .glow { position: absolute; inset: -30%; opacity: 0; background: radial-gradient(38% 38% at 50% 52%, rgba(210,18,46,.5), rgba(210,18,46,.1) 50%, transparent 72%); animation: introFade 1.2s ease-out .2s forwards; }
+  .intro .stage { position: relative; width: min(74vmin, 540px); aspect-ratio: 400 / 470; }
+  .intro .ha { position: absolute; inset: 0; pointer-events: none; }
+  .intro .ha span { position: absolute; font: 400 clamp(38px, 12vmin, 96px)/1 var(--display); color: var(--red-2); text-shadow: 0 0 16px rgba(255,45,74,.55); white-space: nowrap; animation: introHa 1s ease-out forwards; }
+  .intro .ha span:nth-child(odd) { color: var(--flame); text-shadow: 0 0 16px rgba(255,179,71,.5); }
+  .intro .demon { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(8%) scale(.86); animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
+  .intro .demon .eyes { opacity: 0; animation: introEyes .55s ease-out .6s forwards; }
+  .intro .demon .head, .intro .demon .jaw, .intro .demon .eye, .intro .demon .chain, .intro .demon .torso, .intro .demon .pend { transform-box: fill-box; }
+  .intro .demon .head { transform-origin: 50% 90%; }
+  .intro .demon .jaw { transform-origin: 50% 0; }
+  .intro .demon .eye { transform-origin: 50% 50%; }
+  .intro .demon .chain { transform-origin: 50% 0; }
+  .intro .demon .pend { transform-origin: 50% 0; }
+  .intro .demon .torso { transform-origin: 50% 100%; }
+  .intro.laugh .demon .head { animation: introHead .36s ease-in-out infinite; }
+  .intro.laugh .demon .jaw { animation: introJaw .36s ease-in-out infinite; }
+  .intro.laugh .demon .eye { animation: introSquint .36s ease-in-out infinite; }
+  .intro.laugh .demon .chain { animation: introChain .36s ease-in-out .07s infinite; }
+  .intro.laugh .demon .pend { animation: introPend .72s ease-in-out .1s infinite; }
+  .intro.laugh .demon .torso { animation: introShrug .36s ease-in-out infinite; }
+  .intro.laugh .stage { animation: introShake .18s linear infinite; }
+  .intro .skip { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; font: 600 11px/1 var(--cond); letter-spacing: .34em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: introFade .6s ease-out 1.3s forwards; }
+  .intro.leave { pointer-events: none; animation: introOut .95s ease-in forwards; }
+  .intro.leave .stage { animation: none; }
+  .intro.leave .demon { animation: introZoom .8s cubic-bezier(.55,0,.85,.35) forwards; }
+  .intro.leave .skip, .intro.leave .ha { opacity: 0; }
+  body.intro { overflow: hidden; }
+  .hero > .txt, .hero > .vinyl-wrap { transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+  .hero > .vinyl-wrap { transition-delay: .15s; }
+  body.intro .hero > .txt, body.intro .hero > .vinyl-wrap { opacity: 0; transform: translateY(34px); }
+  @keyframes introFade { to { opacity: 1; } }
+  @keyframes introFire { from { transform: scaleY(.82); opacity: .7; } to { transform: scaleY(1.12); opacity: 1; } }
+  @keyframes introRise { to { opacity: 1; transform: none; } }
+  @keyframes introEyes { 0% { opacity: 0; } 35% { opacity: 1; } 55% { opacity: .35; } 100% { opacity: 1; } }
+  @keyframes introHead { 0%, 100% { transform: rotate(-2.5deg) translateY(-7px); } 50% { transform: rotate(2deg) translateY(4px); } }
+  @keyframes introJaw { 0%, 100% { transform: translateY(2px); } 50% { transform: translateY(26px); } }
+  @keyframes introSquint { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.38); } }
+  @keyframes introChain { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  @keyframes introPend { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+  @keyframes introShrug { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.03); } }
+  @keyframes introShake { 0% { transform: translate(0, 0); } 25% { transform: translate(2px, -2px); } 50% { transform: translate(-2px, 1px); } 75% { transform: translate(1px, 2px); } 100% { transform: translate(0, 0); } }
+  @keyframes introHa { 0% { opacity: 0; transform: translate(0, 0) scale(.5) rotate(var(--r)); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -24vmin) scale(1.35) rotate(var(--r)); } }
+  @keyframes introOut { 0% { opacity: 1; background: #030203; } 30% { opacity: 1; background: #4a0512; } 100% { opacity: 0; background: #4a0512; } }
+  @keyframes introZoom { to { transform: translateY(16%) scale(2.7); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     .ticker .track, .vinyl, .live::before, .vinyl-wrap .hint, .tier::before, .cert::before, .eq i { animation: none; }
     main section:not(.hero) > * { opacity: 1; transform: none; transition: none; }
@@ -567,7 +614,90 @@
   }
 </style>
 </head>
-<body>
+<body class="intro">
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="fire"></div>
+  <div class="glow"></div>
+  <div class="stage">
+    <svg class="demon" viewBox="0 0 400 470" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="dSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3d55"/><stop offset=".5" stop-color="#c4122e"/><stop offset="1" stop-color="#5c0613"/></linearGradient>
+        <radialGradient id="dSheen" cx=".5" cy=".3" r=".65"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        <linearGradient id="dHorn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3b2528"/><stop offset=".5" stop-color="#0f0a0b"/><stop offset="1" stop-color="#5a3c40"/></linearGradient>
+        <radialGradient id="dEye" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7cc"/><stop offset=".45" stop-color="#ffc63a"/><stop offset="1" stop-color="#ff6a1f"/></radialGradient>
+        <radialGradient id="dEyeGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb347" stop-opacity=".75"/><stop offset=".5" stop-color="#ff6a1f" stop-opacity=".22"/><stop offset="1" stop-color="#ff6a1f" stop-opacity="0"/></radialGradient>
+        <linearGradient id="dGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
+        <linearGradient id="dGold2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
+        <radialGradient id="dCoin" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff0a8"/><stop offset=".45" stop-color="#e8b830"/><stop offset="1" stop-color="#8a6208"/></radialGradient>
+        <linearGradient id="dBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1315"/><stop offset="1" stop-color="#060405"/></linearGradient>
+        <linearGradient id="dMouth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0009"/><stop offset="1" stop-color="#090002"/></linearGradient>
+        <linearGradient id="dTongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3143a"/><stop offset="1" stop-color="#5a0818"/></linearGradient>
+      </defs>
+      <path d="M176 296 L 224 296 L 240 358 L 160 358 Z" fill="#8a0c20"/>
+      <path d="M176 296 L 224 296 L 228 322 Q 200 334 172 322 Z" fill="#5c0613"/>
+      <g class="torso">
+        <path d="M22 470 C 50 382, 128 350, 200 348 C 272 350, 350 382, 378 470 Z" fill="url(#dBody)"/>
+        <path d="M22 470 C 50 382, 128 350, 200 348 C 272 350, 350 382, 378 470" fill="none" stroke="#ff2d4a" stroke-opacity=".28" stroke-width="2"/>
+        <path d="M152 356 L 200 392 L 248 356 L 238 348 L 200 372 L 162 348 Z" fill="#0b0708"/>
+        <g class="chain" id="dChain"></g>
+        <g class="pend" id="dPend">
+          <ellipse cx="200" cy="405" rx="6" ry="8" fill="none" stroke="url(#dGold)" stroke-width="3.5"/>
+          <circle cx="200" cy="434" r="25" fill="url(#dCoin)" stroke="#7d5a06" stroke-width="1.5"/>
+          <circle cx="200" cy="434" r="19" fill="none" stroke="#a87c0c" stroke-width="1.2"/>
+          <text x="200" y="443" text-anchor="middle" font-family="Pirata One, serif" font-size="25" fill="#3a0208">HR</text>
+        </g>
+      </g>
+      <g class="head">
+        <g id="dHornL">
+          <path d="M154 122 C 128 100, 104 62, 106 14 C 132 44, 160 80, 182 112 Z" fill="url(#dHorn)"/>
+          <path d="M118 52 C 128 60, 138 72, 148 84 M112 34 C 120 42, 128 52, 136 62 M128 74 C 138 82, 146 92, 156 102" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <use href="#dHornL" transform="matrix(-1 0 0 1 400 0)"/>
+        <g id="dEarL"><path d="M112 178 L 74 154 L 108 214 Z" fill="#a80e26"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#5c0613"/></g>
+        <use href="#dEarL" transform="matrix(-1 0 0 1 400 0)"/>
+        <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
+        <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
+        <g class="jaw">
+          <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin)"/>
+          <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#3a0208" opacity=".55"/>
+          <g fill="#f5efe4">
+            <path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/>
+          </g>
+          <path d="M186 314 C 190 336, 196 350, 200 366 C 204 350, 210 336, 214 314 Q 200 322 186 314 Z" fill="#100a0b"/>
+        </g>
+        <path id="dFace" d="M200 84 C 258 84, 300 122, 300 188 C 300 214, 294 232, 286 236 Q 200 260 114 236 C 106 232, 100 214, 100 188 C 100 122, 142 84, 200 84 Z" fill="url(#dSkin)"/>
+        <use href="#dFace" fill="url(#dSheen)"/>
+        <path d="M150 100 C 158 112, 160 122, 156 136 M250 100 C 242 112, 240 122, 244 136" fill="none" stroke="#5c0613" stroke-opacity=".6" stroke-width="2.5" stroke-linecap="round"/>
+        <g fill="#f5efe4">
+          <path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/>
+        </g>
+        <path d="M200 194 C 190 210, 184 220, 189 226 C 195 231, 205 231, 211 226 C 216 220, 210 210, 200 194 Z" fill="#7a0a1c" opacity=".7"/>
+        <ellipse cx="193" cy="224" rx="4" ry="2.6" fill="#2a0008"/><ellipse cx="207" cy="224" rx="4" ry="2.6" fill="#2a0008"/>
+        <g class="eyes">
+          <g class="eye"><g id="dEyeL">
+            <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
+            <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
+            <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
+            <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
+          </g></g>
+          <g class="eye"><use href="#dEyeL" transform="matrix(-1 0 0 1 400 0)"/></g>
+        </g>
+        <path id="dBrowL" d="M128 150 C 148 138, 172 142, 188 158 C 172 154, 150 156, 132 164 Z" fill="#3a0208"/>
+        <use href="#dBrowL" transform="matrix(-1 0 0 1 400 0)"/>
+      </g>
+    </svg>
+    <div class="ha" id="intro-ha"></div>
+  </div>
+  <div class="skip">Kliknij, żeby pominąć</div>
+</div>
+<script>
+(function () {
+  // powtórka po przeładowaniu przez wykrywacz wersji i tryb ograniczonego ruchu – bez intra
+  let skip = false;
+  try { skip = sessionStorage.getItem('hsc.introSkip') === '1'; if (skip) sessionStorage.removeItem('hsc.introSkip'); } catch {}
+  if (skip || matchMedia('(prefers-reduced-motion: reduce)').matches) { document.body.classList.remove('intro'); document.getElementById('intro').remove(); }
+})();
+</script>
 <canvas id="embers" aria-hidden="true"></canvas>
 <div class="glowbg" aria-hidden="true"></div>
 
@@ -711,7 +841,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-19T01:15:21.502Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":250,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":0},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":0,"tierName":"Żar","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":1,"nextName":"Ogień","missing":6,"progress":96},{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6}],"timeline":[{"date":"2026-09-19","total":250,"top":"PqJv58Venx0","topViews":244}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":244,"share":97.6,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.4,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":244,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-19T01:25:00.046Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":265,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":241,"progress":4}],"timeline":[{"date":"2026-09-19","total":265,"top":"PqJv58Venx0","topViews":259}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":259,"share":97.7,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.3,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -1121,10 +1251,120 @@ function init() {
     const rev = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rev.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: .08 });
     sections.forEach(s => s.classList.contains('hero') ? s.classList.add('in') : rev.observe(s));
     const cnt = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { countUp(en.target); cnt.unobserve(en.target); } }), { threshold: .6 });
-    document.querySelectorAll('.strip b, .hero .stats b, .acard .nums b, .facts b').forEach(b => cnt.observe(b));
+    document.querySelectorAll('.strip b, .acard .nums b, .facts b').forEach(b => cnt.observe(b));
+    // liczniki w hero startują dopiero, gdy intro zejdzie ze sceny
+    afterIntro(() => document.querySelectorAll('.hero .stats b').forEach(b => cnt.observe(b)));
   } else sections.forEach(s => s.classList.add('in'));
 }
+function afterIntro(fn) { document.body.classList.contains('intro') ? document.addEventListener('hsc:intro-done', fn, { once: true }) : fn(); }
 init();
+
+/* ---------- intro: demon ze złotym łańcuchem. Fazy: wyłania się → śmieje (HA HA) → wskakuje w kamerę i scena znika ---------- */
+(function intro() {
+  const el = document.getElementById('intro');
+  if (!el) return;
+  const ha = document.getElementById('intro-ha');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // łańcuch cuban link: ogniwa rozłożone wzdłuż łuku na szyi, na przemian dwa kierunki złotego gradientu
+  (function chain() {
+    const g = document.getElementById('dChain');
+    const base = document.createElementNS(NS, 'path');
+    base.setAttribute('d', 'M134 352 C 146 418, 254 418, 266 352');
+    base.setAttribute('fill', 'none'); base.setAttribute('stroke', '#6b4a05'); base.setAttribute('stroke-width', '7'); base.setAttribute('stroke-linecap', 'round');
+    g.appendChild(base);
+    const L = base.getTotalLength(), step = 12.5;
+    for (let d = 0, i = 0; d <= L; d += step, i++) {
+      const p = base.getPointAtLength(d), q = base.getPointAtLength(Math.min(L, d + 1));
+      const a = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+      const e = document.createElementNS(NS, 'ellipse');
+      e.setAttribute('cx', p.x.toFixed(1)); e.setAttribute('cy', p.y.toFixed(1));
+      e.setAttribute('rx', '9'); e.setAttribute('ry', i % 2 ? '5.6' : '4');
+      e.setAttribute('transform', `rotate(${a.toFixed(1)} ${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
+      e.setAttribute('fill', 'none'); e.setAttribute('stroke', i % 2 ? 'url(#dGold)' : 'url(#dGold2)'); e.setAttribute('stroke-width', '4.2');
+      g.appendChild(e);
+    }
+  })();
+
+  let phase = 0, audio = null, haTimer = null;
+  const timers = [];
+  const T = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+  function spawnHa(i) {
+    const s = document.createElement('span');
+    s.textContent = i % 3 === 2 ? 'HA HA' : 'HA';
+    const side = i % 2 ? 1 : -1;
+    s.style.setProperty('--r', (side * (8 + Math.random() * 14)).toFixed(1) + 'deg');
+    s.style.setProperty('--dx', (side * (16 + Math.random() * 18)).toFixed(1) + 'vmin');
+    s.style.left = (50 + side * (14 + Math.random() * 10)) + '%';
+    s.style.top = (46 + Math.random() * 14) + '%';
+    ha.appendChild(s);
+    setTimeout(() => s.remove(), 1100);
+  }
+  function laugh() {
+    if (phase) return;
+    phase = 1; el.classList.add('laugh');
+    audio = playLaugh();
+    let n = 0; spawnHa(n++);
+    haTimer = setInterval(() => { spawnHa(n++); if (n >= 7) clearInterval(haTimer); }, 340);
+  }
+  function leave() {
+    if (phase === 2) return;
+    phase = 2; timers.forEach(clearTimeout); clearInterval(haTimer);
+    removeEventListener('keydown', leave);
+    if (audio) { try { audio.close(); } catch {} }
+    el.classList.remove('laugh'); el.classList.add('leave');
+    document.body.classList.remove('intro');
+    document.dispatchEvent(new Event('hsc:intro-done'));
+    setTimeout(() => el.remove(), 1000);
+  }
+  T(laugh, 1100); T(leave, 3700);
+  el.addEventListener('pointerdown', leave);
+  addEventListener('keydown', leave);
+
+  // śmiech syntezowany w Web Audio (7 „ha”, saw+square przez przester, pasmo samogłoski, pogłos, sub-bas). Gra tylko, gdy przeglądarka pozwala na autoodtwarzanie
+  function playLaugh() {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      const ac = new AC();
+      if (ac.state !== 'running') { ac.close(); return null; }
+      const t0 = ac.currentTime + .05, sr = ac.sampleRate;
+      const master = ac.createGain(); master.gain.value = .45; master.connect(ac.destination);
+      const ir = ac.createBuffer(2, sr * 1.6, sr);
+      for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 2.6); }
+      const conv = ac.createConvolver(); conv.buffer = ir;
+      const wet = ac.createGain(); wet.gain.value = .35; conv.connect(wet); wet.connect(ac.destination);
+      const shaper = ac.createWaveShaper(); const curve = new Float32Array(256);
+      for (let i = 0; i < 256; i++) curve[i] = Math.tanh((i / 127.5 - 1) * 3.5);
+      shaper.curve = curve;
+      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.2;
+      const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800;
+      shaper.connect(bp); bp.connect(lp); lp.connect(master); lp.connect(conv);
+      for (let i = 0; i < 7; i++) {
+        const t = t0 + i * .34 + (i > 3 ? (i - 3) * .03 : 0), dur = .2, f = 92 - i * 4;
+        const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + dur); g.connect(shaper);
+        [['sawtooth', 0], ['sawtooth', 7], ['square', -12]].forEach(([type, det]) => {
+          const o = ac.createOscillator(); o.type = type; o.detune.value = det;
+          o.frequency.setValueAtTime(f * 1.15, t); o.frequency.exponentialRampToValueAtTime(f * .85, t + dur);
+          o.connect(g); o.start(t); o.stop(t + dur + .05);
+        });
+        bp.frequency.setValueAtTime(900, t); bp.frequency.exponentialRampToValueAtTime(450, t + dur);
+        const nb = ac.createBuffer(1, sr * dur, sr); const nd = nb.getChannelData(0);
+        for (let k = 0; k < nd.length; k++) nd[k] = Math.random() * 2 - 1;
+        const ns = ac.createBufferSource(); ns.buffer = nb;
+        const nf = ac.createBiquadFilter(); nf.type = 'bandpass'; nf.frequency.value = 1400; nf.Q.value = .7;
+        const ng = ac.createGain(); ng.gain.setValueAtTime(.12, t); ng.gain.exponentialRampToValueAtTime(.001, t + dur);
+        ns.connect(nf); nf.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + dur);
+      }
+      const sub = ac.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(70, t0); sub.frequency.exponentialRampToValueAtTime(30, t0 + .9);
+      const sg = ac.createGain(); sg.gain.setValueAtTime(.6, t0); sg.gain.exponentialRampToValueAtTime(.001, t0 + 1);
+      sub.connect(sg); sg.connect(master); sub.start(t0); sub.stop(t0 + 1);
+      setTimeout(() => { try { ac.close(); } catch {} }, 5000);
+      return ac;
+    } catch { return null; }
+  }
+})();
 
 /* ---------- tło: żar + mgła. Lekko: sprite'y zamiast shadowBlur, ~60 cząstek, 30 kl./s, pauza gdy karta ukryta ---------- */
 (function embers() {
