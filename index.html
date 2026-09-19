@@ -11,7 +11,7 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-19T12:21:26.841Z';
+  const BUILD = '2026-09-19T12:31:25.849Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
@@ -587,9 +587,14 @@
   .intro .fire { position: absolute; left: -10%; right: -10%; bottom: 0; height: 48vh; transform-origin: bottom; background: radial-gradient(55% 100% at 50% 100%, rgba(255,106,31,.34), rgba(210,18,46,.16) 48%, transparent 76%); animation: introFire 1.5s ease-in-out infinite alternate; }
   .intro .glow { position: absolute; inset: -30%; opacity: 0; background: radial-gradient(38% 38% at 50% 52%, rgba(210,18,46,.5), rgba(210,18,46,.1) 50%, transparent 72%); }
   .intro.go .glow { animation: introFade 1.2s ease-out .2s forwards; }
-  .intro .stage { position: relative; width: min(74vmin, 540px); aspect-ratio: 400 / 470; }
-  .intro .demon { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(8%) scale(.86); }
-  .intro.go .demon { animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
+  .intro .stage { position: relative; width: min(96vw, 150vmin, 1060px); aspect-ratio: 900 / 470; }
+  .intro .demon { display: block; width: 100%; height: 100%; overflow: visible; }
+  .intro .demon .fig { transform-box: fill-box; transform-origin: 50% 100%; opacity: 0; transform: translateY(8%) scale(.86); }
+  .intro.go .demon .fig { animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
+  .intro.go .demon .d1 { animation-delay: .4s; } .intro.go .demon .d3 { animation-delay: .55s; }
+  .intro .demon .d1 .head, .intro .demon .d1 .jaw, .intro .demon .d1 .eye, .intro .demon .d1 .chain, .intro .demon .d1 .pend, .intro .demon .d1 .torso, .intro .demon .d1 .hand { animation-delay: .11s !important; }
+  .intro .demon .d3 .head, .intro .demon .d3 .jaw, .intro .demon .d3 .eye, .intro .demon .d3 .chain, .intro .demon .d3 .pend, .intro .demon .d3 .torso, .intro .demon .d3 .hand { animation-delay: .2s !important; }
+  .intro.laugh .demon .d1 .head { animation-name: introHeadB; } .intro.laugh .demon .d3 .head { animation-name: introHeadC; }
   .intro .demon .eyes { opacity: 0; }
   .intro.go .demon .eyes { animation: introEyes .55s ease-out .6s forwards; }
   .intro .demon .head, .intro .demon .jaw, .intro .demon .eye, .intro .demon .chain, .intro .demon .torso, .intro .demon .pend, .intro .demon .hand, .intro .demon .smoke, .intro .demon .spark, .intro .demon .eyes { transform-box: fill-box; }
@@ -612,8 +617,12 @@
   .intro.laugh .demon .hand { animation: introHand .36s ease-in-out .05s infinite; }
   .intro.laugh .stage { animation: introShake .18s linear infinite; }
   /* dymek ze śmiechem */
-  .intro .bubble { position: absolute; left: 62%; top: 12%; width: 54%; transform-origin: 8% 96%; transform: scale(0) rotate(-12deg); opacity: 0; pointer-events: none; }
+  .intro .bubble { position: absolute; transform-origin: 8% 96%; transform: scale(0) rotate(-12deg); opacity: 0; pointer-events: none; }
+  .intro .bubble.b1 { left: 35%; top: -22%; width: 30%; transform-origin: 50% 96%; }
+  .intro .bubble.b2 { left: 5%; top: -12%; width: 22%; transform-origin: 50% 96%; }
+  .intro .bubble.b3 { left: 69%; top: -12%; width: 22%; transform-origin: 50% 96%; transform: scale(0) rotate(12deg); }
   .intro.laugh .bubble { animation: introPop .5s cubic-bezier(.3,1.6,.4,1) forwards, introWobble .36s ease-in-out .5s infinite; }
+  .intro.laugh .bubble.b2 { animation-delay: .2s, .7s; } .intro.laugh .bubble.b3 { animation-delay: .35s, .85s; }
   .intro .bubble text { font-family: var(--display); fill: url(#dFireTxt); transform-box: fill-box; transform-origin: 50% 50%; }
   .intro.laugh .bubble text { animation: introHaPulse .36s ease-in-out infinite alternate; }
   .intro.laugh .bubble text.l2 { animation-delay: .18s; }
@@ -676,7 +685,8 @@
   .intro .curtain .c2 { top: 0; animation: introLick .42s ease-in-out .2s infinite alternate-reverse; }
   .intro.leave { pointer-events: none; }
   .intro.leave .stage { animation: none; }
-  .intro.leave .demon { opacity: 1; transform: none; animation: introLean 1s ease-in forwards; }
+  .intro.leave .demon { animation: introLean 1s ease-in forwards; }
+  .intro.leave .demon .fig { opacity: 1; transform: none; animation: none; }
   .intro.leave .demon .eyes { opacity: 1; animation: introFlare .5s ease-out 2 alternate; }
   .intro.leave .scene { animation: introWipe 2.3s forwards; }
   .intro.leave .curtain { animation: introBand 2.3s forwards; }
@@ -692,6 +702,8 @@
   @keyframes introRise { to { opacity: 1; transform: none; } }
   @keyframes introEyes { 0% { opacity: 0; } 35% { opacity: 1; } 55% { opacity: .35; } 100% { opacity: 1; } }
   @keyframes introHead { 0%, 100% { transform: rotate(-2.5deg) translateY(-7px); } 50% { transform: rotate(2deg) translateY(4px); } }
+  @keyframes introHeadB { 0%, 100% { transform: rotate(3deg) translateY(-9px); } 50% { transform: rotate(-1.5deg) translateY(3px); } }
+  @keyframes introHeadC { 0%, 100% { transform: rotate(-1.5deg) translateY(-5px); } 50% { transform: rotate(3.5deg) translateY(5px); } }
   @keyframes introJaw { 0%, 100% { transform: translateY(2px); } 50% { transform: translateY(26px); } }
   @keyframes introSquint { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.38); } }
   @keyframes introChain { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
@@ -794,11 +806,16 @@
       <div class="fire"></div>
       <div class="glow"></div>
       <div class="stage">
-        <svg class="demon" viewBox="0 0 400 470" xmlns="http://www.w3.org/2000/svg">
+<svg class="demon" viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="dSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0263f"/><stop offset=".5" stop-color="#ad142d"/><stop offset="1" stop-color="#5a0a16"/></linearGradient>
-            <radialGradient id="dSheen" cx=".5" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-            <radialGradient id="dShade" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2a0008" stop-opacity=".6"/><stop offset="1" stop-color="#2a0008" stop-opacity="0"/></radialGradient>
+            <linearGradient id="dSkin1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5038"/><stop offset=".5" stop-color="#4a2d1c"/><stop offset="1" stop-color="#22120a"/></linearGradient>
+            <linearGradient id="dSkin2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6644"/><stop offset=".5" stop-color="#63402a"/><stop offset="1" stop-color="#301a0d"/></linearGradient>
+            <linearGradient id="dSkin3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a26"/><stop offset=".5" stop-color="#33200f"/><stop offset="1" stop-color="#150a04"/></linearGradient>
+            <linearGradient id="dNeck1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a170c"/><stop offset=".45" stop-color="#4f3020"/><stop offset="1" stop-color="#22120a"/></linearGradient>
+            <linearGradient id="dNeck2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a2010"/><stop offset=".45" stop-color="#6a452c"/><stop offset="1" stop-color="#301a0d"/></linearGradient>
+            <linearGradient id="dNeck3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c0f06"/><stop offset=".45" stop-color="#3a2412"/><stop offset="1" stop-color="#150a04"/></linearGradient>
+            <radialGradient id="dSheen" cx=".5" cy=".28" r=".6"><stop offset="0" stop-color="#ffd9b0" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <radialGradient id="dShade" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0a0402" stop-opacity=".55"/><stop offset="1" stop-color="#0a0402" stop-opacity="0"/></radialGradient>
             <linearGradient id="dHorn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3b2528"/><stop offset=".5" stop-color="#0f0a0b"/><stop offset="1" stop-color="#5a3c40"/></linearGradient>
             <radialGradient id="dEye" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7cc"/><stop offset=".45" stop-color="#ffc63a"/><stop offset="1" stop-color="#ff6a1f"/></radialGradient>
             <radialGradient id="dEyeGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb347" stop-opacity=".75"/><stop offset=".5" stop-color="#ff6a1f" stop-opacity=".22"/><stop offset="1" stop-color="#ff6a1f" stop-opacity="0"/></radialGradient>
@@ -808,20 +825,196 @@
             <linearGradient id="dJacket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2226"/><stop offset=".35" stop-color="#171214"/><stop offset="1" stop-color="#060405"/></linearGradient>
             <linearGradient id="dLapel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a3c41"/><stop offset=".5" stop-color="#1c1518"/><stop offset="1" stop-color="#0a0708"/></linearGradient>
             <linearGradient id="dCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26202a"/><stop offset="1" stop-color="#070506"/></linearGradient>
+            <linearGradient id="dSilk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a1020"/><stop offset=".4" stop-color="#2a0710"/><stop offset=".7" stop-color="#4a0c1a"/><stop offset="1" stop-color="#160309"/></linearGradient>
+            <linearGradient id="dPuffer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3446"/><stop offset=".5" stop-color="#161d2a"/><stop offset="1" stop-color="#090c12"/></linearGradient>
+            <linearGradient id="dTrack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22222a"/><stop offset=".5" stop-color="#111116"/><stop offset="1" stop-color="#050506"/></linearGradient>
             <linearGradient id="dCigar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a4424"/><stop offset=".5" stop-color="#4a2712"/><stop offset="1" stop-color="#2d170a"/></linearGradient>
             <radialGradient id="dEmber" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff3c0"/><stop offset=".4" stop-color="#ff8a2a"/><stop offset="1" stop-color="#ff2d1a" stop-opacity="0"/></radialGradient>
             <radialGradient id="dSmoke" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d8d4dc" stop-opacity=".5"/><stop offset="1" stop-color="#d8d4dc" stop-opacity="0"/></radialGradient>
             <linearGradient id="dMouth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0009"/><stop offset="1" stop-color="#090002"/></linearGradient>
             <linearGradient id="dTongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3143a"/><stop offset="1" stop-color="#5a0818"/></linearGradient>
             <linearGradient id="dTeeth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf6ea"/><stop offset="1" stop-color="#cfc2a8"/></linearGradient>
-            <linearGradient id="dNeck" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6a0818"/><stop offset=".45" stop-color="#a8112a"/><stop offset="1" stop-color="#5a0a16"/></linearGradient>
           </defs>
-          <!-- szyja: walec z cieniem pod żuchwą, ścięgna, tatuaż HR -->
-          <path d="M170 292 L 230 292 C 232 326, 240 348, 250 364 L 150 364 C 160 348, 168 326, 170 292 Z" fill="url(#dNeck)"/>
-          <path d="M170 292 L 230 292 C 231 316, 226 330, 200 336 C 174 330, 169 316, 170 292 Z" fill="#3e0410" opacity=".8"/>
-          <path d="M180 330 C 184 344, 188 354, 190 364 M220 330 C 216 344, 212 354, 210 364" fill="none" stroke="#5c0613" stroke-width="1.6" stroke-linecap="round"/>
-          <path d="M197 322 Q 200 318 203 322 Q 200 328 197 322 Z" fill="#c9173a" opacity=".6"/>
-          <text x="233" y="352" font-family="Pirata One, serif" font-size="13" fill="#2a0008" opacity=".9" transform="rotate(-12 233 352)">HR</text>
+          <g transform="translate(0 40) scale(.92)"><g class="fig d1">
+          <!-- szyja -->
+          <path d="M170 292 L 230 292 C 232 326, 240 348, 250 364 L 150 364 C 160 348, 168 326, 170 292 Z" fill="url(#dNeck1)"/>
+          <path d="M170 292 L 230 292 C 231 316, 226 330, 200 336 C 174 330, 169 316, 170 292 Z" fill="#2a170c" opacity=".85"/>
+          <path d="M180 330 C 184 344, 188 354, 190 364 M220 330 C 216 344, 212 354, 210 364" fill="none" stroke="#2a170c" stroke-width="1.6" stroke-linecap="round"/>
+          <text x="233" y="352" font-family="Pirata One, serif" font-size="13" fill="#0a0402" opacity=".85" transform="rotate(-12 233 352)">740</text>
+          <g class="torso">
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470 Z" fill="url(#dPuffer)"/>
+            <path d="M140 356 C 156 400, 178 430, 200 448 C 222 430, 244 400, 260 356 C 240 352, 160 352, 140 356 Z" fill="#2a2a30"/>
+            <text x="200" y="432" text-anchor="middle" font-family="Pirata One, serif" font-size="16" fill="#ff2d4a" opacity=".85">HELLSIDE</text>
+            <path d="M30 440 C 90 430, 120 428, 140 430 M260 430 C 280 428, 310 430, 370 440 M40 410 C 80 400, 110 398, 132 402 M268 402 C 290 398, 320 400, 360 410 M60 382 C 90 374, 112 372, 126 376 M274 376 C 288 372, 310 374, 340 382" fill="none" stroke="#000" stroke-opacity=".55" stroke-width="2"/>
+            <path d="M140 356 C 156 400, 178 430, 200 448 C 222 430, 244 400, 260 356" fill="none" stroke="#3a4a62" stroke-width="3"/>
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470" fill="none" stroke="#ff2d4a" stroke-opacity=".3" stroke-width="2"/>
+            <g class="chain" id="dChainA"></g>
+            <g class="pend" id="dPendA"><ellipse cx="200" cy="402" rx="5" ry="7" fill="none" stroke="url(#dGold)" stroke-width="3"/><rect x="176" y="408" width="48" height="26" rx="4" fill="url(#dCoin)" stroke="#7d5a06" stroke-width="1.5"/><text x="200" y="427" text-anchor="middle" font-family="Pirata One, serif" font-size="20" fill="#3a0208">HR</text></g>
+            <path class="spark k1" d="M148 372 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k2" d="M258 380 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k3" d="M188 424 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 z" fill="#fff"/>
+          </g>
+          <g class="head">
+            <path d="M110 118 C 84 150, 70 200, 86 252 C 96 276, 104 286, 112 300 C 98 270, 90 230, 96 190 C 100 160, 108 140, 118 124 Z" fill="url(#dSilk)"/>
+            <path d="M100 200 C 96 230, 100 260, 108 288" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="1.2"/>
+            <g id="dEarL1"><path d="M112 178 L 74 154 L 108 214 Z" fill="#4a2d1c"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#2a170c"/></g>
+            <use href="#dEarL1" transform="matrix(-1 0 0 1 400 0)"/>
+            <circle cx="102" cy="214" r="6" fill="none" stroke="url(#dGold)" stroke-width="2.6"/><circle cx="298" cy="214" r="6" fill="none" stroke="url(#dGold2)" stroke-width="2.6"/>
+            <!-- paszcza -->
+            <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
+            <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
+            <g class="jaw">
+              <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin1)"/>
+              <path d="M126 256 C 140 288, 168 306, 200 316 C 232 306, 260 288, 274 256 C 250 282, 224 294, 200 296 C 176 294, 150 282, 126 256 Z" fill="#0a0402" opacity=".3"/>
+              <path d="M118 238 C 128 282, 160 312, 200 322 C 240 312, 272 282, 282 238 C 274 276, 244 304, 200 310 C 156 304, 126 276, 118 238 Z" fill="#0d0708" opacity=".9"/>
+              <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#1a0804" opacity=".6"/>
+              <g fill="url(#dTeeth)"><path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/></g>
+              <path d="M184 312 C 188 338, 195 352, 200 370 C 205 352, 212 338, 216 312 Q 200 322 184 312 Z" fill="#100a0b"/><circle cx="200" cy="350" r="3.4" fill="url(#dGold)"/>
+              <path d="M192 300 Q 200 306 208 300" fill="none" stroke="#1a0804" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+            <!-- twarz -->
+            <path id="dFace1" d="M200 86 C 256 86, 298 122, 299 186 C 300 210, 296 228, 288 236 Q 200 260 112 236 C 104 228, 100 210, 101 186 C 102 122, 144 86, 200 86 Z" fill="url(#dSkin1)"/>
+            <use href="#dFace1" fill="url(#dSheen)"/>
+            <ellipse cx="138" cy="214" rx="26" ry="18" fill="url(#dShade)"/><ellipse cx="262" cy="214" rx="26" ry="18" fill="url(#dShade)"/>
+            <ellipse cx="118" cy="168" rx="16" ry="30" fill="url(#dShade)"/><ellipse cx="282" cy="168" rx="16" ry="30" fill="url(#dShade)"/>
+            <path d="M136 196 Q 158 206 182 196 Q 158 216 136 196 Z" fill="#0a0402" opacity=".28"/><path d="M218 196 Q 242 206 264 196 Q 242 216 218 196 Z" fill="#0a0402" opacity=".28"/>
+            
+            <path d="M116 236 Q 200 262 284 236" fill="none" stroke="#1a0804" stroke-width="2.2" opacity=".8"/>
+            <path d="M150 232 Q 200 250 250 232" fill="none" stroke="#8a5a3e" stroke-opacity=".35" stroke-width="1.4"/>
+            <g fill="url(#dGold)"><path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/></g>
+            <!-- nos -->
+            <path d="M200 184 C 190 200, 180 214, 182 224 C 184 232, 192 234, 200 232 C 208 234, 216 232, 218 224 C 220 214, 210 200, 200 184 Z" fill="#4a2d1c"/>
+            <path d="M186 214 C 178 218, 176 228, 184 231 C 190 233, 194 228, 192 222 Z" fill="#8a5a3e" opacity=".7"/><path d="M214 214 C 222 218, 224 228, 216 231 C 210 233, 206 228, 208 222 Z" fill="#8a5a3e" opacity=".7"/>
+            <path d="M200 186 C 196 198, 194 208, 196 218" fill="none" stroke="#8a5a3e" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="190" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(-20 190 227)"/><ellipse cx="210" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(20 210 227)"/>
+            
+            <g class="eyes">
+              <g class="eye"><g id="dEyeL1">
+                <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
+                <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
+                <path d="M132 178 Q 158 150 184 178 Q 158 168 132 178 Z" fill="#0a0402" opacity=".3"/>
+                <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
+                <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
+              </g></g>
+              <g class="eye"><use href="#dEyeL1" transform="matrix(-1 0 0 1 400 0)"/></g>
+            </g>
+            <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#1a0804" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#1a0804" stroke-width="1.6" opacity=".7"/>
+            <path id="dBrowL1" d="M130 169 Q 158 149 188 171" fill="none" stroke="#0a0402" stroke-width="3.6" stroke-linecap="round"/><use href="#dBrowL1" transform="matrix(-1 0 0 1 400 0)"/>
+            
+            <path d="M100 128 C 96 74, 140 56, 200 56 C 260 56, 304 74, 300 128 Z" fill="url(#dSilk)"/>
+            <path d="M200 60 C 168 66, 130 84, 110 122 M200 60 C 232 66, 270 84, 290 122 M200 60 L 200 118" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="1.4"/>
+            <path d="M96 118 L 304 118 L 304 132 L 96 132 Z" fill="url(#dSilk)"/><path d="M96 132 L 304 132" stroke="#000" stroke-opacity=".6" stroke-width="2"/><path d="M96 119 L 304 119" stroke="#fff" stroke-opacity=".15" stroke-width="1"/>
+            <ellipse cx="163" cy="99" rx="17" ry="7" fill="#000"/><ellipse cx="237" cy="99" rx="17" ry="7" fill="#000"/>
+            <g id="dHornL1"><path d="M150 104 C 128 84, 104 52, 108 10 C 132 36, 158 68, 176 96 Z" fill="url(#dHorn)"/><path d="M118 48 C 128 56, 138 68, 148 80 M112 30 C 120 38, 128 48, 136 58 M128 70 C 138 78, 146 88, 156 98" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/></g>
+            <use href="#dHornL1" transform="matrix(-1 0 0 1 400 0)"/>
+          </g>
+          <g class="hand">
+            <path d="M306 470 C 308 430, 322 396, 346 362 L 392 378 C 384 410, 384 444, 390 470 Z" fill="url(#dSkin1)"/>
+            <path d="M340 366 L 394 382" stroke="#1a0804" stroke-opacity=".5" stroke-width="1.2"/>
+            <g transform="rotate(17 364 362)"><rect x="334" y="356" width="60" height="12" rx="3" fill="url(#dGold)"/><circle cx="364" cy="362" r="10" fill="#0b090a" stroke="url(#dGold2)" stroke-width="3"/><path d="M364 356 L 364 362 L 368 365" fill="none" stroke="#ffe98a" stroke-width="1.2" stroke-linecap="round"/></g>
+            <path d="M324 300 C 324 282, 338 272, 358 272 C 380 272, 392 284, 392 304 L 390 338 C 388 352, 374 360, 356 358 C 336 356, 324 346, 324 330 Z" fill="url(#dSkin1)" stroke="#1a0804" stroke-width="1"/>
+            <g transform="rotate(-10 352 300)"><rect x="336" y="246" width="34" height="68" rx="5" fill="#0c0c10" stroke="#3a3a44" stroke-width="1.5"/><rect x="339" y="251" width="28" height="58" rx="3" fill="#1a0509"/><text x="353" y="284" text-anchor="middle" font-family="Pirata One, serif" font-size="16" fill="#ff2d4a">HR</text><path d="M343 292 L 363 292 M343 297 L 358 297 M343 302 L 360 302" stroke="#ff2d4a" stroke-opacity=".5" stroke-width="1.5"/><circle cx="353" cy="249" r="1.4" fill="#2a2a34"/></g>
+            <g fill="url(#dSkin1)" stroke="#1a0804" stroke-width="1"><rect x="326" y="296" width="16" height="30" rx="8"/><rect x="343" y="300" width="16" height="30" rx="8"/><rect x="360" y="302" width="16" height="30" rx="8"/><rect x="377" y="306" width="15" height="26" rx="7"/></g>
+            <rect x="343" y="318" width="16" height="6" fill="url(#dGold)"/>
+            <path d="M322 336 C 312 340, 310 354, 322 362 C 332 368, 346 362, 347 352 C 347 344, 340 338, 332 336 Z" fill="url(#dSkin1)" stroke="#1a0804" stroke-width="1"/>
+          </g>
+        </g></g>
+          <g transform="translate(516 40) scale(.92)"><g class="fig d3">
+          <!-- szyja -->
+          <path d="M170 292 L 230 292 C 232 326, 240 348, 250 364 L 150 364 C 160 348, 168 326, 170 292 Z" fill="url(#dNeck3)"/>
+          <path d="M170 292 L 230 292 C 231 316, 226 330, 200 336 C 174 330, 169 316, 170 292 Z" fill="#1c0f06" opacity=".85"/>
+          <path d="M180 330 C 184 344, 188 354, 190 364 M220 330 C 216 344, 212 354, 210 364" fill="none" stroke="#1c0f06" stroke-width="1.6" stroke-linecap="round"/>
+          <text x="233" y="352" font-family="Pirata One, serif" font-size="13" fill="#0a0402" opacity=".85" transform="rotate(-12 233 352)">666</text>
+          <g class="torso">
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470 Z" fill="url(#dTrack)"/>
+            <path d="M40 420 C 90 384, 150 366, 200 362 C 250 366, 310 384, 360 420" fill="none" stroke="#d2122e" stroke-width="7"/>
+            <path d="M44 410 C 92 374, 150 356, 200 352 C 250 356, 308 374, 356 410" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="2"/>
+            <path d="M166 348 L 234 348 L 240 376 L 160 376 Z" fill="#0f0f12" stroke="#d2122e" stroke-width="2"/>
+            <path d="M200 376 L 200 470" stroke="#3a3038" stroke-width="3"/><path d="M200 376 L 200 470" stroke="#8a7d78" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+            <rect x="195" y="378" width="10" height="16" rx="2" fill="url(#dGold)"/>
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470" fill="none" stroke="#ff2d4a" stroke-opacity=".3" stroke-width="2"/>
+            <g class="chain" id="dChainC"></g>
+            <g class="pend" id="dPendC"><ellipse cx="200" cy="414" rx="7" ry="9" fill="none" stroke="url(#dGold)" stroke-width="4"/><circle cx="200" cy="448" r="30" fill="url(#dCoin)" stroke="#7d5a06" stroke-width="1.5"/><circle cx="200" cy="448" r="24" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2.5" stroke-dasharray="1 4.2" stroke-linecap="round"/><text x="200" y="458" text-anchor="middle" font-family="Pirata One, serif" font-size="28" fill="#3a0208">HR</text></g>
+            <path class="spark k1" d="M148 372 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k2" d="M258 380 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k3" d="M188 424 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 z" fill="#fff"/>
+          </g>
+          <g class="head">
+            <g fill="#160c07" stroke="#000" stroke-width="1"><path d="M100 128 C 66 160, 60 210, 76 250 L 86 246 C 74 210, 80 168, 110 134 Z"/><path d="M112 130 C 84 170, 80 220, 92 268 L 104 268 C 96 224, 100 176, 122 136 Z"/><path d="M128 130 C 108 180, 106 230, 116 282 L 128 282 C 120 236, 122 186, 140 136 Z"/><path d="M300 128 C 334 160, 340 210, 324 250 L 314 246 C 326 210, 320 168, 290 134 Z"/><path d="M288 130 C 316 170, 320 220, 308 268 L 296 268 C 304 224, 300 176, 278 136 Z"/><path d="M272 130 C 292 180, 294 230, 284 282 L 272 282 C 280 236, 278 186, 260 136 Z"/></g>
+            <path d="M118 150 C 100 190, 98 230, 108 262 M282 150 C 300 190, 302 230, 292 262 M134 150 C 120 200, 118 240, 122 274" fill="none" stroke="#3a2418" stroke-opacity=".7" stroke-width="1.5"/>
+            <g fill="url(#dGold)"><circle cx="98" cy="262" r="4.5"/><circle cx="302" cy="262" r="4.5"/><circle cx="122" cy="276" r="4"/><circle cx="278" cy="276" r="4"/></g>
+            <g id="dEarL3"><path d="M112 178 L 74 154 L 108 214 Z" fill="#33200f"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#1c0f06"/></g>
+            <use href="#dEarL3" transform="matrix(-1 0 0 1 400 0)"/>
+            <circle cx="102" cy="214" r="6" fill="none" stroke="url(#dGold)" stroke-width="2.6"/><circle cx="298" cy="214" r="6" fill="none" stroke="url(#dGold2)" stroke-width="2.6"/>
+            <!-- paszcza -->
+            <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
+            <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
+            <g class="jaw">
+              <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin3)"/>
+              <path d="M126 256 C 140 288, 168 306, 200 316 C 232 306, 260 288, 274 256 C 250 282, 224 294, 200 296 C 176 294, 150 282, 126 256 Z" fill="#0a0402" opacity=".3"/>
+              
+              <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#1a0804" opacity=".6"/>
+              <g fill="url(#dGold2)"><path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/></g>
+              <path d="M184 312 C 188 338, 195 352, 200 370 C 205 352, 212 338, 216 312 Q 200 322 184 312 Z" fill="#100a0b"/><circle cx="200" cy="350" r="3.4" fill="url(#dGold)"/>
+              <path d="M192 300 Q 200 306 208 300" fill="none" stroke="#120703" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+            <!-- twarz -->
+            <path id="dFace3" d="M200 86 C 256 86, 298 122, 299 186 C 300 210, 296 228, 288 236 Q 200 260 112 236 C 104 228, 100 210, 101 186 C 102 122, 144 86, 200 86 Z" fill="url(#dSkin3)"/>
+            <use href="#dFace3" fill="url(#dSheen)"/>
+            <ellipse cx="138" cy="214" rx="26" ry="18" fill="url(#dShade)"/><ellipse cx="262" cy="214" rx="26" ry="18" fill="url(#dShade)"/>
+            <ellipse cx="118" cy="168" rx="16" ry="30" fill="url(#dShade)"/><ellipse cx="282" cy="168" rx="16" ry="30" fill="url(#dShade)"/>
+            <path d="M136 196 Q 158 206 182 196 Q 158 216 136 196 Z" fill="#0a0402" opacity=".28"/><path d="M218 196 Q 242 206 264 196 Q 242 216 218 196 Z" fill="#0a0402" opacity=".28"/>
+            
+            <path d="M116 236 Q 200 262 284 236" fill="none" stroke="#120703" stroke-width="2.2" opacity=".8"/>
+            <path d="M150 232 Q 200 250 250 232" fill="none" stroke="#6a4229" stroke-opacity=".35" stroke-width="1.4"/>
+            <g fill="url(#dTeeth)"><path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/></g>
+            <!-- nos -->
+            <path d="M200 184 C 190 200, 180 214, 182 224 C 184 232, 192 234, 200 232 C 208 234, 216 232, 218 224 C 220 214, 210 200, 200 184 Z" fill="#33200f"/>
+            <path d="M186 214 C 178 218, 176 228, 184 231 C 190 233, 194 228, 192 222 Z" fill="#6a4229" opacity=".7"/><path d="M214 214 C 222 218, 224 228, 216 231 C 210 233, 206 228, 208 222 Z" fill="#6a4229" opacity=".7"/>
+            <path d="M200 186 C 196 198, 194 208, 196 218" fill="none" stroke="#6a4229" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="190" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(-20 190 227)"/><ellipse cx="210" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(20 210 227)"/>
+            
+            <g class="eyes">
+              <g class="eye"><g id="dEyeL3">
+                <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
+                <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
+                <path d="M132 178 Q 158 150 184 178 Q 158 168 132 178 Z" fill="#0a0402" opacity=".3"/>
+                <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
+                <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
+              </g></g>
+              <g class="eye"><use href="#dEyeL3" transform="matrix(-1 0 0 1 400 0)"/></g>
+            </g>
+            <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#120703" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#120703" stroke-width="1.6" opacity=".7"/>
+            
+            <g><rect x="122" y="158" width="70" height="38" rx="12" fill="#0a0509" fill-opacity=".6" stroke="url(#dGold)" stroke-width="3"/><rect x="208" y="158" width="70" height="38" rx="12" fill="#0a0509" fill-opacity=".6" stroke="url(#dGold)" stroke-width="3"/><path d="M192 172 Q 200 166 208 172" fill="none" stroke="url(#dGold)" stroke-width="3"/><path d="M122 170 L 104 166 M278 170 L 296 166" stroke="url(#dGold)" stroke-width="3"/><path d="M132 166 L 152 164 M218 166 L 238 164" stroke="#fff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/></g>
+            <path d="M104 120 C 108 70, 150 58, 200 58 C 250 58, 292 70, 296 120 Z" fill="url(#dCap)"/>
+            <path d="M112 92 C 150 84, 250 84, 288 92" fill="none" stroke="#3a3038" stroke-width="1"/>
+            <path d="M66 120 C 100 150, 300 150, 334 120 L 334 128 C 300 160, 100 160, 66 128 Z" fill="#0b090a" stroke="#3a3038" stroke-width="1"/>
+            <rect x="176" y="96" width="48" height="20" rx="3" fill="#d2122e"/><text x="200" y="112" text-anchor="middle" font-family="Pirata One, serif" font-size="17" fill="#fff">HR</text>
+            <ellipse cx="163" cy="99" rx="17" ry="7" fill="#000"/><ellipse cx="237" cy="99" rx="17" ry="7" fill="#000"/>
+            <g id="dHornL3"><path d="M150 104 C 128 84, 104 52, 108 10 C 132 36, 158 68, 176 96 Z" fill="url(#dHorn)"/><path d="M118 48 C 128 56, 138 68, 148 80 M112 30 C 120 38, 128 48, 136 58 M128 70 C 138 78, 146 88, 156 98" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/></g>
+            <use href="#dHornL3" transform="matrix(-1 0 0 1 400 0)"/>
+          </g>
+          <g class="hand">
+            <path d="M302 470 C 304 430, 320 394, 344 358 L 396 374 C 386 406, 384 440, 390 470 Z" fill="url(#dTrack)"/>
+            <path d="M312 440 C 322 410, 332 390, 350 366" fill="none" stroke="#d2122e" stroke-width="5"/>
+            <path d="M338 352 L 398 370 L 393 386 L 333 368 Z" fill="#0f0f12" stroke="#d2122e" stroke-width="1.5"/>
+            <g transform="rotate(-18 350 290)"><rect x="318" y="238" width="64" height="30" rx="3" fill="#2f7d4a" stroke="#1d5a32"/><rect x="322" y="230" width="64" height="30" rx="3" fill="#3a9158" stroke="#1d5a32"/><rect x="326" y="222" width="64" height="30" rx="3" fill="#48a866" stroke="#1d5a32"/><text x="358" y="244" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="14" fill="#1d5a32">$100</text><rect x="348" y="216" width="20" height="42" rx="2" fill="url(#dGold)"/></g>
+            <path d="M322 296 C 322 280, 336 270, 358 270 C 380 270, 392 282, 392 300 L 390 334 C 388 348, 374 356, 356 354 C 336 352, 322 342, 322 326 Z" fill="url(#dSkin3)" stroke="#120703" stroke-width="1"/>
+            <g fill="url(#dSkin3)" stroke="#120703" stroke-width="1"><rect x="324" y="272" width="16" height="34" rx="8"/><rect x="341" y="266" width="16" height="40" rx="8"/><rect x="358" y="268" width="16" height="38" rx="8"/><rect x="375" y="276" width="15" height="30" rx="7"/></g>
+            <path d="M328 282 q 4 -5 8 0 M345 276 q 4 -5 8 0 M362 278 q 4 -5 8 0 M379 286 q 4 -5 7 0" fill="none" stroke="#6a4229" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/>
+            <rect x="324" y="290" width="16" height="6" fill="url(#dGold)"/><rect x="358" y="288" width="16" height="6" fill="url(#dGold2)"/>
+            <path d="M324 306 C 344 314, 370 314, 390 306" fill="none" stroke="#120703" stroke-opacity=".6" stroke-width="1"/>
+            <path d="M324 306 C 312 310, 310 324, 320 332 C 330 339, 346 333, 347 323 C 347 314, 339 308, 332 306 Z" fill="url(#dSkin3)" stroke="#120703" stroke-width="1"/>
+            <ellipse cx="317" cy="322" rx="3.2" ry="5" fill="#6a4229" stroke="#120703" stroke-width=".6" transform="rotate(-25 317 322)"/>
+          </g>
+        </g></g>
+          <g transform="translate(250 0)"><g class="fig d2">
+          <!-- szyja -->
+          <path d="M170 292 L 230 292 C 232 326, 240 348, 250 364 L 150 364 C 160 348, 168 326, 170 292 Z" fill="url(#dNeck2)"/>
+          <path d="M170 292 L 230 292 C 231 316, 226 330, 200 336 C 174 330, 169 316, 170 292 Z" fill="#3a2010" opacity=".85"/>
+          <path d="M180 330 C 184 344, 188 354, 190 364 M220 330 C 216 344, 212 354, 210 364" fill="none" stroke="#3a2010" stroke-width="1.6" stroke-linecap="round"/>
+          <text x="233" y="352" font-family="Pirata One, serif" font-size="13" fill="#0a0402" opacity=".85" transform="rotate(-12 233 352)">HR</text>
           <g class="torso">
             <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470 Z" fill="url(#dJacket)"/>
             <path d="M96 392 C 110 404, 118 430, 120 470 M304 392 C 290 404, 282 430, 280 470" fill="none" stroke="#2a2226" stroke-width="1.4"/>
@@ -844,56 +1037,53 @@
             <path class="spark k3" d="M188 424 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 z" fill="#fff"/>
           </g>
           <g class="head">
-            <!-- uszy i kolczyk -->
-            <g id="dEarL"><path d="M112 178 L 74 154 L 108 214 Z" fill="#a80e26"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#5c0613"/></g>
-            <use href="#dEarL" transform="matrix(-1 0 0 1 400 0)"/>
+            
+            <g id="dEarL2"><path d="M112 178 L 74 154 L 108 214 Z" fill="#63402a"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#3a2010"/></g>
+            <use href="#dEarL2" transform="matrix(-1 0 0 1 400 0)"/>
             <circle cx="102" cy="214" r="6" fill="none" stroke="url(#dGold)" stroke-width="2.6"/><circle cx="298" cy="214" r="6" fill="none" stroke="url(#dGold2)" stroke-width="2.6"/>
             <!-- paszcza -->
             <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
             <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
             <g class="jaw">
-              <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin)"/>
-              <path d="M126 256 C 140 288, 168 306, 200 316 C 232 306, 260 288, 274 256 C 250 282, 224 294, 200 296 C 176 294, 150 282, 126 256 Z" fill="#1a0508" opacity=".32"/>
-              <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#3a0208" opacity=".6"/>
-              <g fill="url(#dTeeth)">
-                <path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/>
-              </g>
+              <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin2)"/>
+              <path d="M126 256 C 140 288, 168 306, 200 316 C 232 306, 260 288, 274 256 C 250 282, 224 294, 200 296 C 176 294, 150 282, 126 256 Z" fill="#0a0402" opacity=".3"/>
+              
+              <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#1a0804" opacity=".6"/>
+              <g fill="url(#dTeeth)"><path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/></g>
               <path d="M184 312 C 188 338, 195 352, 200 370 C 205 352, 212 338, 216 312 Q 200 322 184 312 Z" fill="#100a0b"/><circle cx="200" cy="350" r="3.4" fill="url(#dGold)"/>
-              <path d="M192 300 Q 200 306 208 300" fill="none" stroke="#5a0a16" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M192 300 Q 200 306 208 300" fill="none" stroke="#1a0804" stroke-width="1.4" stroke-linecap="round"/>
             </g>
             <!-- twarz -->
-            <path id="dFace" d="M200 86 C 256 86, 298 122, 299 186 C 300 210, 296 228, 288 236 Q 200 260 112 236 C 104 228, 100 210, 101 186 C 102 122, 144 86, 200 86 Z" fill="url(#dSkin)"/>
-            <use href="#dFace" fill="url(#dSheen)"/>
+            <path id="dFace2" d="M200 86 C 256 86, 298 122, 299 186 C 300 210, 296 228, 288 236 Q 200 260 112 236 C 104 228, 100 210, 101 186 C 102 122, 144 86, 200 86 Z" fill="url(#dSkin2)"/>
+            <use href="#dFace2" fill="url(#dSheen)"/>
             <ellipse cx="138" cy="214" rx="26" ry="18" fill="url(#dShade)"/><ellipse cx="262" cy="214" rx="26" ry="18" fill="url(#dShade)"/>
             <ellipse cx="118" cy="168" rx="16" ry="30" fill="url(#dShade)"/><ellipse cx="282" cy="168" rx="16" ry="30" fill="url(#dShade)"/>
-            <path d="M136 196 Q 158 206 182 196 Q 158 216 136 196 Z" fill="#3a0208" opacity=".3"/><path d="M218 196 Q 242 206 264 196 Q 242 216 218 196 Z" fill="#3a0208" opacity=".3"/>
-            <path d="M120 164 L 146 216" fill="none" stroke="#ffb0b0" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M124 176 l 8 -4 M129 188 l 8 -4 M135 200 l 8 -4" fill="none" stroke="#ffb0b0" stroke-opacity=".45" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M262 200 C 257 209, 257 215, 262 216 C 267 215, 267 209, 262 200 Z" fill="none" stroke="#2a0008" stroke-width="1.6"/>
-            <path d="M116 236 Q 200 262 284 236" fill="none" stroke="#3a0208" stroke-width="2.2" opacity=".7"/>
-            <path d="M150 232 Q 200 250 250 232" fill="none" stroke="#ff9aa6" stroke-opacity=".28" stroke-width="1.4"/>
-            <g fill="url(#dTeeth)">
-              <path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z" fill="url(#dGold)"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/>
-            </g>
-            <path d="M200 184 C 190 200, 180 214, 182 224 C 184 232, 192 234, 200 232 C 208 234, 216 232, 218 224 C 220 214, 210 200, 200 184 Z" fill="#8a0c20"/>
-            <path d="M186 214 C 178 218, 176 228, 184 231 C 190 233, 194 228, 192 222 Z" fill="#a80e26"/><path d="M214 214 C 222 218, 224 228, 216 231 C 210 233, 206 228, 208 222 Z" fill="#a80e26"/>
-            <path d="M200 186 C 196 198, 194 208, 196 218" fill="none" stroke="#ff9aa6" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
-            <ellipse cx="190" cy="227" rx="5" ry="3" fill="#1a0004" transform="rotate(-20 190 227)"/><ellipse cx="210" cy="227" rx="5" ry="3" fill="#1a0004" transform="rotate(20 210 227)"/>
+            <path d="M136 196 Q 158 206 182 196 Q 158 216 136 196 Z" fill="#0a0402" opacity=".28"/><path d="M218 196 Q 242 206 264 196 Q 242 216 218 196 Z" fill="#0a0402" opacity=".28"/>
+            <path d="M120 164 L 146 216" fill="none" stroke="#c9957a" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M124 176 l 8 -4 M129 188 l 8 -4 M135 200 l 8 -4" fill="none" stroke="#c9957a" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M262 200 C 257 209, 257 215, 262 216 C 267 215, 267 209, 262 200 Z" fill="none" stroke="#0a0402" stroke-width="1.6"/>
+            <path d="M116 236 Q 200 262 284 236" fill="none" stroke="#1a0804" stroke-width="2.2" opacity=".8"/>
+            <path d="M150 232 Q 200 250 250 232" fill="none" stroke="#a8764f" stroke-opacity=".35" stroke-width="1.4"/>
+            <g fill="url(#dTeeth)"><path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z" fill="url(#dGold)"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/></g>
+            <!-- nos -->
+            <path d="M200 184 C 190 200, 180 214, 182 224 C 184 232, 192 234, 200 232 C 208 234, 216 232, 218 224 C 220 214, 210 200, 200 184 Z" fill="#63402a"/>
+            <path d="M186 214 C 178 218, 176 228, 184 231 C 190 233, 194 228, 192 222 Z" fill="#a8764f" opacity=".7"/><path d="M214 214 C 222 218, 224 228, 216 231 C 210 233, 206 228, 208 222 Z" fill="#a8764f" opacity=".7"/>
+            <path d="M200 186 C 196 198, 194 208, 196 218" fill="none" stroke="#a8764f" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="190" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(-20 190 227)"/><ellipse cx="210" cy="227" rx="5" ry="3" fill="#0a0402" transform="rotate(20 210 227)"/>
             <path d="M193 230 C 194 241, 206 241, 207 230" fill="none" stroke="url(#dGold)" stroke-width="2.6" stroke-linecap="round"/>
             <g class="eyes">
-              <g class="eye"><g id="dEyeL">
+              <g class="eye"><g id="dEyeL2">
                 <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
                 <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
-                <path d="M132 178 Q 158 150 184 178 Q 158 168 132 178 Z" fill="#3a0208" opacity=".28"/>
+                <path d="M132 178 Q 158 150 184 178 Q 158 168 132 178 Z" fill="#0a0402" opacity=".3"/>
                 <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
                 <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
               </g></g>
-              <g class="eye"><use href="#dEyeL" transform="matrix(-1 0 0 1 400 0)"/></g>
+              <g class="eye"><use href="#dEyeL2" transform="matrix(-1 0 0 1 400 0)"/></g>
             </g>
-            <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/>
-            <path id="dBrowL" d="M130 169 Q 158 149 188 171" fill="none" stroke="#3a0208" stroke-width="3.6" stroke-linecap="round"/>
-            <use href="#dBrowL" transform="matrix(-1 0 0 1 400 0)"/>
-            <!-- snapback z rogami -->
+            <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#1a0804" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#1a0804" stroke-width="1.6" opacity=".7"/>
+            <path id="dBrowL2" d="M130 169 Q 158 149 188 171" fill="none" stroke="#0a0402" stroke-width="3.6" stroke-linecap="round"/><use href="#dBrowL2" transform="matrix(-1 0 0 1 400 0)"/>
+            
             <path d="M100 128 C 96 74, 140 56, 200 56 C 260 56, 304 74, 300 128 Z" fill="url(#dCap)"/>
             <path d="M200 62 C 152 62, 112 84, 104 124 M200 62 C 248 62, 288 84, 296 124" fill="none" stroke="#3a3038" stroke-width="1.2"/>
             <path d="M200 60 L 200 118" stroke="#2a2328" stroke-width="1"/>
@@ -906,22 +1096,14 @@
             <g transform="rotate(-11 251 150)"><rect x="236" y="145" width="30" height="10" rx="1.5" fill="url(#dGold)"/><rect x="236" y="149" width="30" height="2" fill="#7d5a06" opacity=".7"/></g>
             <text x="200" y="110" text-anchor="middle" font-family="Pirata One, serif" font-size="30" fill="#ff2d4a">HR</text>
             <ellipse cx="163" cy="99" rx="17" ry="7" fill="#000"/><ellipse cx="237" cy="99" rx="17" ry="7" fill="#000"/>
-            <g id="dHornL">
-              <path d="M150 104 C 128 84, 104 52, 108 10 C 132 36, 158 68, 176 96 Z" fill="url(#dHorn)"/>
-              <path d="M118 48 C 128 56, 138 68, 148 80 M112 30 C 120 38, 128 48, 136 58 M128 70 C 138 78, 146 88, 156 98" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
-            </g>
-            <use href="#dHornL" transform="matrix(-1 0 0 1 400 0)"/>
+            <g id="dHornL2"><path d="M150 104 C 128 84, 104 52, 108 10 C 132 36, 158 68, 176 96 Z" fill="url(#dHorn)"/><path d="M118 48 C 128 56, 138 68, 148 80 M112 30 C 120 38, 128 48, 136 58 M128 70 C 138 78, 146 88, 156 98" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/></g>
+            <use href="#dHornL2" transform="matrix(-1 0 0 1 400 0)"/>
           </g>
-          <!-- ramię: rękaw od dołu, mankiet ze złotym zegarkiem, pięść (kostki u góry, kciuk z przodu, sygnety), cygaro wystaje spomiędzy palców -->
           <g class="hand">
             <path d="M302 470 C 304 430, 320 394, 344 358 L 396 374 C 386 406, 384 440, 390 470 Z" fill="url(#dJacket)"/>
             <path d="M326 404 C 346 398, 366 398, 388 408" fill="none" stroke="#3a3038" stroke-width="1.2"/>
             <path d="M338 352 L 398 370 L 393 386 L 333 368 Z" fill="#1a1417" stroke="#3a3038" stroke-width="1"/>
-            <g transform="rotate(17 364 362)">
-              <rect x="334" y="356" width="60" height="12" rx="3" fill="url(#dGold)"/>
-              <circle cx="364" cy="362" r="10" fill="#0b090a" stroke="url(#dGold2)" stroke-width="3"/>
-              <path d="M364 356 L 364 362 L 368 365" fill="none" stroke="#ffe98a" stroke-width="1.2" stroke-linecap="round"/>
-            </g>
+            <g transform="rotate(17 364 362)"><rect x="334" y="356" width="60" height="12" rx="3" fill="url(#dGold)"/><circle cx="364" cy="362" r="10" fill="#0b090a" stroke="url(#dGold2)" stroke-width="3"/><path d="M364 356 L 364 362 L 368 365" fill="none" stroke="#ffe98a" stroke-width="1.2" stroke-linecap="round"/></g>
             <g transform="rotate(-34 344 282)">
               <rect x="338" y="208" width="12" height="82" rx="4" fill="url(#dCigar)"/>
               <path d="M338 230 L 350 230 M338 242 L 350 242 M338 262 L 350 262" stroke="#2d170a" stroke-opacity=".7" stroke-width="1"/>
@@ -929,28 +1111,35 @@
               <rect x="338" y="208" width="12" height="9" rx="3" fill="#b9b2ab"/>
               <ellipse cx="344" cy="207" rx="8" ry="5" fill="url(#dEmber)"/>
             </g>
-            <path d="M322 296 C 322 280, 336 270, 358 270 C 380 270, 392 282, 392 300 L 390 334 C 388 348, 374 356, 356 354 C 336 352, 322 342, 322 326 Z" fill="url(#dSkin)" stroke="#5a0a16" stroke-width="1"/>
-            <g fill="url(#dSkin)" stroke="#5a0a16" stroke-width="1">
-              <rect x="324" y="272" width="16" height="34" rx="8"/><rect x="341" y="266" width="16" height="40" rx="8"/><rect x="358" y="268" width="16" height="38" rx="8"/><rect x="375" y="276" width="15" height="30" rx="7"/>
-            </g>
-            <path d="M328 282 q 4 -5 8 0 M345 276 q 4 -5 8 0 M362 278 q 4 -5 8 0 M379 286 q 4 -5 7 0" fill="none" stroke="#ff9aa6" stroke-opacity=".4" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M322 296 C 322 280, 336 270, 358 270 C 380 270, 392 282, 392 300 L 390 334 C 388 348, 374 356, 356 354 C 336 352, 322 342, 322 326 Z" fill="url(#dSkin2)" stroke="#1a0804" stroke-width="1"/>
+            <g fill="url(#dSkin2)" stroke="#1a0804" stroke-width="1"><rect x="324" y="272" width="16" height="34" rx="8"/><rect x="341" y="266" width="16" height="40" rx="8"/><rect x="358" y="268" width="16" height="38" rx="8"/><rect x="375" y="276" width="15" height="30" rx="7"/></g>
+            <path d="M328 282 q 4 -5 8 0 M345 276 q 4 -5 8 0 M362 278 q 4 -5 8 0 M379 286 q 4 -5 7 0" fill="none" stroke="#a8764f" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/>
             <rect x="324" y="290" width="16" height="6" fill="url(#dGold)"/><rect x="358" y="288" width="16" height="6" fill="url(#dGold2)"/>
-            <path d="M324 306 C 344 314, 370 314, 390 306" fill="none" stroke="#5a0a16" stroke-opacity=".6" stroke-width="1"/>
-            <path d="M324 306 C 312 310, 310 324, 320 332 C 330 339, 346 333, 347 323 C 347 314, 339 308, 332 306 Z" fill="url(#dSkin)" stroke="#5a0a16" stroke-width="1"/>
-            <ellipse cx="317" cy="322" rx="3.2" ry="5" fill="#c9173a" stroke="#5a0a16" stroke-width=".6" transform="rotate(-25 317 322)"/>
+            <path d="M324 306 C 344 314, 370 314, 390 306" fill="none" stroke="#1a0804" stroke-opacity=".6" stroke-width="1"/>
+            <path d="M324 306 C 312 310, 310 324, 320 332 C 330 339, 346 333, 347 323 C 347 314, 339 308, 332 306 Z" fill="url(#dSkin2)" stroke="#1a0804" stroke-width="1"/>
+            <ellipse cx="317" cy="322" rx="3.2" ry="5" fill="#a8764f" stroke="#1a0804" stroke-width=".6" transform="rotate(-25 317 322)"/>
             <ellipse class="smoke s1" cx="300" cy="216" rx="10" ry="7" fill="url(#dSmoke)"/>
             <ellipse class="smoke s2" cx="302" cy="214" rx="8" ry="6" fill="url(#dSmoke)"/>
             <ellipse class="smoke s3" cx="298" cy="218" rx="11" ry="7" fill="url(#dSmoke)"/>
           </g>
+        </g></g>
         </svg>
-        <svg class="bubble" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="bubble b1" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs><linearGradient id="dFireTxt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2a0"/><stop offset=".5" stop-color="#ff8a2a"/><stop offset="1" stop-color="#ff2d4a"/></linearGradient></defs>
           <polygon id="dBurst" fill="#0b0507" stroke="#ff2d4a" stroke-width="3" stroke-linejoin="round"/>
           <text class="l1" x="160" y="96" text-anchor="middle" font-size="56">HA HA HA</text>
           <text class="l2" x="160" y="156" text-anchor="middle" font-size="50">HAAAA!</text>
         </svg>
+        <svg class="bubble b2" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon id="dBurst2" fill="#0b0507" stroke="#ff2d4a" stroke-width="3" stroke-linejoin="round"/>
+          <text class="l1" x="160" y="124" text-anchor="middle" font-size="60">HAHAHA</text>
+        </svg>
+        <svg class="bubble b3" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon id="dBurst3" fill="#0b0507" stroke="#ff2d4a" stroke-width="3" stroke-linejoin="round"/>
+          <text class="l1" x="160" y="124" text-anchor="middle" font-size="58">HEHE HA!</text>
+        </svg>
       </div>
-      <div class="ui"><span class="hint">Przeglądarka wyciszyła stronę do pierwszego kliknięcia – kliknij gdziekolwiek, a demon się zaśmieje</span><button class="skip" type="button">Pomiń ✕</button></div>
+      <div class="ui"><span class="hint">Przeglądarka wyciszyła stronę do pierwszego kliknięcia – kliknij gdziekolwiek, a demony się zaśmieją</span><button class="skip" type="button">Pomiń ✕</button></div>
     </div>
   </div>
   <div class="curtain" aria-hidden="true">
@@ -1115,7 +1304,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-19T12:21:26.841Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd","introTrack":{"id":"1StnKcnwil4","title":"[FREE] Beezy2Janky x 1takeJayType Beat 2025 - Janky (Prod By. GBMP)","author":"Gyn Bread"}},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":326,"tracks":2,"artists":2,"subscribers":8,"channelViews":236,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":53,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":53,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":47,"progress":53},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":227,"progress":9}],"timeline":[{"date":"2026-09-19","total":326,"top":"PqJv58Venx0","topViews":273}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":53,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":273,"share":83.7,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":53,"share":16.3,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":53,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":53,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-19T12:31:25.849Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd","introTrack":{"id":"1StnKcnwil4","title":"[FREE] Beezy2Janky x 1takeJayType Beat 2025 - Janky (Prod By. GBMP)","author":"Gyn Bread"}},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":329,"tracks":2,"artists":2,"subscribers":8,"channelViews":236,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":56,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":56,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":44,"progress":56},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":227,"progress":9}],"timeline":[{"date":"2026-09-19","total":329,"top":"PqJv58Venx0","topViews":273}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":56,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":273,"share":83,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":56,"share":17,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":56,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":56,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":273,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -1635,17 +1824,22 @@ init();
   }
   chain('dChain2', 'M150 352 C 160 396, 240 396, 250 352', 6, 3.6, 3, 8.5, 5);
   chain('dChain', 'M134 352 C 146 418, 254 418, 266 352', 9, 5.6, 4.2, 12.5, 7);
+  chain('dChainA', 'M140 352 C 150 410, 250 410, 260 352', 7, 4.2, 3.4, 10, 5.5);
+  chain('dChainC', 'M130 352 C 142 428, 258 428, 270 352', 10, 6.4, 4.8, 14, 8);
 
   // dymek: gwiaździsty „wybuch” z ogonkiem w stronę paszczy
-  (function burst() {
-    const pts = [], cx = 165, cy = 100, n = 26;
+  function burst(id, tail, at) { // tail = punkt ogonka, at = po którym wierzchołku go wstawić
+    const pts = [], cx = 160, cy = 104, n = 26;
     for (let i = 0; i < n; i++) {
       const a = i / n * Math.PI * 2, r = i % 2 ? 1 : .82, k = 1 + (Math.sin(i * 7.3) * .05);
       pts.push(`${(cx + Math.cos(a) * 150 * r * k).toFixed(1)},${(cy + Math.sin(a) * 92 * r * k).toFixed(1)}`);
     }
-    pts.splice(9, 0, '12,206'); // ogonek (dół-lewo, w stronę paszczy)
-    document.getElementById('dBurst').setAttribute('points', pts.join(' '));
-  })();
+    pts.splice(at, 0, tail);
+    document.getElementById(id).setAttribute('points', pts.join(' '));
+  }
+  burst('dBurst', '160,212', 7);   // ogonek w dół, do paszczy środkowego
+  burst('dBurst2', '176,210', 7);  // lewy
+  burst('dBurst3', '144,210', 7);  // prawy
 
   // kurtyna ognia: języki u góry, żarząca krawędź u dołu (viewBox 1000×1000, rozciągany)
   function band(id, depth, seed) {
@@ -1690,21 +1884,21 @@ init();
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
     const s = ac.createBufferSource(); s.buffer = b; return s;
   }
-  function laughSound() {
+  function laughSound(off = 0, mul = 1, vol = 1) { // off = opóźnienie, mul = mnożnik wysokości, vol = głośność (chór trzech demonów)
     if (!ac || ac.state !== 'running') return 0;
-    const t0 = ac.currentTime + .03, conv = reverb();
+    const t0 = ac.currentTime + .03 + off, conv = reverb();
     const shaper = ac.createWaveShaper(); const curve = new Float32Array(512);
     for (let i = 0; i < 512; i++) curve[i] = Math.tanh((i / 255.5 - 1) * 6);
     shaper.curve = curve;
     const f1 = ac.createBiquadFilter(); f1.type = 'bandpass'; f1.Q.value = 2;
     const f2 = ac.createBiquadFilter(); f2.type = 'bandpass'; f2.Q.value = 3;
     const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2800;
-    const mix = ac.createGain(); mix.gain.value = .8;
+    const mix = ac.createGain(); mix.gain.value = .8 * vol;
     shaper.connect(f1); shaper.connect(f2); f1.connect(lp); f2.connect(lp); lp.connect(mix); mix.connect(master); mix.connect(conv);
     const starts = [0, .3, .6, .9, 1.12, 1.34, 1.56, 1.9], durs = [.24, .24, .24, .18, .18, .18, .22, .7];
     const pitch = [78, 76, 74, 74, 72, 70, 68, 64];
     starts.forEach((s, i) => {
-      const t = t0 + s, dur = durs[i], f = pitch[i], last = i === starts.length - 1;
+      const t = t0 + s, dur = durs[i], f = pitch[i] * mul, last = i === starts.length - 1;
       const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .025); g.gain.setValueAtTime(1, t + dur * .55); g.gain.exponentialRampToValueAtTime(.001, t + dur); g.connect(shaper);
       const am = ac.createOscillator(); am.frequency.value = 24 + i * 1.5; const amg = ac.createGain(); amg.gain.value = .4; am.connect(amg); amg.connect(g.gain); am.start(t); am.stop(t + dur + .05); // warkot
       [['sawtooth', 1, 1], ['sawtooth', 1.006, 1], ['square', .5, .55], ['sawtooth', .5, .5]].forEach(([type, mul, vol]) => {
@@ -1718,6 +1912,7 @@ init();
       const ng = ac.createGain(); ng.gain.setValueAtTime(.12, t); ng.gain.exponentialRampToValueAtTime(.001, t + dur);
       ns.connect(nf); nf.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + dur);
     });
+    if (vol < 1) return 2.7 + off;
     const sub = ac.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(64, t0); sub.frequency.exponentialRampToValueAtTime(28, t0 + 1.2);
     const sg = ac.createGain(); sg.gain.setValueAtTime(.7, t0); sg.gain.exponentialRampToValueAtTime(.001, t0 + 1.3); sub.connect(sg); sg.connect(master); sub.start(t0); sub.stop(t0 + 1.3);
     return 2.7;
@@ -1751,7 +1946,7 @@ init();
   function tryLaughSound() { // gra raz, gdy kontekst działa i demon już się śmieje; w razie potrzeby wydłuża scenę, żeby śmiech się zmieścił
     if (played || phase !== 1 || !ac || ac.state !== 'running') return;
     played = true; el.classList.remove('mute');
-    const len = laughSound();
+    const len = Math.max(laughSound(), laughSound(.13, 1.17, .55), laughSound(.24, .82, .55)); // trzy głosy: główny, wyższy, niższy
     const left = laughAt + 2600 - performance.now();
     if (len * 1000 > left) { clearTimeout(leaveTimer); leaveTimer = T(leave, len * 1000 + 100); }
   }
