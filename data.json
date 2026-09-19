@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T01:59:52.934Z",
+  "generatedAt": "2026-09-19T02:00:14.582Z",
   "chartDate": "2026-09-19",
   "prevDate": null,
   "channel": {
@@ -48,7 +48,7 @@
     "allTimePoolSize": 2
   },
   "totals": {
-    "labelViews": 270,
+    "labelViews": 250,
     "tracks": 2,
     "artists": 2,
     "subscribers": 7,
@@ -67,7 +67,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 264,
+      "views": 244,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -77,7 +77,7 @@
       "weeks": 1,
       "viewsDelta": null,
       "daysAtTop": 1,
-      "tier": 1
+      "tier": 0
     },
     {
       "pos": 2,
@@ -105,16 +105,29 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 264,
+      "views": 244,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
-      "tier": 1,
-      "tierName": "Ogień",
+      "tier": 0,
+      "tierName": "Żar",
       "date": "2026-09-19",
       "dateText": "19 wrz 2026"
     }
   ],
   "nextCerts": [
+    {
+      "id": "PqJv58Venx0",
+      "artist": "740FREDO",
+      "song": "WEDNESDAY!",
+      "title": "740FREDO - WEDNESDAY!",
+      "views": 244,
+      "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
+      "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
+      "nextTier": 1,
+      "nextName": "Ogień",
+      "missing": 6,
+      "progress": 96
+    },
     {
       "id": "e2dKOOVYiaE",
       "artist": "740VICEJAVIER",
@@ -127,27 +140,14 @@
       "nextName": "Żar",
       "missing": 94,
       "progress": 6
-    },
-    {
-      "id": "PqJv58Venx0",
-      "artist": "740FREDO",
-      "song": "WEDNESDAY!",
-      "title": "740FREDO - WEDNESDAY!",
-      "views": 264,
-      "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
-      "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
-      "nextTier": 2,
-      "nextName": "Piekło",
-      "missing": 236,
-      "progress": 6
     }
   ],
   "timeline": [
     {
       "date": "2026-09-19",
-      "total": 270,
+      "total": 250,
       "top": "PqJv58Venx0",
-      "topViews": 264
+      "topViews": 244
     }
   ],
   "tracks": {
@@ -172,7 +172,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 264,
+      "views": 244,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -206,15 +206,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 1,
-      "views": 264,
-      "share": 97.8,
+      "views": 244,
+      "share": 97.6,
       "viewsDelta": null,
       "bestPos": 1,
       "top": {
         "id": "PqJv58Venx0",
         "song": "WEDNESDAY!",
         "title": "740FREDO - WEDNESDAY!",
-        "views": 264,
+        "views": 244,
         "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
         "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"
       },
@@ -229,7 +229,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 6,
-      "share": 2.2,
+      "share": 2.4,
       "viewsDelta": null,
       "bestPos": 2,
       "top": {
@@ -282,7 +282,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 264,
+      "views": 244,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg",
