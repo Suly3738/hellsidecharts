@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-19T21:16:08.051Z",
-  "chartDate": "2026-09-19",
-  "prevDate": null,
+  "generatedAt": "2026-09-19T22:16:10.731Z",
+  "chartDate": "2026-09-20",
+  "prevDate": "2026-09-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,15 +61,15 @@
     "allTimePoolSize": 2
   },
   "totals": {
-    "labelViews": 384,
+    "labelViews": 383,
     "tracks": 2,
     "artists": 2,
     "subscribers": 8,
     "channelViews": 273,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": null,
+    "viewsDelta": -1,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 1,
+    "snapshots": 2,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -84,12 +84,12 @@
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "prevPos": null,
-      "move": null,
+      "prevPos": 1,
+      "move": 0,
       "peak": 1,
       "weeks": 1,
-      "viewsDelta": null,
-      "daysAtTop": 1,
+      "viewsDelta": 0,
+      "daysAtTop": 2,
       "tier": 1
     },
     {
@@ -99,15 +99,15 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 127,
+      "views": 126,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "prevPos": null,
-      "move": null,
+      "prevPos": 2,
+      "move": 0,
       "peak": 2,
       "weeks": 1,
-      "viewsDelta": null,
+      "viewsDelta": -1,
       "daysAtTop": 0,
       "tier": 0
     }
@@ -131,7 +131,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 127,
+      "views": 126,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "tier": 0,
@@ -146,13 +146,13 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 127,
+      "views": 126,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 123,
-      "progress": 18
+      "missing": 124,
+      "progress": 17
     },
     {
       "id": "PqJv58Venx0",
@@ -172,6 +172,12 @@
     {
       "date": "2026-09-19",
       "total": 384,
+      "top": "PqJv58Venx0",
+      "topViews": 257
+    },
+    {
+      "date": "2026-09-20",
+      "total": 383,
       "top": "PqJv58Venx0",
       "topViews": 257
     }
@@ -202,11 +208,11 @@
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "prevPos": null,
-      "move": null,
+      "prevPos": 1,
+      "move": 0,
       "peak": 1,
       "weeks": 1,
-      "viewsDelta": null
+      "viewsDelta": 0
     },
     {
       "pos": 2,
@@ -215,15 +221,15 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 127,
+      "views": 126,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "prevPos": null,
-      "move": null,
+      "prevPos": 2,
+      "move": 0,
       "peak": 2,
       "weeks": 1,
-      "viewsDelta": null
+      "viewsDelta": -1
     }
   ],
   "rising": [],
@@ -233,8 +239,8 @@
       "name": "740FREDO",
       "tracks": 1,
       "views": 257,
-      "share": 66.9,
-      "viewsDelta": null,
+      "share": 67.1,
+      "viewsDelta": 0,
       "bestPos": 1,
       "top": {
         "id": "PqJv58Venx0",
@@ -254,15 +260,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 127,
-      "share": 33.1,
-      "viewsDelta": null,
+      "views": 126,
+      "share": 32.9,
+      "viewsDelta": -1,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 127,
+        "views": 126,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -277,15 +283,15 @@
     {
       "id": "PqJv58Venx0",
       "from": "2026-09-19",
-      "to": "2026-09-19",
-      "days": 1,
+      "to": "2026-09-20",
+      "days": 2,
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "fromText": "19 wrz 2026",
-      "toText": "19 wrz 2026"
+      "toText": "20 wrz 2026"
     }
   ],
   "latest": [
@@ -294,14 +300,14 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 127,
+      "views": 126,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": true,
-      "viewsDelta": null
+      "viewsDelta": -1
     },
     {
       "id": "PqJv58Venx0",
@@ -315,7 +321,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": true,
-      "viewsDelta": null
+      "viewsDelta": 0
     }
   ]
 }
