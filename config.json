@@ -12,7 +12,19 @@
   "applyExcludeToNow": true,
   "concurrency": 4,
   "discord": "https://discord.gg/rWgXWJJSd",
-  "introTrack": "1StnKcnwil4",
+  "introTracks": [
+    "1StnKcnwil4",
+    "887UxXlGWcU",
+    "eWBWfLpFQUg",
+    "BP_ZpkbPsvw",
+    "zWTdDUFzRhc",
+    "Sp0wY2QBTMI",
+    "eAm5EnefK9Y",
+    "pWvyzbYkqUQ",
+    "vGP1VepVdqo",
+    "ns3AUsHgmnA",
+    "zXFoOERmcMs"
+  ],
   "tiers": [
     {
       "name": "Żar",

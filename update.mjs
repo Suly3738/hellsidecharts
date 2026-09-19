@@ -219,17 +219,8 @@ const apiKey = process.env.YT_API_KEY || (fs.existsSync(p('.ytkey')) ? fs.readFi
 log(apiKey ? 'Łączenie z YouTube Data API…' : 'Łączenie z YouTube (bez klucza API)…');
 const { channelTitle, raw, channelStats } = apiKey ? await fetchViaApi(apiKey) : await fetchViaInnertube();
 const inexact = raw.filter(v => !v.exact).length;
-// beat w tle po intrze: id z config.introTrack, tytuł i autor z oEmbed (bez klucza API)
-async function introTrack() {
-  const id = cfg.introTrack;
-  if (!id) return null;
-  try {
-    const r = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${encodeURIComponent(id)}&format=json`);
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    const j = await r.json();
-    return { id, title: j.title || '', author: j.author_name || '' };
-  } catch (e) { log(`  Beat w tle: nie udało się pobrać tytułu (${e.message})`); return { id, title: '', author: '' }; }
-}
+// beaty w tle po intrze: pula id z config.introTracks (strona losuje jeden przy każdym wejściu); celowo bez tytułów/autorów – nigdzie nie pokazujemy, co gra
+const introTracks = [].concat(cfg.introTracks || cfg.introTrack || []).filter(Boolean);
 if (inexact) log(`  UWAGA: ${inexact}/${raw.length} filmów ma zaokrąglone wyświetlenia (YouTube zablokował szczegóły). Ustaw YT_API_KEY, aby mieć dokładne liczby.`);
 log(`Pobrano ${raw.length} filmów z kanału „${channelTitle}”.`);
 
@@ -455,7 +446,7 @@ const data = {
     latestSize: cfg.latestSize ?? 3,
     tiers,
     discord: cfg.discord ?? null,
-    introTrack: await introTrack(),
+    introTracks,
   },
   stats: {
     source: apiKey ? 'YouTube Data API' : 'youtubei.js',

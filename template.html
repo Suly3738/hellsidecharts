@@ -1723,12 +1723,13 @@ function init() {
 }
 function afterIntro(fn) { document.body.classList.contains('intro') ? document.addEventListener('hsc:intro-done', fn, { once: true }) : fn(); }
 
-/* beat w tle: iframe YouTube (enablejsapi) sterowany postMessage – bez zewnętrznego skryptu. Po pełnym intrze (po przejściu dźwiękowym)
+/* beat w tle: losowy z puli config.introTracks; iframe YouTube (enablejsapi) sterowany postMessage – bez zewnętrznego skryptu. Po pełnym intrze (po przejściu dźwiękowym)
    startuje cicho i przez ~7 s dochodzi do zapamiętanej głośności; pętla; w rogu tylko głośniczek (klik = wycisz/włącz, suwak = głośność).
    Po pominięciu intra głośniczek jest, ale beat czeka na klik. Gdy przeglądarka zablokuje start, ponawia po pierwszym geście. */
 const radio = (function () {
-  const cfg = DATA && DATA.config.introTrack, box = document.getElementById('radio'), holder = document.getElementById('rframe');
-  if (!cfg || !cfg.id || !box || !holder) return null;
+  const pool = (DATA && DATA.config.introTracks) || [], box = document.getElementById('radio'), holder = document.getElementById('rframe');
+  if (!pool.length || !box || !holder) return null;
+  const cfg = { id: pool[Math.floor(Math.random() * pool.length)] }; // losowy beat z puli przy każdym wejściu
   const ORIGIN = 'https://www.youtube-nocookie.com', slider = document.getElementById('rvol'), btn = document.getElementById('rmute');
   let frame = null, ready = false, playing = false, started = false, wantPlay = false, muted = false, vol = 80, fadeMs = 0, fadeTimer = null, watchdog = null, held = false;
   try { const v = localStorage.getItem('hsc.vol'); if (v !== null && v !== '') vol = Math.max(0, Math.min(100, +v || 0)); muted = localStorage.getItem('hsc.mute') === '1'; } catch {}
