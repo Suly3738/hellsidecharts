@@ -794,7 +794,7 @@
           <text class="l2" x="160" y="156" text-anchor="middle" font-size="50">HAAAA!</text>
         </svg>
       </div>
-      <div class="ui"><span class="hint">Kliknij demona, żeby usłyszeć śmiech</span><button class="skip" type="button">Pomiń ✕</button></div>
+      <div class="ui"><span class="hint">Przeglądarka wyciszyła stronę do pierwszego kliknięcia – kliknij gdziekolwiek, a demon się zaśmieje</span><button class="skip" type="button">Pomiń ✕</button></div>
     </div>
   </div>
   <div class="curtain" aria-hidden="true">
@@ -1495,22 +1495,26 @@ init();
     const bg = ac.createGain(); bg.gain.setValueAtTime(0, t + .9); bg.gain.linearRampToValueAtTime(.9, t + .95); bg.gain.exponentialRampToValueAtTime(.001, t + 2);
     boom.connect(bg); bg.connect(master); boom.start(t + .9); boom.stop(t + 2);
   }
-  function unlockAudio() { // po geście użytkownika: wznów kontekst i odpal śmiech, wydłużając scenę, żeby się zmieścił
-    if (!ac || ac.state === 'running') return;
-    ac.resume().then(() => {
-      if (phase !== 1 || ac.state !== 'running') return;
-      el.classList.remove('mute');
-      const len = laughSound();
-      const left = laughAt + 2600 - performance.now();
-      if (len * 1000 > left) { clearTimeout(leaveTimer); leaveTimer = T(leave, len * 1000 + 100); }
-    }).catch(() => {});
+  let played = false;
+  function tryLaughSound() { // gra raz, gdy kontekst działa i demon już się śmieje; w razie potrzeby wydłuża scenę, żeby śmiech się zmieścił
+    if (played || phase !== 1 || !ac || ac.state !== 'running') return;
+    played = true; el.classList.remove('mute');
+    const len = laughSound();
+    const left = laughAt + 2600 - performance.now();
+    if (len * 1000 > left) { clearTimeout(leaveTimer); leaveTimer = T(leave, len * 1000 + 100); }
+  }
+  function unlockAudio() { if (ac && ac.state !== 'running') ac.resume().then(tryLaughSound).catch(() => {}); }
+  setupAudio();
+  if (ac) {
+    ac.addEventListener('statechange', tryLaughSound);
+    unlockAudio();
+    const poll = setInterval(() => { if (phase === 2 || played) clearInterval(poll); else unlockAudio(); }, 300); // przeglądarka może odblokować dźwięk w trakcie (np. po geście poza overlayem)
   }
 
   function laugh() {
     if (phase) return;
     phase = 1; laughAt = performance.now(); el.classList.add('laugh');
-    setupAudio();
-    if (ac && ac.state === 'running') laughSound(); else if (ac) el.classList.add('mute');
+    if (ac && ac.state === 'running') tryLaughSound(); else if (ac) { el.classList.add('mute'); unlockAudio(); }
   }
   function leave() {
     if (phase === 2) return;
@@ -1522,10 +1526,14 @@ init();
     setTimeout(() => document.dispatchEvent(new Event('hsc:intro-done')), 1500); // kurtyna schodzi – hero wjeżdża
     setTimeout(() => { el.remove(); if (ac) { try { master.gain.linearRampToValueAtTime(0, ac.currentTime + .6); setTimeout(() => ac.close(), 800); } catch {} } }, 2400);
   }
-  function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') leave(); }
+  function onKey(e) { // Esc pomija; inne klawisze najpierw odblokowują dźwięk, Enter/Spacja przy grającym dźwięku pomijają
+    if (e.key === 'Escape') return leave();
+    if (ac && ac.state !== 'running') return unlockAudio();
+    if (e.key === 'Enter' || e.key === ' ') leave();
+  }
   T(laugh, 1100); leaveTimer = T(leave, 3800);
   el.querySelector('.skip').addEventListener('pointerdown', (e) => { e.stopPropagation(); leave(); });
-  el.addEventListener('pointerdown', () => { if (phase === 1 && el.classList.contains('mute')) unlockAudio(); else if (phase === 1) leave(); else if (phase === 0) { setupAudio(); unlockAudio(); } });
+  el.addEventListener('pointerdown', () => { if (ac && ac.state !== 'running') unlockAudio(); else if (phase === 1) leave(); });
   addEventListener('keydown', onKey);
 })();
 
