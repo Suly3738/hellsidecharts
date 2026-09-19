@@ -200,7 +200,7 @@
   .radio .rvol { width: 0; opacity: 0; margin: 0; height: 4px; accent-color: var(--red-2); cursor: var(--cur-hand); transition: width .3s, opacity .3s, margin .3s; }
   .radio:hover .rvol, .radio:focus-within .rvol { width: 90px; opacity: 1; margin: 0 8px 0 4px; }
   @media (pointer: coarse) { .radio .rvol { width: 80px; opacity: 1; margin: 0 8px 0 4px; } }
-  body.radio .eq i { animation-duration: calc(var(--t) * .45); }
+  body.beat .eq i { animation-duration: calc(var(--t) * .45); }
 
   /* okno certyfikatu */
   .cmodal { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 20px; background: rgba(5,4,5,.92); overflow-y: auto; }
@@ -1546,7 +1546,7 @@ const radio = (function () {
   slider.value = vol;
   function save() { try { localStorage.setItem('hsc.vol', vol); localStorage.setItem('hsc.mute', muted ? '1' : '0'); } catch {} }
   function cmd(func, args) { if (frame && frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || [] }), ORIGIN); }
-  function ui() { box.classList.toggle('on', playing); box.classList.toggle('muted', muted || vol === 0); box.classList.toggle('loud', vol > 50); document.body.classList.toggle('radio', playing && !muted); }
+  function ui() { box.classList.toggle('on', playing); box.classList.toggle('muted', muted || vol === 0); box.classList.toggle('loud', vol > 50); document.body.classList.toggle('beat', playing && !muted); } // klasa na body: `beat` (nie `radio` – to klasa widżetu)
   function make() {
     if (frame) return;
     frame = document.createElement('iframe');

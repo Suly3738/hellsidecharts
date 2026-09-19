@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T12:10:01.307Z",
+  "generatedAt": "2026-09-19T12:17:41.953Z",
   "chartDate": "2026-09-19",
   "prevDate": null,
   "channel": {
@@ -53,7 +53,7 @@
     "allTimePoolSize": 2
   },
   "totals": {
-    "labelViews": 322,
+    "labelViews": 326,
     "tracks": 2,
     "artists": 2,
     "subscribers": 8,
@@ -91,7 +91,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 49,
+      "views": 53,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -125,13 +125,13 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 49,
+      "views": 53,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 0,
       "nextName": "Żar",
-      "missing": 51,
-      "progress": 49
+      "missing": 47,
+      "progress": 53
     },
     {
       "id": "PqJv58Venx0",
@@ -150,7 +150,7 @@
   "timeline": [
     {
       "date": "2026-09-19",
-      "total": 322,
+      "total": 326,
       "top": "PqJv58Venx0",
       "topViews": 273
     }
@@ -194,7 +194,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 49,
+      "views": 53,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -212,7 +212,7 @@
       "name": "740FREDO",
       "tracks": 1,
       "views": 273,
-      "share": 84.8,
+      "share": 83.7,
       "viewsDelta": null,
       "bestPos": 1,
       "top": {
@@ -233,15 +233,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 49,
-      "share": 15.2,
+      "views": 53,
+      "share": 16.3,
       "viewsDelta": null,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 49,
+        "views": 53,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -273,7 +273,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 49,
+      "views": 53,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
