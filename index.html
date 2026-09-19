@@ -11,7 +11,7 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-19T01:25:26.852Z';
+  const BUILD = '2026-09-19T01:46:06.215Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
@@ -560,39 +560,63 @@
     .acard { flex-basis: 200px; }
     .hero .num { font-size: 110px; }
   }
-  /* intro: demon ze złotym łańcuchem śmieje się, potem płynne przejście do strony. Same transformy/opacity – bez filtrów */
-  .intro { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; overflow: hidden; background: #030203; cursor: var(--cur-hand); user-select: none; }
+  /* intro: demon w snapbacku ze złotym łańcuchem i cygarem śmieje się, potem kurtyna ognia zabiera scenę i odsłania stronę. Tylko transformy/opacity/clip-path – bez filtrów */
+  .intro { position: fixed; inset: 0; z-index: 1000; overflow: hidden; cursor: var(--cur-hand); user-select: none; }
+  .intro .scene { position: absolute; left: 0; top: 0; width: 100%; height: 130vh; background: #030203; }
+  .intro .view { position: relative; height: 100vh; display: grid; place-items: center; overflow: hidden; }
   .intro .fire { position: absolute; left: -10%; right: -10%; bottom: 0; height: 48vh; transform-origin: bottom; background: radial-gradient(55% 100% at 50% 100%, rgba(255,106,31,.34), rgba(210,18,46,.16) 48%, transparent 76%); animation: introFire 1.5s ease-in-out infinite alternate; }
   .intro .glow { position: absolute; inset: -30%; opacity: 0; background: radial-gradient(38% 38% at 50% 52%, rgba(210,18,46,.5), rgba(210,18,46,.1) 50%, transparent 72%); animation: introFade 1.2s ease-out .2s forwards; }
   .intro .stage { position: relative; width: min(74vmin, 540px); aspect-ratio: 400 / 470; }
-  .intro .ha { position: absolute; inset: 0; pointer-events: none; }
-  .intro .ha span { position: absolute; font: 400 clamp(38px, 12vmin, 96px)/1 var(--display); color: var(--red-2); text-shadow: 0 0 16px rgba(255,45,74,.55); white-space: nowrap; animation: introHa 1s ease-out forwards; }
-  .intro .ha span:nth-child(odd) { color: var(--flame); text-shadow: 0 0 16px rgba(255,179,71,.5); }
   .intro .demon { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(8%) scale(.86); animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
   .intro .demon .eyes { opacity: 0; animation: introEyes .55s ease-out .6s forwards; }
-  .intro .demon .head, .intro .demon .jaw, .intro .demon .eye, .intro .demon .chain, .intro .demon .torso, .intro .demon .pend { transform-box: fill-box; }
+  .intro .demon .head, .intro .demon .jaw, .intro .demon .eye, .intro .demon .chain, .intro .demon .torso, .intro .demon .pend, .intro .demon .hand, .intro .demon .smoke, .intro .demon .spark, .intro .demon .eyes { transform-box: fill-box; }
   .intro .demon .head { transform-origin: 50% 90%; }
   .intro .demon .jaw { transform-origin: 50% 0; }
-  .intro .demon .eye { transform-origin: 50% 50%; }
-  .intro .demon .chain { transform-origin: 50% 0; }
-  .intro .demon .pend { transform-origin: 50% 0; }
+  .intro .demon .eye, .intro .demon .eyes, .intro .demon .spark { transform-origin: 50% 50%; }
+  .intro .demon .chain, .intro .demon .pend { transform-origin: 50% 0; }
   .intro .demon .torso { transform-origin: 50% 100%; }
+  .intro .demon .hand { transform-origin: 50% 100%; }
+  .intro .demon .smoke { transform-origin: 50% 100%; animation: introSmoke 2.2s ease-out infinite; opacity: 0; }
+  .intro .demon .smoke.s2 { animation-delay: .75s; } .intro .demon .smoke.s3 { animation-delay: 1.5s; }
+  .intro .demon .spark { animation: introSpark 1.8s ease-in-out infinite; }
+  .intro .demon .spark.k2 { animation-delay: .6s; } .intro .demon .spark.k3 { animation-delay: 1.2s; }
   .intro.laugh .demon .head { animation: introHead .36s ease-in-out infinite; }
   .intro.laugh .demon .jaw { animation: introJaw .36s ease-in-out infinite; }
   .intro.laugh .demon .eye { animation: introSquint .36s ease-in-out infinite; }
   .intro.laugh .demon .chain { animation: introChain .36s ease-in-out .07s infinite; }
   .intro.laugh .demon .pend { animation: introPend .72s ease-in-out .1s infinite; }
   .intro.laugh .demon .torso { animation: introShrug .36s ease-in-out infinite; }
+  .intro.laugh .demon .hand { animation: introHand .36s ease-in-out .05s infinite; }
   .intro.laugh .stage { animation: introShake .18s linear infinite; }
-  .intro .skip { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; font: 600 11px/1 var(--cond); letter-spacing: .34em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: introFade .6s ease-out 1.3s forwards; }
-  .intro.leave { pointer-events: none; animation: introOut .95s ease-in forwards; }
+  /* dymek ze śmiechem */
+  .intro .bubble { position: absolute; left: 62%; top: 12%; width: 54%; transform-origin: 8% 96%; transform: scale(0) rotate(-12deg); opacity: 0; pointer-events: none; }
+  .intro.laugh .bubble { animation: introPop .5s cubic-bezier(.3,1.6,.4,1) forwards, introWobble .36s ease-in-out .5s infinite; }
+  .intro .bubble text { font-family: var(--display); fill: url(#dFireTxt); transform-box: fill-box; transform-origin: 50% 50%; }
+  .intro.laugh .bubble text { animation: introHaPulse .36s ease-in-out infinite alternate; }
+  .intro.laugh .bubble text.l2 { animation-delay: .18s; }
+  .intro .ui { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 0 18px; font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: introFade .6s ease-out 1.3s forwards; }
+  .intro .ui .hint { display: none; color: var(--flame); }
+  .intro.mute .ui .hint { display: inline; }
+  .intro .ui .skip { background: transparent; border: 1px solid var(--line-2); color: var(--text); padding: 10px 16px; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: var(--cur-hand); transition: border-color .2s, background .2s; }
+  .intro .ui .skip:hover { border-color: var(--red-2); background: rgba(210,18,46,.2); }
+  /* kurtyna ognia */
+  .intro .curtain { position: absolute; left: -5%; width: 110%; top: 0; height: 150vh; transform: translateY(100vh); pointer-events: none; }
+  .intro .curtain svg { position: absolute; left: 0; width: 100%; height: 100%; transform-origin: 50% 100%; display: block; }
+  .intro .curtain .c1 { top: -7vh; animation: introLick .55s ease-in-out infinite alternate; }
+  .intro .curtain .c2 { top: 0; animation: introLick .42s ease-in-out .2s infinite alternate-reverse; }
+  .intro.leave { pointer-events: none; }
   .intro.leave .stage { animation: none; }
-  .intro.leave .demon { animation: introZoom .8s cubic-bezier(.55,0,.85,.35) forwards; }
-  .intro.leave .skip, .intro.leave .ha { opacity: 0; }
+  .intro.leave .demon { opacity: 1; transform: none; animation: introLean 1s ease-in forwards; }
+  .intro.leave .demon .eyes { opacity: 1; animation: introFlare .5s ease-out 2 alternate; }
+  .intro.leave .scene { animation: introWipe 2.3s forwards; }
+  .intro.leave .curtain { animation: introBand 2.3s forwards; }
+  .intro.leave .ui, .intro.leave .bubble { transition: opacity .3s; opacity: 0; }
   body.intro { overflow: hidden; }
   .hero > .txt, .hero > .vinyl-wrap { transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
   .hero > .vinyl-wrap { transition-delay: .15s; }
   body.intro .hero > .txt, body.intro .hero > .vinyl-wrap { opacity: 0; transform: translateY(34px); }
+  /* płomień za kursorem */
+  #flame { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 60; }
   @keyframes introFade { to { opacity: 1; } }
   @keyframes introFire { from { transform: scaleY(.82); opacity: .7; } to { transform: scaleY(1.12); opacity: 1; } }
   @keyframes introRise { to { opacity: 1; transform: none; } }
@@ -603,10 +627,18 @@
   @keyframes introChain { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
   @keyframes introPend { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
   @keyframes introShrug { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.03); } }
+  @keyframes introHand { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(-3deg); } }
   @keyframes introShake { 0% { transform: translate(0, 0); } 25% { transform: translate(2px, -2px); } 50% { transform: translate(-2px, 1px); } 75% { transform: translate(1px, 2px); } 100% { transform: translate(0, 0); } }
-  @keyframes introHa { 0% { opacity: 0; transform: translate(0, 0) scale(.5) rotate(var(--r)); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -24vmin) scale(1.35) rotate(var(--r)); } }
-  @keyframes introOut { 0% { opacity: 1; background: #030203; } 30% { opacity: 1; background: #4a0512; } 100% { opacity: 0; background: #4a0512; } }
-  @keyframes introZoom { to { transform: translateY(16%) scale(2.7); opacity: 0; } }
+  @keyframes introSmoke { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 15% { opacity: .55; } 100% { opacity: 0; transform: translate(14px, -90px) scale(2.6); } }
+  @keyframes introSpark { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+  @keyframes introPop { 0% { opacity: 0; transform: scale(0) rotate(-12deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+  @keyframes introWobble { 0%, 100% { transform: scale(1) rotate(-1.5deg); } 50% { transform: scale(1.04) rotate(1.5deg); } }
+  @keyframes introHaPulse { from { transform: scale(.92); } to { transform: scale(1.1); } }
+  @keyframes introLean { to { transform: translateY(4%) scale(1.14); } }
+  @keyframes introFlare { to { transform: scale(1.18); } }
+  @keyframes introLick { from { transform: scaleY(1); } to { transform: scaleY(1.06); } }
+  @keyframes introBand { 0% { transform: translateY(100vh); animation-timing-function: cubic-bezier(.5,0,.6,1); } 45% { transform: translateY(-25vh); animation-timing-function: cubic-bezier(.3,0,.2,1); } 100% { transform: translateY(-175vh); } }
+  @keyframes introWipe { 0% { clip-path: inset(0 0 6.15% 0); animation-timing-function: cubic-bezier(.5,0,.6,1); } 45%, 100% { clip-path: inset(0 0 102.4% 0); } }
   @media (prefers-reduced-motion: reduce) {
     .ticker .track, .vinyl, .live::before, .vinyl-wrap .hint, .tier::before, .cert::before, .eq i { animation: none; }
     main section:not(.hero) > * { opacity: 1; transform: none; transition: none; }
@@ -616,79 +648,159 @@
 </head>
 <body class="intro">
 <div class="intro" id="intro" aria-hidden="true">
-  <div class="fire"></div>
-  <div class="glow"></div>
-  <div class="stage">
-    <svg class="demon" viewBox="0 0 400 470" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="dSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3d55"/><stop offset=".5" stop-color="#c4122e"/><stop offset="1" stop-color="#5c0613"/></linearGradient>
-        <radialGradient id="dSheen" cx=".5" cy=".3" r=".65"><stop offset="0" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-        <linearGradient id="dHorn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3b2528"/><stop offset=".5" stop-color="#0f0a0b"/><stop offset="1" stop-color="#5a3c40"/></linearGradient>
-        <radialGradient id="dEye" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7cc"/><stop offset=".45" stop-color="#ffc63a"/><stop offset="1" stop-color="#ff6a1f"/></radialGradient>
-        <radialGradient id="dEyeGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb347" stop-opacity=".75"/><stop offset=".5" stop-color="#ff6a1f" stop-opacity=".22"/><stop offset="1" stop-color="#ff6a1f" stop-opacity="0"/></radialGradient>
-        <linearGradient id="dGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
-        <linearGradient id="dGold2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
-        <radialGradient id="dCoin" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff0a8"/><stop offset=".45" stop-color="#e8b830"/><stop offset="1" stop-color="#8a6208"/></radialGradient>
-        <linearGradient id="dBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1315"/><stop offset="1" stop-color="#060405"/></linearGradient>
-        <linearGradient id="dMouth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0009"/><stop offset="1" stop-color="#090002"/></linearGradient>
-        <linearGradient id="dTongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3143a"/><stop offset="1" stop-color="#5a0818"/></linearGradient>
-      </defs>
-      <path d="M176 296 L 224 296 L 240 358 L 160 358 Z" fill="#8a0c20"/>
-      <path d="M176 296 L 224 296 L 228 322 Q 200 334 172 322 Z" fill="#5c0613"/>
-      <g class="torso">
-        <path d="M22 470 C 50 382, 128 350, 200 348 C 272 350, 350 382, 378 470 Z" fill="url(#dBody)"/>
-        <path d="M22 470 C 50 382, 128 350, 200 348 C 272 350, 350 382, 378 470" fill="none" stroke="#ff2d4a" stroke-opacity=".28" stroke-width="2"/>
-        <path d="M152 356 L 200 392 L 248 356 L 238 348 L 200 372 L 162 348 Z" fill="#0b0708"/>
-        <g class="chain" id="dChain"></g>
-        <g class="pend" id="dPend">
-          <ellipse cx="200" cy="405" rx="6" ry="8" fill="none" stroke="url(#dGold)" stroke-width="3.5"/>
-          <circle cx="200" cy="434" r="25" fill="url(#dCoin)" stroke="#7d5a06" stroke-width="1.5"/>
-          <circle cx="200" cy="434" r="19" fill="none" stroke="#a87c0c" stroke-width="1.2"/>
-          <text x="200" y="443" text-anchor="middle" font-family="Pirata One, serif" font-size="25" fill="#3a0208">HR</text>
-        </g>
-      </g>
-      <g class="head">
-        <g id="dHornL">
-          <path d="M154 122 C 128 100, 104 62, 106 14 C 132 44, 160 80, 182 112 Z" fill="url(#dHorn)"/>
-          <path d="M118 52 C 128 60, 138 72, 148 84 M112 34 C 120 42, 128 52, 136 62 M128 74 C 138 82, 146 92, 156 102" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
-        </g>
-        <use href="#dHornL" transform="matrix(-1 0 0 1 400 0)"/>
-        <g id="dEarL"><path d="M112 178 L 74 154 L 108 214 Z" fill="#a80e26"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#5c0613"/></g>
-        <use href="#dEarL" transform="matrix(-1 0 0 1 400 0)"/>
-        <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
-        <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
-        <g class="jaw">
-          <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin)"/>
-          <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#3a0208" opacity=".55"/>
-          <g fill="#f5efe4">
-            <path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/>
+  <div class="scene">
+    <div class="view">
+      <div class="fire"></div>
+      <div class="glow"></div>
+      <div class="stage">
+        <svg class="demon" viewBox="0 0 400 470" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="dSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0263f"/><stop offset=".5" stop-color="#ad142d"/><stop offset="1" stop-color="#5a0a16"/></linearGradient>
+            <radialGradient id="dSheen" cx=".5" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <radialGradient id="dShade" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#2a0008" stop-opacity=".6"/><stop offset="1" stop-color="#2a0008" stop-opacity="0"/></radialGradient>
+            <linearGradient id="dHorn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3b2528"/><stop offset=".5" stop-color="#0f0a0b"/><stop offset="1" stop-color="#5a3c40"/></linearGradient>
+            <radialGradient id="dEye" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7cc"/><stop offset=".45" stop-color="#ffc63a"/><stop offset="1" stop-color="#ff6a1f"/></radialGradient>
+            <radialGradient id="dEyeGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb347" stop-opacity=".75"/><stop offset=".5" stop-color="#ff6a1f" stop-opacity=".22"/><stop offset="1" stop-color="#ff6a1f" stop-opacity="0"/></radialGradient>
+            <linearGradient id="dGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
+            <linearGradient id="dGold2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3b8"/><stop offset=".3" stop-color="#f6c744"/><stop offset=".55" stop-color="#b07f0a"/><stop offset=".8" stop-color="#ffe98a"/><stop offset="1" stop-color="#7d5a06"/></linearGradient>
+            <radialGradient id="dCoin" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff0a8"/><stop offset=".45" stop-color="#e8b830"/><stop offset="1" stop-color="#8a6208"/></radialGradient>
+            <linearGradient id="dJacket" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2226"/><stop offset=".35" stop-color="#171214"/><stop offset="1" stop-color="#060405"/></linearGradient>
+            <linearGradient id="dLapel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a3c41"/><stop offset=".5" stop-color="#1c1518"/><stop offset="1" stop-color="#0a0708"/></linearGradient>
+            <linearGradient id="dCap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26202a"/><stop offset="1" stop-color="#070506"/></linearGradient>
+            <linearGradient id="dCigar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a4424"/><stop offset=".5" stop-color="#4a2712"/><stop offset="1" stop-color="#2d170a"/></linearGradient>
+            <radialGradient id="dEmber" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff3c0"/><stop offset=".4" stop-color="#ff8a2a"/><stop offset="1" stop-color="#ff2d1a" stop-opacity="0"/></radialGradient>
+            <radialGradient id="dSmoke" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d8d4dc" stop-opacity=".5"/><stop offset="1" stop-color="#d8d4dc" stop-opacity="0"/></radialGradient>
+            <linearGradient id="dMouth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b0009"/><stop offset="1" stop-color="#090002"/></linearGradient>
+            <linearGradient id="dTongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3143a"/><stop offset="1" stop-color="#5a0818"/></linearGradient>
+            <linearGradient id="dTeeth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf6ea"/><stop offset="1" stop-color="#cfc2a8"/></linearGradient>
+          </defs>
+          <!-- szyja (za kołnierzem) -->
+          <path d="M176 296 L 224 296 L 240 358 L 160 358 Z" fill="#8a0c20"/>
+          <path d="M176 296 L 224 296 L 228 322 Q 200 334 172 322 Z" fill="#5c0613"/>
+          <text x="228" y="346" font-family="Pirata One, serif" font-size="12" fill="#2a0008" opacity=".75" transform="rotate(-8 228 346)">HR</text>
+          <g class="torso">
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470 Z" fill="url(#dJacket)"/>
+            <path d="M158 350 L 200 418 L 242 350 Z" fill="#1a1417"/>
+            <path d="M200 356 L 200 470" stroke="#3a2f33" stroke-width="1"/>
+            <path d="M158 350 L 200 418 L 176 470 L 112 470 C 112 424, 128 384, 158 350 Z" fill="url(#dLapel)"/>
+            <path d="M242 350 L 200 418 L 224 470 L 288 470 C 288 424, 272 384, 242 350 Z" fill="url(#dLapel)"/>
+            <path d="M158 350 L 200 418 M242 350 L 200 418" fill="none" stroke="#5a4a50" stroke-width="1.2"/>
+            <path d="M18 470 C 44 384, 124 352, 200 350 C 276 352, 356 384, 382 470" fill="none" stroke="#ff2d4a" stroke-opacity=".3" stroke-width="2"/>
+            <g class="chain" id="dChain2"></g>
+            <g class="chain" id="dChain"></g>
+            <g class="pend" id="dPend">
+              <ellipse cx="200" cy="406" rx="6" ry="8" fill="none" stroke="url(#dGold)" stroke-width="3.5"/>
+              <circle cx="200" cy="436" r="26" fill="url(#dCoin)" stroke="#7d5a06" stroke-width="1.5"/>
+              <circle cx="200" cy="436" r="20" fill="none" stroke="#a87c0c" stroke-width="1.2"/>
+              <text x="200" y="445" text-anchor="middle" font-family="Pirata One, serif" font-size="26" fill="#3a0208">HR</text>
+            </g>
+            <path class="spark k1" d="M148 372 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k2" d="M258 380 l 2.2 5.8 l 5.8 2.2 l -5.8 2.2 l -2.2 5.8 l -2.2 -5.8 l -5.8 -2.2 l 5.8 -2.2 z" fill="#fff"/>
+            <path class="spark k3" d="M188 424 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 z" fill="#fff"/>
           </g>
-          <path d="M186 314 C 190 336, 196 350, 200 366 C 204 350, 210 336, 214 314 Q 200 322 186 314 Z" fill="#100a0b"/>
-        </g>
-        <path id="dFace" d="M200 84 C 258 84, 300 122, 300 188 C 300 214, 294 232, 286 236 Q 200 260 114 236 C 106 232, 100 214, 100 188 C 100 122, 142 84, 200 84 Z" fill="url(#dSkin)"/>
-        <use href="#dFace" fill="url(#dSheen)"/>
-        <path d="M150 100 C 158 112, 160 122, 156 136 M250 100 C 242 112, 240 122, 244 136" fill="none" stroke="#5c0613" stroke-opacity=".6" stroke-width="2.5" stroke-linecap="round"/>
-        <g fill="#f5efe4">
-          <path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/>
-        </g>
-        <path d="M200 194 C 190 210, 184 220, 189 226 C 195 231, 205 231, 211 226 C 216 220, 210 210, 200 194 Z" fill="#7a0a1c" opacity=".7"/>
-        <ellipse cx="193" cy="224" rx="4" ry="2.6" fill="#2a0008"/><ellipse cx="207" cy="224" rx="4" ry="2.6" fill="#2a0008"/>
-        <g class="eyes">
-          <g class="eye"><g id="dEyeL">
-            <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
-            <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
-            <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
-            <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
-          </g></g>
-          <g class="eye"><use href="#dEyeL" transform="matrix(-1 0 0 1 400 0)"/></g>
-        </g>
-        <path id="dBrowL" d="M128 150 C 148 138, 172 142, 188 158 C 172 154, 150 156, 132 164 Z" fill="#3a0208"/>
-        <use href="#dBrowL" transform="matrix(-1 0 0 1 400 0)"/>
-      </g>
-    </svg>
-    <div class="ha" id="intro-ha"></div>
+          <g class="head">
+            <!-- uszy i kolczyk -->
+            <g id="dEarL"><path d="M112 178 L 74 154 L 108 214 Z" fill="#a80e26"/><path d="M108 184 L 88 166 L 106 204 Z" fill="#5c0613"/></g>
+            <use href="#dEarL" transform="matrix(-1 0 0 1 400 0)"/>
+            <circle cx="102" cy="214" r="6" fill="none" stroke="url(#dGold)" stroke-width="2.6"/>
+            <!-- paszcza -->
+            <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 250 116 236 Z" fill="url(#dMouth)"/>
+            <ellipse cx="200" cy="276" rx="30" ry="14" fill="url(#dTongue)"/><path d="M200 266 L 200 290" stroke="#3a0410" stroke-width="2" stroke-linecap="round"/>
+            <g class="jaw">
+              <path d="M116 236 C 122 268, 152 302, 200 320 C 248 302, 278 268, 284 236 Q 200 262 116 236 Z" fill="url(#dSkin)"/>
+              <path d="M126 256 C 140 288, 168 306, 200 316 C 232 306, 260 288, 274 256 C 250 282, 224 294, 200 296 C 176 294, 150 282, 126 256 Z" fill="#1a0508" opacity=".32"/>
+              <path d="M120 240 Q 200 266 280 240 L 280 246 Q 200 274 120 246 Z" fill="#3a0208" opacity=".6"/>
+              <g fill="url(#dTeeth)">
+                <path d="M146 250 l 7 -22 l 7 20 z"/><path d="M162 255 l 6 -13 l 6 14 z"/><path d="M176 258 l 6 -13 l 6 14 z"/><path d="M190 260 l 5 -12 l 5 13 z"/><path d="M204 260 l 5 -12 l 5 13 z"/><path d="M218 258 l 6 -13 l 6 14 z"/><path d="M232 255 l 6 -13 l 6 14 z"/><path d="M247 250 l 7 -22 l 7 20 z"/>
+              </g>
+              <path d="M184 312 C 188 338, 195 352, 200 370 C 205 352, 212 338, 216 312 Q 200 322 184 312 Z" fill="#100a0b"/>
+              <path d="M192 300 Q 200 306 208 300" fill="none" stroke="#5a0a16" stroke-width="1.4" stroke-linecap="round"/>
+            </g>
+            <!-- twarz -->
+            <path id="dFace" d="M200 86 C 256 86, 298 122, 299 186 C 300 210, 296 228, 288 236 Q 200 260 112 236 C 104 228, 100 210, 101 186 C 102 122, 144 86, 200 86 Z" fill="url(#dSkin)"/>
+            <use href="#dFace" fill="url(#dSheen)"/>
+            <ellipse cx="138" cy="214" rx="26" ry="18" fill="url(#dShade)"/><ellipse cx="262" cy="214" rx="26" ry="18" fill="url(#dShade)"/>
+            <ellipse cx="118" cy="168" rx="16" ry="30" fill="url(#dShade)"/><ellipse cx="282" cy="168" rx="16" ry="30" fill="url(#dShade)"/>
+            <path d="M136 196 Q 158 206 182 196 Q 158 216 136 196 Z" fill="#3a0208" opacity=".3"/><path d="M218 196 Q 242 206 264 196 Q 242 216 218 196 Z" fill="#3a0208" opacity=".3"/>
+            <path d="M120 164 L 146 216" fill="none" stroke="#ffb0b0" stroke-opacity=".55" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M124 176 l 8 -4 M129 188 l 8 -4 M135 200 l 8 -4" fill="none" stroke="#ffb0b0" stroke-opacity=".45" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M262 200 C 257 209, 257 215, 262 216 C 267 215, 267 209, 262 200 Z" fill="none" stroke="#2a0008" stroke-width="1.6"/>
+            <path d="M116 236 Q 200 262 284 236" fill="none" stroke="#3a0208" stroke-width="2.2" opacity=".7"/>
+            <path d="M150 232 Q 200 250 250 232" fill="none" stroke="#ff9aa6" stroke-opacity=".28" stroke-width="1.4"/>
+            <g fill="url(#dTeeth)">
+              <path d="M130 236 l 8 30 l 8 -28 z"/><path d="M148 241 l 7 16 l 7 -14 z"/><path d="M164 245 l 7 16 l 7 -14 z"/><path d="M180 248 l 6 15 l 6 -13 z" fill="url(#dGold)"/><path d="M194 250 l 6 15 l 6 -13 z"/><path d="M208 248 l 6 15 l 6 -13 z"/><path d="M222 245 l 7 16 l 7 -14 z"/><path d="M238 241 l 7 16 l 7 -14 z"/><path d="M254 236 l 8 30 l 8 -28 z"/>
+            </g>
+            <path d="M200 190 C 188 208, 182 220, 188 227 C 195 233, 205 233, 212 227 C 218 220, 212 208, 200 190 Z" fill="#7a0a1c" opacity=".7"/>
+            <path d="M200 176 L 200 214" stroke="#ff9aa6" stroke-opacity=".28" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="192" cy="225" rx="4.5" ry="2.8" fill="#2a0008"/><ellipse cx="208" cy="225" rx="4.5" ry="2.8" fill="#2a0008"/>
+            <g class="eyes">
+              <g class="eye"><g id="dEyeL">
+                <circle cx="158" cy="178" r="34" fill="url(#dEyeGlow)"/>
+                <path d="M132 178 Q 158 148 184 178 Q 158 196 132 178 Z" fill="url(#dEye)"/>
+                <path d="M132 178 Q 158 150 184 178 Q 158 168 132 178 Z" fill="#3a0208" opacity=".28"/>
+                <ellipse cx="158" cy="177" rx="4.2" ry="12" fill="#1a0004"/>
+                <circle cx="150" cy="168" r="2.5" fill="#fff" opacity=".8"/>
+              </g></g>
+              <g class="eye"><use href="#dEyeL" transform="matrix(-1 0 0 1 400 0)"/></g>
+            </g>
+            <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/>
+            <path id="dBrowL" d="M126 152 C 148 138, 174 142, 190 160 C 174 155, 150 157, 130 166 Z" fill="#2a0508"/>
+            <use href="#dBrowL" transform="matrix(-1 0 0 1 400 0)"/>
+            <path d="M144 146 L 148 160" stroke="#ad142d" stroke-width="3"/>
+            <!-- snapback z rogami -->
+            <path d="M100 128 C 96 74, 140 56, 200 56 C 260 56, 304 74, 300 128 Z" fill="url(#dCap)"/>
+            <path d="M200 62 C 152 62, 112 84, 104 124 M200 62 C 248 62, 288 84, 296 124" fill="none" stroke="#3a3038" stroke-width="1.2"/>
+            <path d="M200 60 L 200 118" stroke="#2a2328" stroke-width="1"/>
+            <path d="M98 118 L 302 118 L 302 132 L 98 132 Z" fill="#0b090a"/>
+            <path d="M98 121 L 302 121 M98 129 L 302 129" stroke="#2a2328" stroke-width=".8"/>
+            <path d="M76 130 Q 200 192 324 130 Q 200 166 76 130 Z" fill="#151013"/>
+            <path d="M76 130 Q 200 192 324 130" fill="none" stroke="#3a3038" stroke-width="1.4"/>
+            <path d="M96 138 Q 200 178 304 138" fill="none" stroke="#2a2328" stroke-width="1"/>
+            <text x="200" y="110" text-anchor="middle" font-family="Pirata One, serif" font-size="30" fill="#ff2d4a">HR</text>
+            <ellipse cx="163" cy="99" rx="17" ry="7" fill="#000"/><ellipse cx="237" cy="99" rx="17" ry="7" fill="#000"/>
+            <g id="dHornL">
+              <path d="M150 104 C 128 84, 104 52, 108 10 C 132 36, 158 68, 176 96 Z" fill="url(#dHorn)"/>
+              <path d="M118 48 C 128 56, 138 68, 148 80 M112 30 C 120 38, 128 48, 136 58 M128 70 C 138 78, 146 88, 156 98" fill="none" stroke="#6a4a4e" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <use href="#dHornL" transform="matrix(-1 0 0 1 400 0)"/>
+          </g>
+          <!-- dłoń z cygarem -->
+          <g class="hand">
+            <path d="M296 470 C 298 424, 312 380, 348 364 L 388 392 C 372 422, 366 450, 368 470 Z" fill="url(#dJacket)"/>
+            <path d="M348 364 L 388 392" stroke="#3a2f33" stroke-width="1.2"/>
+            <g transform="rotate(-50 342 312)">
+              <rect x="337" y="248" width="10" height="70" rx="3" fill="url(#dCigar)"/>
+              <rect x="337" y="270" width="10" height="7" fill="url(#dGold)"/>
+              <rect x="337" y="248" width="10" height="7" rx="2" fill="#a9a29b"/>
+              <ellipse cx="342" cy="247" rx="7" ry="4" fill="url(#dEmber)"/>
+            </g>
+            <g fill="url(#dSkin)" stroke="#5a0a16" stroke-width=".9">
+              <rect x="326" y="312" width="14" height="38" rx="6"/><rect x="341" y="306" width="14" height="44" rx="6"/><rect x="356" y="308" width="14" height="42" rx="6"/><rect x="371" y="316" width="13" height="34" rx="6"/>
+              <circle cx="333" cy="314" r="7"/><circle cx="348" cy="308" r="7"/><circle cx="363" cy="310" r="7"/><circle cx="377" cy="318" r="7"/>
+            </g>
+            <path d="M326 328 L 384 328 L 384 336 L 326 336 Z" fill="#3a0208" opacity=".25"/>
+            <rect x="341" y="322" width="14" height="7" fill="url(#dGold)"/><rect x="356" y="324" width="14" height="7" fill="url(#dGold2)"/>
+            <path d="M322 346 C 328 334, 352 332, 386 340 C 388 354, 358 362, 322 354 Z" fill="url(#dSkin)" stroke="#5a0a16" stroke-width=".9"/>
+            <path d="M330 346 Q 354 340 380 346" fill="none" stroke="#5a0a16" stroke-opacity=".6" stroke-width="1"/>
+            <ellipse class="smoke s1" cx="294" cy="264" rx="10" ry="7" fill="url(#dSmoke)"/>
+            <ellipse class="smoke s2" cx="296" cy="262" rx="8" ry="6" fill="url(#dSmoke)"/>
+            <ellipse class="smoke s3" cx="292" cy="266" rx="11" ry="7" fill="url(#dSmoke)"/>
+          </g>
+        </svg>
+        <svg class="bubble" viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><linearGradient id="dFireTxt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2a0"/><stop offset=".5" stop-color="#ff8a2a"/><stop offset="1" stop-color="#ff2d4a"/></linearGradient></defs>
+          <polygon id="dBurst" fill="#0b0507" stroke="#ff2d4a" stroke-width="3" stroke-linejoin="round"/>
+          <text class="l1" x="160" y="96" text-anchor="middle" font-size="56">HA HA HA</text>
+          <text class="l2" x="160" y="156" text-anchor="middle" font-size="50">HAAAA!</text>
+        </svg>
+      </div>
+      <div class="ui"><span class="hint">Kliknij demona, żeby usłyszeć śmiech</span><button class="skip" type="button">Pomiń ✕</button></div>
+    </div>
   </div>
-  <div class="skip">Kliknij, żeby pominąć</div>
+  <div class="curtain" aria-hidden="true">
+    <svg class="c1" viewBox="0 0 1000 1000" preserveAspectRatio="none"><defs><linearGradient id="dBand1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3a"/><stop offset=".12" stop-color="#d2122e"/><stop offset=".4" stop-color="#4a0512"/><stop offset=".9" stop-color="#2a0208"/><stop offset="1" stop-color="#ff6a1f"/></linearGradient></defs><path id="dBandP1" fill="url(#dBand1)"/></svg>
+    <svg class="c2" viewBox="0 0 1000 1000" preserveAspectRatio="none"><defs><linearGradient id="dBand2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff1b0"/><stop offset=".06" stop-color="#ffb347"/><stop offset=".16" stop-color="#ff6a1f"/><stop offset=".34" stop-color="#d2122e"/><stop offset=".6" stop-color="#3a0410"/><stop offset=".92" stop-color="#1a0206"/><stop offset="1" stop-color="#ff8a2a"/></linearGradient></defs><path id="dBandP2" fill="url(#dBand2)"/></svg>
+  </div>
 </div>
 <script>
 (function () {
@@ -841,7 +953,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-19T01:25:26.852Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":265,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":241,"progress":4}],"timeline":[{"date":"2026-09-19","total":265,"top":"PqJv58Venx0","topViews":259}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":259,"share":97.7,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.3,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":259,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-19T01:46:06.215Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":270,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":236,"progress":6}],"timeline":[{"date":"2026-09-19","total":270,"top":"PqJv58Venx0","topViews":264}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":264,"share":97.8,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.2,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -1259,111 +1371,216 @@ function init() {
 function afterIntro(fn) { document.body.classList.contains('intro') ? document.addEventListener('hsc:intro-done', fn, { once: true }) : fn(); }
 init();
 
-/* ---------- intro: demon ze złotym łańcuchem. Fazy: wyłania się → śmieje (HA HA) → wskakuje w kamerę i scena znika ---------- */
+/* ---------- intro: demon ze złotym łańcuchem. Fazy: wyłania się → śmieje (dymek HA HA + dźwięk) → kurtyna ognia zabiera scenę i odsłania stronę ---------- */
 (function intro() {
   const el = document.getElementById('intro');
   if (!el) return;
-  const ha = document.getElementById('intro-ha');
   const NS = 'http://www.w3.org/2000/svg';
 
-  // łańcuch cuban link: ogniwa rozłożone wzdłuż łuku na szyi, na przemian dwa kierunki złotego gradientu
-  (function chain() {
-    const g = document.getElementById('dChain');
-    const base = document.createElementNS(NS, 'path');
-    base.setAttribute('d', 'M134 352 C 146 418, 254 418, 266 352');
-    base.setAttribute('fill', 'none'); base.setAttribute('stroke', '#6b4a05'); base.setAttribute('stroke-width', '7'); base.setAttribute('stroke-linecap', 'round');
-    g.appendChild(base);
-    const L = base.getTotalLength(), step = 12.5;
-    for (let d = 0, i = 0; d <= L; d += step, i++) {
-      const p = base.getPointAtLength(d), q = base.getPointAtLength(Math.min(L, d + 1));
-      const a = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+  // łańcuchy cuban link: ogniwa rozłożone wzdłuż łuku, na przemian dwa kierunki złotego gradientu
+  function chain(id, d, rx, ry, sw, step, base) {
+    const g = document.getElementById(id);
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d); p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#6b4a05'); p.setAttribute('stroke-width', base); p.setAttribute('stroke-linecap', 'round');
+    g.appendChild(p);
+    const L = p.getTotalLength();
+    for (let t = 0, i = 0; t <= L; t += step, i++) {
+      const a = p.getPointAtLength(t), b = p.getPointAtLength(Math.min(L, t + 1));
+      const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
       const e = document.createElementNS(NS, 'ellipse');
-      e.setAttribute('cx', p.x.toFixed(1)); e.setAttribute('cy', p.y.toFixed(1));
-      e.setAttribute('rx', '9'); e.setAttribute('ry', i % 2 ? '5.6' : '4');
-      e.setAttribute('transform', `rotate(${a.toFixed(1)} ${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
-      e.setAttribute('fill', 'none'); e.setAttribute('stroke', i % 2 ? 'url(#dGold)' : 'url(#dGold2)'); e.setAttribute('stroke-width', '4.2');
+      e.setAttribute('cx', a.x.toFixed(1)); e.setAttribute('cy', a.y.toFixed(1));
+      e.setAttribute('rx', rx); e.setAttribute('ry', i % 2 ? ry : ry * .7);
+      e.setAttribute('transform', `rotate(${ang.toFixed(1)} ${a.x.toFixed(1)} ${a.y.toFixed(1)})`);
+      e.setAttribute('fill', 'none'); e.setAttribute('stroke', i % 2 ? 'url(#dGold)' : 'url(#dGold2)'); e.setAttribute('stroke-width', sw);
       g.appendChild(e);
     }
+  }
+  chain('dChain2', 'M150 352 C 160 396, 240 396, 250 352', 6, 3.6, 3, 8.5, 5);
+  chain('dChain', 'M134 352 C 146 418, 254 418, 266 352', 9, 5.6, 4.2, 12.5, 7);
+
+  // dymek: gwiaździsty „wybuch” z ogonkiem w stronę paszczy
+  (function burst() {
+    const pts = [], cx = 165, cy = 100, n = 26;
+    for (let i = 0; i < n; i++) {
+      const a = i / n * Math.PI * 2, r = i % 2 ? 1 : .82, k = 1 + (Math.sin(i * 7.3) * .05);
+      pts.push(`${(cx + Math.cos(a) * 150 * r * k).toFixed(1)},${(cy + Math.sin(a) * 92 * r * k).toFixed(1)}`);
+    }
+    pts.splice(9, 0, '12,206'); // ogonek (dół-lewo, w stronę paszczy)
+    document.getElementById('dBurst').setAttribute('points', pts.join(' '));
   })();
 
-  let phase = 0, audio = null, haTimer = null;
-  const timers = [];
-  const T = (fn, ms) => timers.push(setTimeout(fn, ms));
-
-  function spawnHa(i) {
-    const s = document.createElement('span');
-    s.textContent = i % 3 === 2 ? 'HA HA' : 'HA';
-    const side = i % 2 ? 1 : -1;
-    s.style.setProperty('--r', (side * (8 + Math.random() * 14)).toFixed(1) + 'deg');
-    s.style.setProperty('--dx', (side * (16 + Math.random() * 18)).toFixed(1) + 'vmin');
-    s.style.left = (50 + side * (14 + Math.random() * 10)) + '%';
-    s.style.top = (46 + Math.random() * 14) + '%';
-    ha.appendChild(s);
-    setTimeout(() => s.remove(), 1100);
+  // kurtyna ognia: języki u góry, żarząca krawędź u dołu (viewBox 1000×1000, rozciągany)
+  function band(id, depth, seed) {
+    const rnd = (k) => { const v = Math.sin(k * 12.9898 + seed * 78.233) * 43758.5453; return v - Math.floor(v); };
+    let d = 'M0 ' + depth, x = 0, i = 0;
+    while (x < 1000) { // ostre języki różnej wysokości, lekko pochylone
+      const w = 18 + rnd(i) * 44, h = depth * (.22 + rnd(i + 100) * .78), lean = (rnd(i + 200) - .5) * w * .5;
+      d += ` Q ${(x + w * .35 + lean).toFixed(0)} ${(depth - h * .5).toFixed(0)} ${(x + w * .5 + lean).toFixed(0)} ${(depth - h).toFixed(0)} Q ${(x + w * .65 + lean).toFixed(0)} ${(depth - h * .5).toFixed(0)} ${(x + w).toFixed(0)} ${depth}`;
+      x += w; i++;
+    }
+    d += ' L1000 ' + depth + ' L1000 940';
+    for (x = 1000, i = 0; x > 0; i++) { const w = 50 + rnd(i + 300) * 50; d += ` Q ${(x - w / 2).toFixed(0)} ${(1000 - rnd(i + 400) * 40).toFixed(0)} ${(x - w).toFixed(0)} 940`; x -= w; }
+    d += ' L0 940 Z';
+    document.getElementById(id).setAttribute('d', d);
   }
+  band('dBandP1', 170, 3); band('dBandP2', 150, 5);
+
+  let phase = 0, haTimer = null, leaveTimer = null, laughAt = 0;
+  const timers = [];
+  const T = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
+
+  /* dźwięk: syntezowany demoniczny śmiech (Web Audio) + świst kurtyny. Bez gestu użytkownika przeglądarka blokuje odtwarzanie – wtedy podpowiedź „kliknij demona” */
+  const AC = window.AudioContext || window.webkitAudioContext;
+  let ac = null, master = null;
+  function setupAudio() {
+    if (!AC || ac) return;
+    try {
+      ac = new AC();
+      const comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 6; comp.connect(ac.destination);
+      master = ac.createGain(); master.gain.value = .55; master.connect(comp);
+    } catch { ac = null; }
+  }
+  function reverb() {
+    const ir = ac.createBuffer(2, ac.sampleRate * 2.4, ac.sampleRate);
+    for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 2.2); }
+    const conv = ac.createConvolver(); conv.buffer = ir;
+    const wet = ac.createGain(); wet.gain.value = .45; conv.connect(wet); wet.connect(master);
+    return conv;
+  }
+  function noise(sec) {
+    const b = ac.createBuffer(1, Math.ceil(ac.sampleRate * sec), ac.sampleRate); const d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    const s = ac.createBufferSource(); s.buffer = b; return s;
+  }
+  function laughSound() {
+    if (!ac || ac.state !== 'running') return 0;
+    const t0 = ac.currentTime + .03, conv = reverb();
+    const shaper = ac.createWaveShaper(); const curve = new Float32Array(512);
+    for (let i = 0; i < 512; i++) curve[i] = Math.tanh((i / 255.5 - 1) * 6);
+    shaper.curve = curve;
+    const f1 = ac.createBiquadFilter(); f1.type = 'bandpass'; f1.Q.value = 2;
+    const f2 = ac.createBiquadFilter(); f2.type = 'bandpass'; f2.Q.value = 3;
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2800;
+    const mix = ac.createGain(); mix.gain.value = .8;
+    shaper.connect(f1); shaper.connect(f2); f1.connect(lp); f2.connect(lp); lp.connect(mix); mix.connect(master); mix.connect(conv);
+    const starts = [0, .3, .6, .9, 1.12, 1.34, 1.56, 1.9], durs = [.24, .24, .24, .18, .18, .18, .22, .7];
+    const pitch = [78, 76, 74, 74, 72, 70, 68, 64];
+    starts.forEach((s, i) => {
+      const t = t0 + s, dur = durs[i], f = pitch[i], last = i === starts.length - 1;
+      const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .025); g.gain.setValueAtTime(1, t + dur * .55); g.gain.exponentialRampToValueAtTime(.001, t + dur); g.connect(shaper);
+      const am = ac.createOscillator(); am.frequency.value = 24 + i * 1.5; const amg = ac.createGain(); amg.gain.value = .4; am.connect(amg); amg.connect(g.gain); am.start(t); am.stop(t + dur + .05); // warkot
+      [['sawtooth', 1, 1], ['sawtooth', 1.006, 1], ['square', .5, .55], ['sawtooth', .5, .5]].forEach(([type, mul, vol]) => {
+        const o = ac.createOscillator(); o.type = type;
+        o.frequency.setValueAtTime(f * mul * 1.18, t); o.frequency.exponentialRampToValueAtTime(f * mul * (last ? .55 : .86), t + dur);
+        const v = ac.createGain(); v.gain.value = vol; o.connect(v); v.connect(g); o.start(t); o.stop(t + dur + .05);
+      });
+      f1.frequency.setValueAtTime(620, t); f1.frequency.exponentialRampToValueAtTime(400, t + dur);
+      f2.frequency.setValueAtTime(1180, t); f2.frequency.exponentialRampToValueAtTime(820, t + dur);
+      const ns = noise(dur); const nf = ac.createBiquadFilter(); nf.type = 'bandpass'; nf.frequency.value = 1600; nf.Q.value = .7;
+      const ng = ac.createGain(); ng.gain.setValueAtTime(.12, t); ng.gain.exponentialRampToValueAtTime(.001, t + dur);
+      ns.connect(nf); nf.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + dur);
+    });
+    const sub = ac.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(64, t0); sub.frequency.exponentialRampToValueAtTime(28, t0 + 1.2);
+    const sg = ac.createGain(); sg.gain.setValueAtTime(.7, t0); sg.gain.exponentialRampToValueAtTime(.001, t0 + 1.3); sub.connect(sg); sg.connect(master); sub.start(t0); sub.stop(t0 + 1.3);
+    return 2.7;
+  }
+  function whooshSound() {
+    if (!ac || ac.state !== 'running') return;
+    const t = ac.currentTime;
+    const ns = noise(1.6); const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = .9;
+    bp.frequency.setValueAtTime(160, t); bp.frequency.exponentialRampToValueAtTime(2600, t + .8); bp.frequency.exponentialRampToValueAtTime(260, t + 1.6);
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.8, t + .6); g.gain.exponentialRampToValueAtTime(.001, t + 1.6);
+    ns.connect(bp); bp.connect(g); g.connect(master); ns.start(t); ns.stop(t + 1.6);
+    const boom = ac.createOscillator(); boom.type = 'sine'; boom.frequency.setValueAtTime(70, t + .9); boom.frequency.exponentialRampToValueAtTime(24, t + 1.9);
+    const bg = ac.createGain(); bg.gain.setValueAtTime(0, t + .9); bg.gain.linearRampToValueAtTime(.9, t + .95); bg.gain.exponentialRampToValueAtTime(.001, t + 2);
+    boom.connect(bg); bg.connect(master); boom.start(t + .9); boom.stop(t + 2);
+  }
+  function unlockAudio() { // po geście użytkownika: wznów kontekst i odpal śmiech, wydłużając scenę, żeby się zmieścił
+    if (!ac || ac.state === 'running') return;
+    ac.resume().then(() => {
+      if (phase !== 1 || ac.state !== 'running') return;
+      el.classList.remove('mute');
+      const len = laughSound();
+      const left = laughAt + 2600 - performance.now();
+      if (len * 1000 > left) { clearTimeout(leaveTimer); leaveTimer = T(leave, len * 1000 + 100); }
+    }).catch(() => {});
+  }
+
   function laugh() {
     if (phase) return;
-    phase = 1; el.classList.add('laugh');
-    audio = playLaugh();
-    let n = 0; spawnHa(n++);
-    haTimer = setInterval(() => { spawnHa(n++); if (n >= 7) clearInterval(haTimer); }, 340);
+    phase = 1; laughAt = performance.now(); el.classList.add('laugh');
+    setupAudio();
+    if (ac && ac.state === 'running') laughSound(); else if (ac) el.classList.add('mute');
   }
   function leave() {
     if (phase === 2) return;
     phase = 2; timers.forEach(clearTimeout); clearInterval(haTimer);
-    removeEventListener('keydown', leave);
-    if (audio) { try { audio.close(); } catch {} }
+    removeEventListener('keydown', onKey);
     el.classList.remove('laugh'); el.classList.add('leave');
-    document.body.classList.remove('intro');
-    document.dispatchEvent(new Event('hsc:intro-done'));
-    setTimeout(() => el.remove(), 1000);
+    whooshSound();
+    setTimeout(() => { document.body.classList.remove('intro'); }, 1050);   // kurtyna zakryła ekran – strona pod spodem
+    setTimeout(() => document.dispatchEvent(new Event('hsc:intro-done')), 1500); // kurtyna schodzi – hero wjeżdża
+    setTimeout(() => { el.remove(); if (ac) { try { master.gain.linearRampToValueAtTime(0, ac.currentTime + .6); setTimeout(() => ac.close(), 800); } catch {} } }, 2400);
   }
-  T(laugh, 1100); T(leave, 3700);
-  el.addEventListener('pointerdown', leave);
-  addEventListener('keydown', leave);
+  function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') leave(); }
+  T(laugh, 1100); leaveTimer = T(leave, 3800);
+  el.querySelector('.skip').addEventListener('pointerdown', (e) => { e.stopPropagation(); leave(); });
+  el.addEventListener('pointerdown', () => { if (phase === 1 && el.classList.contains('mute')) unlockAudio(); else if (phase === 1) leave(); else if (phase === 0) { setupAudio(); unlockAudio(); } });
+  addEventListener('keydown', onKey);
+})();
 
-  // śmiech syntezowany w Web Audio (7 „ha”, saw+square przez przester, pasmo samogłoski, pogłos, sub-bas). Gra tylko, gdy przeglądarka pozwala na autoodtwarzanie
-  function playLaugh() {
-    try {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return null;
-      const ac = new AC();
-      if (ac.state !== 'running') { ac.close(); return null; }
-      const t0 = ac.currentTime + .05, sr = ac.sampleRate;
-      const master = ac.createGain(); master.gain.value = .45; master.connect(ac.destination);
-      const ir = ac.createBuffer(2, sr * 1.6, sr);
-      for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 2.6); }
-      const conv = ac.createConvolver(); conv.buffer = ir;
-      const wet = ac.createGain(); wet.gain.value = .35; conv.connect(wet); wet.connect(ac.destination);
-      const shaper = ac.createWaveShaper(); const curve = new Float32Array(256);
-      for (let i = 0; i < 256; i++) curve[i] = Math.tanh((i / 127.5 - 1) * 3.5);
-      shaper.curve = curve;
-      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.2;
-      const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800;
-      shaper.connect(bp); bp.connect(lp); lp.connect(master); lp.connect(conv);
-      for (let i = 0; i < 7; i++) {
-        const t = t0 + i * .34 + (i > 3 ? (i - 3) * .03 : 0), dur = .2, f = 92 - i * 4;
-        const g = ac.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + dur); g.connect(shaper);
-        [['sawtooth', 0], ['sawtooth', 7], ['square', -12]].forEach(([type, det]) => {
-          const o = ac.createOscillator(); o.type = type; o.detune.value = det;
-          o.frequency.setValueAtTime(f * 1.15, t); o.frequency.exponentialRampToValueAtTime(f * .85, t + dur);
-          o.connect(g); o.start(t); o.stop(t + dur + .05);
-        });
-        bp.frequency.setValueAtTime(900, t); bp.frequency.exponentialRampToValueAtTime(450, t + dur);
-        const nb = ac.createBuffer(1, sr * dur, sr); const nd = nb.getChannelData(0);
-        for (let k = 0; k < nd.length; k++) nd[k] = Math.random() * 2 - 1;
-        const ns = ac.createBufferSource(); ns.buffer = nb;
-        const nf = ac.createBiquadFilter(); nf.type = 'bandpass'; nf.frequency.value = 1400; nf.Q.value = .7;
-        const ng = ac.createGain(); ng.gain.setValueAtTime(.12, t); ng.gain.exponentialRampToValueAtTime(.001, t + dur);
-        ns.connect(nf); nf.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + dur);
-      }
-      const sub = ac.createOscillator(); sub.type = 'sine'; sub.frequency.setValueAtTime(70, t0); sub.frequency.exponentialRampToValueAtTime(30, t0 + .9);
-      const sg = ac.createGain(); sg.gain.setValueAtTime(.6, t0); sg.gain.exponentialRampToValueAtTime(.001, t0 + 1);
-      sub.connect(sg); sg.connect(master); sub.start(t0); sub.stop(t0 + 1);
-      setTimeout(() => { try { ac.close(); } catch {} }, 5000);
-      return ac;
-    } catch { return null; }
+/* ---------- płomień podążający za kursorem (tylko mysz/touchpad, bez trybu ograniczonego ruchu). Sprite'y + 'lighter', ≤90 cząstek ---------- */
+(function cursorFlame() {
+  if (!matchMedia('(pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = document.createElement('canvas'); c.id = 'flame'; c.setAttribute('aria-hidden', 'true'); document.body.appendChild(c);
+  const ctx = c.getContext('2d', { alpha: true });
+  if (!ctx) return;
+  let W = 0, H = 0, px = -1, py = -1, fx = 0, fy = 0, has = false, raf = null, last = 0, parts = [], t = 0;
+  function sprite(size, stops) {
+    const s = document.createElement('canvas'); s.width = s.height = size;
+    const g = s.getContext('2d'), r = size / 2, grad = g.createRadialGradient(r, r, 0, r, r, r);
+    stops.forEach(([o, col]) => grad.addColorStop(o, col));
+    g.fillStyle = grad; g.fillRect(0, 0, size, size); return s;
   }
+  const SP = [
+    sprite(32, [[0, 'rgba(255,250,215,1)'], [.35, 'rgba(255,214,110,.8)'], [1, 'rgba(255,170,60,0)']]),
+    sprite(32, [[0, 'rgba(255,190,90,1)'], [.4, 'rgba(255,120,40,.7)'], [1, 'rgba(255,90,30,0)']]),
+    sprite(32, [[0, 'rgba(255,90,60,.9)'], [.45, 'rgba(210,18,46,.5)'], [1, 'rgba(120,10,30,0)']]),
+  ];
+  function resize() { W = innerWidth; H = innerHeight; c.width = W; c.height = H; }
+  function spawn(x, y) {
+    parts.push({ x: x + (Math.random() - .5) * 6, y: y + (Math.random() - .5) * 6, vx: (Math.random() - .5) * 26, vy: -(50 + Math.random() * 80), s: 12 + Math.random() * 12, life: 0, ttl: .45 + Math.random() * .35, w: Math.random() * 6.3 });
+  }
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    const dt = Math.min(.05, (now - last) / 1000 || 0); last = now; t += dt;
+    if (has) {
+      const ox = fx, oy = fy;
+      fx += (px - fx) * Math.min(1, dt * 16); fy += (py - fy) * Math.min(1, dt * 16);
+      const dist = Math.hypot(fx - ox, fy - oy), n = 2 + Math.min(6, dist / 6 | 0);
+      for (let i = 0; i < n; i++) { const k = i / n; spawn(ox + (fx - ox) * k + 8, oy + (fy - oy) * k + 10); }
+      if (parts.length > 90) parts.splice(0, parts.length - 90);
+    }
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const p = parts[i]; p.life += dt;
+      const q = p.life / p.ttl;
+      if (q >= 1) { parts.splice(i, 1); continue; }
+      p.vy -= 60 * dt; p.x += (p.vx + Math.sin(t * 9 + p.w) * 14) * dt; p.y += p.vy * dt;
+      const s = p.s * (1 - q * .75);
+      ctx.globalAlpha = (1 - q) * .9;
+      ctx.drawImage(SP[q < .22 ? 0 : q < .58 ? 1 : 2], p.x - s / 2, p.y - s / 2, s, s);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    if (!has && !parts.length) { cancelAnimationFrame(raf); raf = null; }
+  }
+  function start() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  addEventListener('pointermove', (e) => { if (e.pointerType && e.pointerType !== 'mouse') return; px = e.clientX; py = e.clientY; if (!has) { has = true; fx = px; fy = py; } start(); }, { passive: true });
+  document.addEventListener('pointerleave', () => { has = false; });
+  document.documentElement.addEventListener('mouseleave', () => { has = false; });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { has = false; parts.length = 0; } });
+  resize(); addEventListener('resize', resize);
 })();
 
 /* ---------- tło: żar + mgła. Lekko: sprite'y zamiast shadowBlur, ~60 cząstek, 30 kl./s, pauza gdy karta ukryta ---------- */
