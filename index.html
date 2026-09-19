@@ -11,7 +11,7 @@
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
 // i przeładowuje stronę raz, jeśli serwer ma nowszą. Działa tylko przez http(s), nie z pliku lokalnego.
 (function () {
-  const BUILD = '2026-09-19T01:50:55.889Z';
+  const BUILD = '2026-09-19T01:59:52.934Z';
   if (!/^https?:/.test(location.protocol)) return;
   fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(v => {
     if (!v || !v.build || v.build === BUILD) return;
@@ -565,10 +565,13 @@
   .intro .scene { position: absolute; left: 0; top: 0; width: 100%; height: 130vh; background: #030203; }
   .intro .view { position: relative; height: 100vh; display: grid; place-items: center; overflow: hidden; }
   .intro .fire { position: absolute; left: -10%; right: -10%; bottom: 0; height: 48vh; transform-origin: bottom; background: radial-gradient(55% 100% at 50% 100%, rgba(255,106,31,.34), rgba(210,18,46,.16) 48%, transparent 76%); animation: introFire 1.5s ease-in-out infinite alternate; }
-  .intro .glow { position: absolute; inset: -30%; opacity: 0; background: radial-gradient(38% 38% at 50% 52%, rgba(210,18,46,.5), rgba(210,18,46,.1) 50%, transparent 72%); animation: introFade 1.2s ease-out .2s forwards; }
+  .intro .glow { position: absolute; inset: -30%; opacity: 0; background: radial-gradient(38% 38% at 50% 52%, rgba(210,18,46,.5), rgba(210,18,46,.1) 50%, transparent 72%); }
+  .intro.go .glow { animation: introFade 1.2s ease-out .2s forwards; }
   .intro .stage { position: relative; width: min(74vmin, 540px); aspect-ratio: 400 / 470; }
-  .intro .demon { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(8%) scale(.86); animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
-  .intro .demon .eyes { opacity: 0; animation: introEyes .55s ease-out .6s forwards; }
+  .intro .demon { display: block; width: 100%; height: 100%; opacity: 0; transform: translateY(8%) scale(.86); }
+  .intro.go .demon { animation: introRise 1s cubic-bezier(.2,.8,.2,1) .15s forwards; }
+  .intro .demon .eyes { opacity: 0; }
+  .intro.go .demon .eyes { animation: introEyes .55s ease-out .6s forwards; }
   .intro .demon .head, .intro .demon .jaw, .intro .demon .eye, .intro .demon .chain, .intro .demon .torso, .intro .demon .pend, .intro .demon .hand, .intro .demon .smoke, .intro .demon .spark, .intro .demon .eyes { transform-box: fill-box; }
   .intro .demon .head { transform-origin: 50% 90%; }
   .intro .demon .jaw { transform-origin: 50% 0; }
@@ -594,13 +597,60 @@
   .intro .bubble text { font-family: var(--display); fill: url(#dFireTxt); transform-box: fill-box; transform-origin: 50% 50%; }
   .intro.laugh .bubble text { animation: introHaPulse .36s ease-in-out infinite alternate; }
   .intro.laugh .bubble text.l2 { animation-delay: .18s; }
-  .intro .ui { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 0 18px; font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); opacity: 0; animation: introFade .6s ease-out 1.3s forwards; }
+  .intro .ui { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 0 18px; font: 600 11px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); opacity: 0; }
+  .intro.go .ui { animation: introFade .6s ease-out 1.3s forwards; }
   .intro .ui .hint { display: none; color: var(--flame); }
   .intro.mute .ui .hint { display: inline; }
   .intro .ui .skip { background: transparent; border: 1px solid var(--line-2); color: var(--text); padding: 10px 16px; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: var(--cur-hand); transition: border-color .2s, background .2s; }
   .intro .ui .skip:hover { border-color: var(--red-2); background: rgba(210,18,46,.2); }
+  /* brama piekieł: dwuskrzydłowe żelazne wrota na cały ekran, łańcuch z kłódką, napis; klik = kłódka spada, wrota się otwierają, za nimi demon */
+  .intro .gate { position: absolute; inset: 0; z-index: 5; overflow: hidden; background: #030203; cursor: var(--cur-hand); }
+  .intro .gate .glow2 { position: absolute; inset: 0; background: radial-gradient(60% 55% at 50% 60%, rgba(210,18,46,.42), rgba(210,18,46,.08) 50%, transparent 75%); animation: gatePulse 3.2s ease-in-out infinite alternate; }
+  .intro .gate .doors { position: absolute; inset: 0; perspective: 1400px; }
+  .intro .gate .door { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; backface-visibility: hidden; transition: transform 1.7s cubic-bezier(.55,0,.35,1) .4s;
+    background: repeating-linear-gradient(90deg, #1a1311 0 12.5%, #231a17 12.5% 25%, #15100e 25% 37.5%, #1f1714 37.5% 50%), #1a1311; }
+  .intro .gate .door::before { content: ""; position: absolute; inset: 0; background: radial-gradient(1.5px 1.5px at 50% 50%, rgba(255,255,255,.07), transparent 70%) 0 0 / 22px 22px, linear-gradient(180deg, rgba(0,0,0,.55), transparent 22%, transparent 78%, rgba(0,0,0,.65)); }
+  .intro .gate .door.l { left: 0; transform-origin: left center; border-right: 1px solid #000; }
+  .intro .gate .door.r { right: 0; transform-origin: right center; border-left: 1px solid #000; }
+  .intro .gate .door.l::after, .intro .gate .door.r::after { content: ""; position: absolute; top: 0; bottom: 0; width: 26%; pointer-events: none; }
+  .intro .gate .door.l::after { right: 0; background: linear-gradient(90deg, transparent, rgba(210,18,46,.18)); }
+  .intro .gate .door.r::after { left: 0; background: linear-gradient(270deg, transparent, rgba(210,18,46,.18)); }
+  .intro .gate .door svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .intro .gate .door.r svg .orn { transform: translate(500px, 0) scaleX(-1); }
+  .intro .gate .gap { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px; background: #ff6a1f; box-shadow: 0 0 24px 6px rgba(255,106,31,.7), 0 0 80px 20px rgba(210,18,46,.5); animation: gatePulse 1.6s ease-in-out infinite alternate; transition: opacity .6s; }
+  .intro .gate .chainbar { position: absolute; left: 0; right: 0; top: 60%; height: 60px; margin-top: -30px; pointer-events: none; }
+  .intro .gate .chainbar svg { position: absolute; top: 0; height: 60px; width: 50%; overflow: visible; }
+  .intro .gate .chainbar .half.l { left: 0; transform-origin: 0 50%; }
+  .intro .gate .chainbar .half.r { right: 0; transform-origin: 100% 50%; }
+  .intro .gate .chainbar .half { transition: transform 1s cubic-bezier(.4,.1,.7,1), opacity .6s .5s; }
+  .intro .gate .lock { position: absolute; left: 50%; top: 60%; width: 78px; height: 104px; margin: -34px 0 0 -39px; transform-origin: 50% 20%; transition: transform .7s cubic-bezier(.5,0,.8,.4), opacity .4s .35s; }
+  .intro .gate .lock svg { width: 100%; height: 100%; display: block; }
+  .intro .gate .txt { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 18px; pointer-events: none; transition: opacity .5s, transform .6s; }
+  .intro .gate .txt .eyebrow { justify-content: center; color: var(--flame); }
+  .intro .gate .txt .eyebrow::before, .intro .gate .txt .eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--flame); }
+  .intro .gate .txt h1 { margin: 18px 0 20px; font: 400 clamp(46px, 11vw, 148px)/.95 var(--display); letter-spacing: .04em; color: #ffb347; text-shadow: 0 0 18px rgba(255,138,42,.9), 0 0 60px rgba(210,18,46,.8), 0 6px 0 #3a0410; animation: gateFlicker 4.5s linear infinite; }
+  .intro .gate .txt h1 em { font-style: normal; color: #ff2d4a; text-shadow: 0 0 18px rgba(255,45,74,.9), 0 0 60px rgba(210,18,46,.8), 0 6px 0 #3a0410; }
+  .intro .gate .txt .go { font: 600 12px/1 var(--cond); letter-spacing: .38em; text-transform: uppercase; color: var(--text); animation: gateBreath 2s ease-in-out infinite; }
+  .intro .gate .txt .go small { display: block; margin-top: 12px; font-size: 10px; letter-spacing: .3em; color: var(--muted); }
+  .intro .gate .skipg { position: absolute; right: 22px; bottom: 22px; background: transparent; border: 0; padding: 8px 0; font: 600 10px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--dim); cursor: var(--cur-hand); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+  .intro .gate .skipg:hover { color: var(--text); border-color: var(--red-2); }
+  .intro .gate .em i { position: absolute; bottom: -12px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle, #ffe3a3, #ff6a1f 55%, rgba(255,106,31,0) 72%); opacity: 0; animation: gateEmber var(--t) linear var(--d) infinite; }
+  .intro .gate.open .door.l { transform: rotateY(-112deg); }
+  .intro .gate.open .door.r { transform: rotateY(112deg); }
+  .intro .gate.open .gap { opacity: 0; }
+  .intro .gate.open .lock { transform: translateY(70vh) rotate(28deg); opacity: 0; }
+  .intro .gate.open .chainbar .half.l { transform: rotate(38deg); opacity: 0; }
+  .intro .gate.open .chainbar .half.r { transform: rotate(-38deg); opacity: 0; }
+  .intro .gate.open .txt { opacity: 0; transform: scale(1.12); }
+  .intro .gate.open .skipg, .intro .gate.open .em { opacity: 0; transition: opacity .4s; }
+  .intro .gate.open { background: transparent; pointer-events: none; }
+  .intro .gate.open .glow2 { animation: none; opacity: 0; transition: opacity 1.4s .6s; }
+  @keyframes gatePulse { from { opacity: .55; } to { opacity: 1; } }
+  @keyframes gateBreath { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes gateFlicker { 0%, 100% { opacity: 1; } 7% { opacity: .82; } 9% { opacity: 1; } 31% { opacity: .9; } 33% { opacity: 1; } 34% { opacity: .7; } 36% { opacity: 1; } 68% { opacity: .88; } 70% { opacity: 1; } }
+  @keyframes gateEmber { 0% { transform: translate(0, 0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translate(var(--dx), -108vh); opacity: 0; } }
   /* kurtyna ognia */
-  .intro .curtain { position: absolute; left: -5%; width: 110%; top: 0; height: 150vh; transform: translateY(100vh); pointer-events: none; }
+  .intro .curtain { position: absolute; z-index: 6; left: -5%; width: 110%; top: 0; height: 150vh; transform: translateY(100vh); pointer-events: none; }
   .intro .curtain svg { position: absolute; left: 0; width: 100%; height: 100%; transform-origin: 50% 100%; display: block; }
   .intro .curtain .c1 { top: -7vh; animation: introLick .55s ease-in-out infinite alternate; }
   .intro .curtain .c2 { top: 0; animation: introLick .42s ease-in-out .2s infinite alternate-reverse; }
@@ -647,7 +697,78 @@
 </style>
 </head>
 <body class="intro">
-<div class="intro" id="intro" aria-hidden="true">
+<div class="intro" id="intro">
+  <div class="gate" id="gate" role="button" tabindex="0" aria-label="Wejdź do piekła – otwórz bramę">
+    <div class="glow2"></div>
+    <div class="em" aria-hidden="true"></div>
+    <div class="doors">
+      <div class="door l">
+        <svg viewBox="0 0 500 1000" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="gIron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a211e"/><stop offset=".5" stop-color="#0e0a09"/><stop offset="1" stop-color="#1d1614"/></linearGradient></defs>
+          <g fill="url(#gIron)"><rect x="0" y="120" width="500" height="40"/><rect x="0" y="480" width="500" height="40"/><rect x="0" y="840" width="500" height="40"/></g>
+          <g fill="#3a2f2b"><rect x="0" y="120" width="500" height="2"/><rect x="0" y="480" width="500" height="2"/><rect x="0" y="840" width="500" height="2"/></g>
+          <g fill="#4a3d38" stroke="#000" stroke-width="2">
+            <circle cx="40" cy="140" r="7"/><circle cx="130" cy="140" r="7"/><circle cx="220" cy="140" r="7"/><circle cx="310" cy="140" r="7"/><circle cx="400" cy="140" r="7"/><circle cx="470" cy="140" r="7"/>
+            <circle cx="40" cy="500" r="7"/><circle cx="130" cy="500" r="7"/><circle cx="220" cy="500" r="7"/><circle cx="310" cy="500" r="7"/><circle cx="400" cy="500" r="7"/><circle cx="470" cy="500" r="7"/>
+            <circle cx="40" cy="860" r="7"/><circle cx="130" cy="860" r="7"/><circle cx="220" cy="860" r="7"/><circle cx="310" cy="860" r="7"/><circle cx="400" cy="860" r="7"/><circle cx="470" cy="860" r="7"/>
+          </g>
+        </svg>
+        <svg class="orn" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="left:auto;right:3%;width:min(46vmin,44%);top:50%;height:min(70vmin,70%);transform:translateY(-50%)">
+          <rect x="40" y="40" width="320" height="520" rx="22" fill="none" stroke="#3a2b27" stroke-width="8"/><rect x="60" y="60" width="280" height="480" rx="14" fill="none" stroke="#221a17" stroke-width="3"/>
+          <g fill="#4a3a35" stroke="#0a0605" stroke-width="2"><circle cx="40" cy="40" r="10"/><circle cx="360" cy="40" r="10"/><circle cx="40" cy="560" r="10"/><circle cx="360" cy="560" r="10"/></g>
+          <text x="204" y="330" text-anchor="middle" font-family="Pirata One, serif" font-size="300" fill="#000" opacity=".6">H</text>
+          <text x="200" y="326" text-anchor="middle" font-family="Pirata One, serif" font-size="300" fill="#3a0410" stroke="#b3001b" stroke-width="2">H</text>
+          <path d="M176 438 C 166 420, 160 404, 166 386 C 176 400, 184 412, 192 424 Z M224 438 C 234 420, 240 404, 234 386 C 224 400, 216 412, 208 424 Z" fill="#2a1f1c" stroke="#0a0605" stroke-width="1.5"/>
+          <circle cx="200" cy="446" r="28" fill="#3a2b27" stroke="#0a0605" stroke-width="3"/>
+          <circle cx="189" cy="442" r="4" fill="#ff2d4a"/><circle cx="211" cy="442" r="4" fill="#ff2d4a"/>
+          <path d="M190 458 Q 200 466 210 458" fill="none" stroke="#0a0605" stroke-width="2"/>
+          <circle cx="200" cy="512" r="42" fill="none" stroke="#5a4a44" stroke-width="13"/><circle cx="200" cy="512" r="42" fill="none" stroke="#221a17" stroke-width="4" stroke-dasharray="6 14"/>
+        </svg>
+      </div>
+      <div class="door r">
+        <svg viewBox="0 0 500 1000" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="url(#gIron)"><rect x="0" y="120" width="500" height="40"/><rect x="0" y="480" width="500" height="40"/><rect x="0" y="840" width="500" height="40"/></g>
+          <g fill="#3a2f2b"><rect x="0" y="120" width="500" height="2"/><rect x="0" y="480" width="500" height="2"/><rect x="0" y="840" width="500" height="2"/></g>
+          <g fill="#4a3d38" stroke="#000" stroke-width="2">
+            <circle cx="30" cy="140" r="7"/><circle cx="100" cy="140" r="7"/><circle cx="190" cy="140" r="7"/><circle cx="280" cy="140" r="7"/><circle cx="370" cy="140" r="7"/><circle cx="460" cy="140" r="7"/>
+            <circle cx="30" cy="500" r="7"/><circle cx="100" cy="500" r="7"/><circle cx="190" cy="500" r="7"/><circle cx="280" cy="500" r="7"/><circle cx="370" cy="500" r="7"/><circle cx="460" cy="500" r="7"/>
+            <circle cx="30" cy="860" r="7"/><circle cx="100" cy="860" r="7"/><circle cx="190" cy="860" r="7"/><circle cx="280" cy="860" r="7"/><circle cx="370" cy="860" r="7"/><circle cx="460" cy="860" r="7"/>
+          </g>
+        </svg>
+        <svg class="orn" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="right:auto;left:3%;width:min(46vmin,44%);top:50%;height:min(70vmin,70%);transform:translateY(-50%)">
+          <rect x="40" y="40" width="320" height="520" rx="22" fill="none" stroke="#3a2b27" stroke-width="8"/><rect x="60" y="60" width="280" height="480" rx="14" fill="none" stroke="#221a17" stroke-width="3"/>
+          <g fill="#4a3a35" stroke="#0a0605" stroke-width="2"><circle cx="40" cy="40" r="10"/><circle cx="360" cy="40" r="10"/><circle cx="40" cy="560" r="10"/><circle cx="360" cy="560" r="10"/></g>
+          <text x="204" y="330" text-anchor="middle" font-family="Pirata One, serif" font-size="300" fill="#000" opacity=".6">R</text>
+          <text x="200" y="326" text-anchor="middle" font-family="Pirata One, serif" font-size="300" fill="#3a0410" stroke="#b3001b" stroke-width="2">R</text>
+          <path d="M176 438 C 166 420, 160 404, 166 386 C 176 400, 184 412, 192 424 Z M224 438 C 234 420, 240 404, 234 386 C 224 400, 216 412, 208 424 Z" fill="#2a1f1c" stroke="#0a0605" stroke-width="1.5"/>
+          <circle cx="200" cy="446" r="28" fill="#3a2b27" stroke="#0a0605" stroke-width="3"/>
+          <circle cx="189" cy="442" r="4" fill="#ff2d4a"/><circle cx="211" cy="442" r="4" fill="#ff2d4a"/>
+          <path d="M190 458 Q 200 466 210 458" fill="none" stroke="#0a0605" stroke-width="2"/>
+          <circle cx="200" cy="512" r="42" fill="none" stroke="#5a4a44" stroke-width="13"/><circle cx="200" cy="512" r="42" fill="none" stroke="#221a17" stroke-width="4" stroke-dasharray="6 14"/>
+        </svg>
+      </div>
+    </div>
+    <div class="gap"></div>
+    <div class="chainbar" aria-hidden="true">
+      <svg class="half l" viewBox="0 0 1000 60" preserveAspectRatio="none"></svg>
+      <svg class="half r" viewBox="0 0 1000 60" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="lock" aria-hidden="true">
+      <svg viewBox="0 0 78 104">
+        <path d="M20 48 V 30 C 20 16, 28 8, 39 8 C 50 8, 58 16, 58 30 V 48" fill="none" stroke="#6a5a54" stroke-width="10" stroke-linecap="round"/>
+        <path d="M20 48 V 30 C 20 16, 28 8, 39 8 C 50 8, 58 16, 58 30 V 48" fill="none" stroke="#2a201d" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 9"/>
+        <rect x="6" y="44" width="66" height="56" rx="9" fill="#1b1512" stroke="#4a3d38" stroke-width="3"/>
+        <rect x="12" y="50" width="54" height="44" rx="6" fill="none" stroke="#2a201d" stroke-width="1.5"/>
+        <circle cx="39" cy="68" r="7" fill="#ff2d4a"/><rect x="36" y="70" width="6" height="16" rx="2" fill="#ff2d4a"/>
+      </svg>
+    </div>
+    <div class="txt">
+      <span class="eyebrow">Hellside Records</span>
+      <h1>Wejdź do <em>piekła</em></h1>
+      <div class="go">Kliknij, żeby otworzyć bramę<small>Włącz głośniki · z dźwiękiem</small></div>
+    </div>
+    <button class="skipg" type="button">Pomiń intro</button>
+  </div>
   <div class="scene">
     <div class="view">
       <div class="fire"></div>
@@ -953,7 +1074,7 @@
 </div>
 
 <script>
-const DATA = {"generatedAt":"2026-09-19T01:50:55.889Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":270,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":236,"progress":6}],"timeline":[{"date":"2026-09-19","total":270,"top":"PqJv58Venx0","topViews":264}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":264,"share":97.8,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.2,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
+const DATA = {"generatedAt":"2026-09-19T01:59:52.934Z","chartDate":"2026-09-19","prevDate":null,"channel":{"title":"HELLSIDE RECORDS","url":"https://www.youtube.com/@HELLSIDERECORDS"},"config":{"nowStart":{"id":"PqJv58Venx0","title":"740FREDO - WEDNESDAY!"},"excludeKeyword":"","nowSize":10,"allTimeSize":100,"latestSize":6,"tiers":[{"name":"Żar","views":100},{"name":"Ogień","views":250},{"name":"Piekło","views":500},{"name":"Inferno","views":1000},{"name":"Czeluść","views":5000}],"discord":"https://discord.gg/rWgXWJJSd"},"stats":{"source":"YouTube Data API","inexact":0,"totalVideos":2,"excluded":[],"nowPoolSize":2,"allTimePoolSize":2},"totals":{"labelViews":270,"tracks":2,"artists":2,"subscribers":7,"channelViews":221,"channelCreatedAt":"2026-09-13T12:42:24.227131Z","viewsDelta":null,"firstRelease":"13 wrz 2026","snapshots":1,"firstSnapshot":"2026-09-19"},"now":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null,"daysAtTop":1,"tier":1},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null,"daysAtTop":0,"tier":null}],"certs":[{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","tier":1,"tierName":"Ogień","date":"2026-09-19","dateText":"19 wrz 2026"}],"nextCerts":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","nextTier":0,"nextName":"Żar","missing":94,"progress":6},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","nextTier":2,"nextName":"Piekło","missing":236,"progress":6}],"timeline":[{"date":"2026-09-19","total":270,"top":"PqJv58Venx0","topViews":264}],"tracks":{"e2dKOOVYiaE":{"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","url":"https://www.youtube.com/watch?v=e2dKOOVYiaE"},"PqJv58Venx0":{"artist":"740FREDO","song":"WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0"}},"allTime":[{"pos":1,"id":"PqJv58Venx0","isLatest":true,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","publishedText":"13 wrz 2026","prevPos":null,"move":null,"peak":1,"weeks":1,"viewsDelta":null},{"pos":2,"id":"e2dKOOVYiaE","isLatest":true,"artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","publishedText":"19 wrz 2026","prevPos":null,"move":null,"peak":2,"weeks":1,"viewsDelta":null}],"rising":[],"artists":[{"pos":1,"name":"740FREDO","tracks":1,"views":264,"share":97.8,"viewsDelta":null,"bestPos":1,"top":{"id":"PqJv58Venx0","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"},"newest":{"id":"PqJv58Venx0","song":"WEDNESDAY!","publishedText":"13 wrz 2026"}},{"pos":2,"name":"740VICEJAVIER","tracks":1,"views":6,"share":2.2,"viewsDelta":null,"bestPos":2,"top":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"},"newest":{"id":"e2dKOOVYiaE","song":"MIJAM KONKURENCJE","publishedText":"19 wrz 2026"}}],"reigns":[{"id":"PqJv58Venx0","from":"2026-09-19","to":"2026-09-19","days":1,"artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","url":"https://www.youtube.com/watch?v=PqJv58Venx0","fromText":"19 wrz 2026","toText":"19 wrz 2026"}],"latest":[{"id":"e2dKOOVYiaE","artist":"740VICEJAVIER","song":"MIJAM KONKURENCJE","title":"740VICEJAVIER - MIJAM KONKURENCJE","views":6,"url":"https://www.youtube.com/watch?v=e2dKOOVYiaE","thumb":"https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg","publishedAt":"2026-09-19T00:46:43Z","publishedText":"19 wrz 2026","isNew":true,"viewsDelta":null},{"id":"PqJv58Venx0","artist":"740FREDO","song":"WEDNESDAY!","title":"740FREDO - WEDNESDAY!","views":264,"url":"https://www.youtube.com/watch?v=PqJv58Venx0","thumb":"https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg","thumbLarge":"https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg","publishedAt":"2026-09-13T18:00:06Z","publishedText":"13 wrz 2026","isNew":true,"viewsDelta":null}]};
 
 const nf = new Intl.NumberFormat('pl-PL');
 const fmtDate = (iso) => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
@@ -1520,6 +1641,11 @@ init();
     if (phase === 2) return;
     phase = 2; timers.forEach(clearTimeout); clearInterval(haTimer);
     removeEventListener('keydown', onKey);
+    if (!opened) { // pominięcie z poziomu bramy – bez kurtyny, zwykłe wygaszenie
+      document.body.classList.remove('intro'); document.dispatchEvent(new Event('hsc:intro-done'));
+      el.style.transition = 'opacity .5s'; el.style.opacity = '0'; setTimeout(() => el.remove(), 520);
+      return;
+    }
     el.classList.remove('laugh'); el.classList.add('leave');
     whooshSound();
     setTimeout(() => { document.body.classList.remove('intro'); }, 1050);   // kurtyna zakryła ekran – strona pod spodem
@@ -1528,12 +1654,87 @@ init();
   }
   function onKey(e) { // Esc pomija; inne klawisze najpierw odblokowują dźwięk, Enter/Spacja przy grającym dźwięku pomijają
     if (e.key === 'Escape') return leave();
+    if (!opened) { if (e.key === 'Enter' || e.key === ' ') open(); return; }
     if (ac && ac.state !== 'running') return unlockAudio();
     if (e.key === 'Enter' || e.key === ' ') leave();
   }
-  T(laugh, 1100); leaveTimer = T(leave, 3800);
+  /* brama: łańcuchy i żar generowane, klik = dźwięk wrót, otwarcie, start sceny z demonem */
+  const gate = document.getElementById('gate');
+  let opened = false;
+  el.querySelectorAll('.chainbar .half').forEach((svg) => {
+    for (let x = 12, i = 0; x < 1000; x += 34, i++) {
+      const e = document.createElementNS(NS, 'ellipse');
+      e.setAttribute('cx', x); e.setAttribute('cy', 30); e.setAttribute('rx', 21); e.setAttribute('ry', i % 2 ? 11 : 7);
+      e.setAttribute('fill', 'none'); e.setAttribute('stroke', i % 2 ? '#8a7d78' : '#5a4f4a'); e.setAttribute('stroke-width', 6);
+      svg.appendChild(e);
+    }
+  });
+  (function embersCss() {
+    const box = gate.querySelector('.em');
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('i');
+      s.style.setProperty('--x', (Math.random() * 100).toFixed(1) + '%');
+      s.style.setProperty('--s', (3 + Math.random() * 4).toFixed(1) + 'px');
+      s.style.setProperty('--t', (6 + Math.random() * 6).toFixed(1) + 's');
+      s.style.setProperty('--d', (-Math.random() * 12).toFixed(1) + 's');
+      s.style.setProperty('--dx', ((Math.random() - .5) * 140).toFixed(0) + 'px');
+      box.appendChild(s);
+    }
+  })();
+  function thud(t, f, dur, vol) {
+    const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, f * .3), t + dur);
+    const g = ac.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + dur); o.connect(g); g.connect(master); o.start(t); o.stop(t + dur);
+    const ns = noise(.12); const ng = ac.createGain(); ng.gain.setValueAtTime(vol * .25, t); ng.gain.exponentialRampToValueAtTime(.001, t + .12); ns.connect(ng); ng.connect(master); ns.start(t); ns.stop(t + .12);
+  }
+  function crackle(t0, len) { // trzask ognia: cichy szum + losowe strzelenia
+    const ns = noise(len); const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2600; bp.Q.value = .6;
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.05, t0 + 1); g.gain.setValueAtTime(.05, t0 + len - 1); g.gain.linearRampToValueAtTime(0, t0 + len);
+    ns.connect(bp); bp.connect(g); g.connect(master); ns.start(t0); ns.stop(t0 + len);
+    for (let t = t0 + .3; t < t0 + len - .5; t += .06 + Math.random() * .22) {
+      const p = noise(.03); const pg = ac.createGain(); pg.gain.setValueAtTime(.05 + Math.random() * .2, t); pg.gain.exponentialRampToValueAtTime(.001, t + .03);
+      const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1500 + Math.random() * 3000;
+      p.connect(hp); hp.connect(pg); pg.connect(master); p.start(t); p.stop(t + .03);
+    }
+  }
+  function gateSound() { // brzęk łańcucha → kłódka o ziemię → skrzypienie i pomruk wrót → uderzenie o ścianę → trzask ognia w tle
+    if (!ac) return;
+    const run = () => {
+      if (ac.state !== 'running') return;
+      const t0 = ac.currentTime + .02;
+      for (let i = 0; i < 10; i++) {
+        const t = t0 + i * .045 + Math.random() * .03, o = ac.createOscillator(); o.type = 'triangle'; o.frequency.value = 1800 + Math.random() * 1600;
+        const g = ac.createGain(); g.gain.setValueAtTime(.18, t); g.gain.exponentialRampToValueAtTime(.001, t + .08); o.connect(g); g.connect(master); o.start(t); o.stop(t + .1);
+      }
+      thud(t0 + .75, 110, .35, .8);
+      const ts = t0 + .4, dur = 1.7;
+      const o = ac.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(190, ts); o.frequency.linearRampToValueAtTime(120, ts + dur);
+      const lfo = ac.createOscillator(); lfo.frequency.value = 7; const lg = ac.createGain(); lg.gain.value = 14; lfo.connect(lg); lg.connect(o.frequency);
+      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 900; bp.Q.value = 5;
+      const sh = ac.createWaveShaper(); const cv = new Float32Array(256); for (let i = 0; i < 256; i++) cv[i] = Math.tanh((i / 127.5 - 1) * 4); sh.curve = cv;
+      const g = ac.createGain(); g.gain.setValueAtTime(0, ts); g.gain.linearRampToValueAtTime(.35, ts + .3); g.gain.setValueAtTime(.35, ts + dur - .3); g.gain.linearRampToValueAtTime(0, ts + dur);
+      const trem = ac.createOscillator(); trem.frequency.value = 23; const tg = ac.createGain(); tg.gain.value = .15; trem.connect(tg); tg.connect(g.gain);
+      o.connect(sh); sh.connect(bp); bp.connect(g); g.connect(master); o.start(ts); o.stop(ts + dur); lfo.start(ts); lfo.stop(ts + dur); trem.start(ts); trem.stop(ts + dur);
+      const ns = noise(2.2); const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 140;
+      const ng = ac.createGain(); ng.gain.setValueAtTime(0, ts); ng.gain.linearRampToValueAtTime(1.2, ts + .5); ng.gain.linearRampToValueAtTime(0, ts + 2.2); ns.connect(lp); lp.connect(ng); ng.connect(master); ns.start(ts); ns.stop(ts + 2.2);
+      thud(ts + dur, 70, .9, 1);
+      crackle(t0 + 1, 9);
+    };
+    ac.state === 'running' ? run() : ac.resume().then(run).catch(() => {});
+  }
+  function open() {
+    if (opened) return;
+    opened = true;
+    setupAudio(); if (ac && ac.state !== 'running') ac.resume().catch(() => {});
+    gateSound();
+    gate.classList.add('open');
+    T(() => el.classList.add('go'), 900);
+    T(laugh, 2000); leaveTimer = T(leave, 4700);
+    T(() => gate.remove(), 2400);
+  }
+  gate.addEventListener('pointerdown', (e) => { if (e.target.closest('.skipg')) return; open(); });
+  gate.querySelector('.skipg').addEventListener('pointerdown', (e) => { e.stopPropagation(); leave(); });
   el.querySelector('.skip').addEventListener('pointerdown', (e) => { e.stopPropagation(); leave(); });
-  el.addEventListener('pointerdown', () => { if (ac && ac.state !== 'running') unlockAudio(); else if (phase === 1) leave(); });
+  el.addEventListener('pointerdown', (e) => { if (e.target.closest('.gate')) return; if (ac && ac.state !== 'running') unlockAudio(); else if (phase === 1) leave(); });
   addEventListener('keydown', onKey);
 })();
 
