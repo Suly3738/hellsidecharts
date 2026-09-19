@@ -182,23 +182,25 @@
   .pbox .close { position: absolute; right: 0; top: -44px; background: none; border: 1px solid var(--line-2); color: var(--text); padding: 6px 12px; cursor: pointer; font: 600 12px/1 var(--cond); letter-spacing: .2em; text-transform: uppercase; }
   .pbox .close:hover { border-color: var(--red-2); color: #fff; }
 
-  /* beat w tle: mały widżet z odtwarzaczem YouTube – po pełnym intrze gra sam, pauza gdy otwarty odtwarzacz strony */
-  .radio { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; align-items: center; gap: 12px; padding: 8px 10px 8px 8px; background: rgba(5,4,5,.92); border: 1px solid var(--line-red); box-shadow: 0 0 40px rgba(210,18,46,.25); transform: translateY(12px); opacity: 0; transition: opacity .5s, transform .5s; }
+  /* beat w tle: odtwarzacz YouTube poza ekranem, w rogu tylko głośniczek z suwakiem (suwak wysuwa się po najechaniu; na dotyku zawsze widoczny) */
+  #rframe { position: fixed; left: -700px; bottom: 0; width: 320px; height: 180px; opacity: 0; pointer-events: none; }
+  #rframe iframe { width: 100%; height: 100%; border: 0; }
+  .radio { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; align-items: center; padding: 6px; background: rgba(5,4,5,.9); border: 1px solid var(--line-red); box-shadow: 0 0 30px rgba(210,18,46,.22); transform: translateY(12px); opacity: 0; transition: opacity .5s, transform .5s; }
   .radio.show { opacity: 1; transform: none; }
   .radio[hidden] { display: none; }
-  .radio iframe, .radio .rframe { width: 96px; height: 54px; border: 0; display: block; flex: none; background: #000; }
-  .radio .rmeta { display: grid; gap: 4px; max-width: 220px; min-width: 0; }
-  .radio .rl { display: flex; align-items: center; gap: 7px; font: 600 10px/1 var(--cond); letter-spacing: .28em; text-transform: uppercase; color: var(--flame); white-space: nowrap; }
-  .radio .rl::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--dim); flex: none; }
-  .radio.on .rl::before { background: var(--red-2); box-shadow: 0 0 8px var(--red-2); animation: gateBreath 1.2s ease-in-out infinite; }
-  .radio.blocked .rl::after { content: "· kliknij ▶"; color: var(--muted); letter-spacing: .1em; }
-  .radio b { font: 400 15px/1.15 var(--display); color: var(--bright); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .radio .rbtn { width: 34px; height: 34px; flex: none; background: transparent; border: 1px solid var(--line-2); color: var(--text); cursor: var(--cur-hand); font: 600 12px/1 var(--cond); display: grid; place-items: center; padding: 0; transition: border-color .2s, background .2s; }
-  .radio .rbtn svg { width: 14px; height: 14px; fill: currentColor; }
-  .radio .rbtn:hover { border-color: var(--red-2); background: rgba(210,18,46,.2); }
-  .radio .rbtn .pp, .radio.on .rbtn .pl { display: none; } .radio.on .rbtn .pp { display: block; }
+  .radio .rbtn { width: 36px; height: 36px; flex: none; background: transparent; border: 0; padding: 0; color: var(--text); cursor: var(--cur-hand); display: grid; place-items: center; transition: color .2s; }
+  .radio .rbtn:hover { color: var(--flame); }
+  .radio .rbtn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .radio .rbtn .body { fill: currentColor; }
+  .radio .rbtn .w1, .radio .rbtn .w2 { display: none; }
+  .radio.on:not(.muted) .rbtn .x { display: none; }
+  .radio.on:not(.muted) .rbtn .w1 { display: block; }
+  .radio.on:not(.muted).loud .rbtn .w2 { display: block; }
+  .radio.on:not(.muted) .rbtn { color: var(--flame); }
+  .radio .rvol { width: 0; opacity: 0; margin: 0; height: 4px; accent-color: var(--red-2); cursor: var(--cur-hand); transition: width .3s, opacity .3s, margin .3s; }
+  .radio:hover .rvol, .radio:focus-within .rvol { width: 90px; opacity: 1; margin: 0 8px 0 4px; }
+  @media (pointer: coarse) { .radio .rvol { width: 80px; opacity: 1; margin: 0 8px 0 4px; } }
   body.radio .eq i { animation-duration: calc(var(--t) * .45); }
-  @media (max-width: 720px) { .radio { right: 10px; bottom: 10px; left: 10px; } .radio .rmeta { max-width: none; flex: 1; } }
 
   /* okno certyfikatu */
   .cmodal { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 20px; background: rgba(5,4,5,.92); overflow-y: auto; }
@@ -648,8 +650,8 @@
   .intro .gate .txt .eyebrow::before, .intro .gate .txt .eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--flame); }
   .intro .gate .txt h1 { margin: 18px 0 20px; font: 400 clamp(46px, 11vw, 148px)/.95 var(--display); letter-spacing: .04em; color: #ffb347; text-shadow: 0 0 18px rgba(255,138,42,.9), 0 0 60px rgba(210,18,46,.8), 0 6px 0 #3a0410; animation: gateFlicker 4.5s linear infinite; }
   .intro .gate .txt h1 em { font-style: normal; color: #ff2d4a; text-shadow: 0 0 18px rgba(255,45,74,.9), 0 0 60px rgba(210,18,46,.8), 0 6px 0 #3a0410; }
-  .intro .gate .txt .go { font: 600 12px/1 var(--cond); letter-spacing: .38em; text-transform: uppercase; color: var(--text); animation: gateBreath 2s ease-in-out infinite; }
-  .intro .gate .txt .go small { display: block; margin-top: 12px; font-size: 10px; letter-spacing: .3em; color: var(--muted); }
+  .intro .gate .txt .go { position: absolute; left: 0; right: 0; bottom: 9%; font: 600 13px/1 var(--cond); letter-spacing: .38em; text-transform: uppercase; color: #ffb347; text-shadow: 0 0 14px rgba(255,138,42,.75), 0 0 40px rgba(210,18,46,.6); animation: gateBreath 2s ease-in-out infinite; }
+  .intro .gate .txt .go small { display: block; margin-top: 12px; font-size: 10px; letter-spacing: .3em; color: #ff8a2a; opacity: .85; }
   .intro .gate .skipg { position: absolute; right: 22px; bottom: 22px; background: transparent; border: 0; padding: 8px 0; font: 600 10px/1 var(--cond); letter-spacing: .3em; text-transform: uppercase; color: var(--dim); cursor: var(--cur-hand); border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
   .intro .gate .skipg:hover { color: var(--text); border-color: var(--red-2); }
   .intro .gate .em i { position: absolute; bottom: -12px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle, #ffe3a3, #ff6a1f 55%, rgba(255,106,31,0) 72%); opacity: 0; animation: gateEmber var(--t) linear var(--d) infinite; }
@@ -889,9 +891,8 @@
               <g class="eye"><use href="#dEyeL" transform="matrix(-1 0 0 1 400 0)"/></g>
             </g>
             <path d="M134 190 Q 158 202 182 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/><path d="M218 190 Q 242 202 266 190" fill="none" stroke="#3a0208" stroke-width="1.6" opacity=".7"/>
-            <path id="dBrowL" d="M126 152 C 148 138, 174 142, 190 160 C 174 155, 150 157, 130 166 Z" fill="#2a0508"/>
+            <path id="dBrowL" d="M130 169 Q 158 149 188 171" fill="none" stroke="#3a0208" stroke-width="3.6" stroke-linecap="round"/>
             <use href="#dBrowL" transform="matrix(-1 0 0 1 400 0)"/>
-            <path d="M144 146 L 148 160" stroke="#ad142d" stroke-width="3"/>
             <!-- snapback z rogami -->
             <path d="M100 128 C 96 74, 140 56, 200 56 C 260 56, 304 74, 300 128 Z" fill="url(#dCap)"/>
             <path d="M200 62 C 152 62, 112 84, 104 124 M200 62 C 248 62, 288 84, 296 124" fill="none" stroke="#3a3038" stroke-width="1.2"/>
@@ -1107,11 +1108,10 @@
   </div>
 </div>
 
+<div id="rframe" aria-hidden="true"></div>
 <div class="radio" id="radio" hidden>
-  <div class="rframe" id="rframe"></div>
-  <div class="rmeta"><span class="rl">Beat w tle</span><b id="rtitle"></b></div>
-  <button class="rbtn" id="rtoggle" type="button" aria-label="Odtwórz / pauza"><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="pp" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
-  <button class="rbtn rx" id="rclose" type="button" aria-label="Wyłącz">✕</button>
+  <input class="rvol" id="rvol" type="range" min="0" max="100" value="80" aria-label="Głośność beatu">
+  <button class="rbtn" id="rmute" type="button" aria-label="Wycisz / włącz beat"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="body" d="M3 9v6h4l5 4V5L7 9z"/><path class="w1" d="M15.5 8.5a5 5 0 0 1 0 7"/><path class="w2" d="M18.5 5.5a9 9 0 0 1 0 13"/><path class="x" d="M16 9l5 6M21 9l-5 6"/></svg></button>
 </div>
 
 <script>
@@ -1534,52 +1534,77 @@ function init() {
 }
 function afterIntro(fn) { document.body.classList.contains('intro') ? document.addEventListener('hsc:intro-done', fn, { once: true }) : fn(); }
 
-/* beat w tle: po pełnym intrze (śmiech, kurtyna, wyciszone dźwięki) sam startuje utwór z YouTube (IFrame API) w małym widżecie.
-   Po pominięciu intra widżet pokazuje się cicho z ▶. Odtwarzacz strony pauzuje beat i wznawia go po zamknięciu. */
+/* beat w tle: iframe YouTube (enablejsapi) sterowany postMessage – bez zewnętrznego skryptu. Po pełnym intrze (po przejściu dźwiękowym)
+   startuje cicho i przez ~7 s dochodzi do zapamiętanej głośności; pętla; w rogu tylko głośniczek (klik = wycisz/włącz, suwak = głośność).
+   Po pominięciu intra głośniczek jest, ale beat czeka na klik. Gdy przeglądarka zablokuje start, ponawia po pierwszym geście. */
 const radio = (function () {
-  const cfg = DATA && DATA.config.introTrack, box = document.getElementById('radio');
-  if (!cfg || !cfg.id || !box) return null;
-  const title = document.getElementById('rtitle');
-  let player = null, ready = false, wantPlay = false, held = false, playing = false, watchdog = null;
-  title.textContent = cfg.title || 'Beat w tle';
-  box.title = cfg.author ? `${cfg.title} · ${cfg.author}` : cfg.title;
-  function setOn(on) { playing = on; box.classList.toggle('on', on); document.body.classList.toggle('radio', on); if (on) box.classList.remove('blocked'); }
-  function load() {
-    const Y = window.YT; // nie `YT` – to nazwa stałej z ikoną YouTube wyżej w skrypcie
-    if (player || !Y || !Y.Player) return;
-    player = new Y.Player('rframe', {
-      videoId: cfg.id, width: 96, height: 54, host: 'https://www.youtube-nocookie.com',
-      playerVars: { autoplay: 0, controls: 0, rel: 0, loop: 1, playlist: cfg.id, playsinline: 1, modestbranding: 1, origin: location.origin },
-      events: {
-        onReady() {
-          ready = true; player.setVolume(70);
-          if (!cfg.title) { const d = player.getVideoData(); if (d && d.title) title.textContent = d.title; }
-          if (wantPlay) play();
-        },
-        onStateChange(e) {
-          if (e.data === Y.PlayerState.PLAYING) { clearTimeout(watchdog); setOn(true); }
-          else if (e.data === Y.PlayerState.PAUSED || e.data === Y.PlayerState.ENDED) setOn(false);
-        }
-      }
-    });
+  const cfg = DATA && DATA.config.introTrack, box = document.getElementById('radio'), holder = document.getElementById('rframe');
+  if (!cfg || !cfg.id || !box || !holder) return null;
+  const ORIGIN = 'https://www.youtube-nocookie.com', slider = document.getElementById('rvol'), btn = document.getElementById('rmute');
+  let frame = null, ready = false, playing = false, started = false, wantPlay = false, muted = false, vol = 80, fadeMs = 0, fadeTimer = null, watchdog = null, held = false;
+  try { const v = localStorage.getItem('hsc.vol'); if (v !== null && v !== '') vol = Math.max(0, Math.min(100, +v || 0)); muted = localStorage.getItem('hsc.mute') === '1'; } catch {}
+  slider.value = vol;
+  function save() { try { localStorage.setItem('hsc.vol', vol); localStorage.setItem('hsc.mute', muted ? '1' : '0'); } catch {} }
+  function cmd(func, args) { if (frame && frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || [] }), ORIGIN); }
+  function ui() { box.classList.toggle('on', playing); box.classList.toggle('muted', muted || vol === 0); box.classList.toggle('loud', vol > 50); document.body.classList.toggle('radio', playing && !muted); }
+  function make() {
+    if (frame) return;
+    frame = document.createElement('iframe');
+    frame.src = ORIGIN + '/embed/' + encodeURIComponent(cfg.id) + '?enablejsapi=1&controls=0&rel=0&playsinline=1&loop=1&playlist=' + encodeURIComponent(cfg.id) + '&origin=' + encodeURIComponent(location.origin);
+    frame.allow = 'autoplay; encrypted-media'; frame.title = 'Beat w tle'; frame.tabIndex = -1; frame.setAttribute('aria-hidden', 'true');
+    frame.addEventListener('load', () => { frame.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'hsc-radio', channel: 'widget' }), ORIGIN); });
+    holder.appendChild(frame);
   }
-  window.onYouTubeIframeAPIReady = load;
-  const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.async = true; document.head.appendChild(s);
-  function show() { if (!box.hidden) return; box.hidden = false; requestAnimationFrame(() => box.classList.add('show')); }
-  function play() {
-    wantPlay = true; show();
+  addEventListener('message', (e) => {
+    if (e.origin !== ORIGIN || !frame || e.source !== frame.contentWindow) return;
+    let m; try { m = JSON.parse(e.data); } catch { return; }
+    if (m.event === 'onReady') { ready = true; cmd('setVolume', [fadeMs ? 0 : vol]); if (muted) cmd('mute'); if (wantPlay) play(fadeMs); }
+    else if (m.event === 'onStateChange') state(m.info);
+    else if (m.event === 'infoDelivery' && m.info && typeof m.info.playerState === 'number') state(m.info.playerState);
+  });
+  function state(st) { // 1 gra, 2 pauza, 0 koniec (awaryjna pętla), -1/5 nie ruszył
+    const on = st === 1;
+    if (on !== playing) {
+      playing = on; ui();
+      if (on) { clearTimeout(watchdog); disarm(); if (fadeMs) fade(fadeMs); }
+    }
+    if (st === 0 && started && !held) { cmd('seekTo', [0, true]); cmd('playVideo'); }
+  }
+  function fade(ms) { // cicho → zapamiętana głośność (ease-in-out); ruch suwakiem przerywa
+    const t0 = performance.now(), target = vol; fadeMs = 0; clearInterval(fadeTimer);
+    fadeTimer = setInterval(() => {
+      const k = Math.min(1, (performance.now() - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      cmd('setVolume', [Math.round(target * e)]);
+      if (k >= 1) clearInterval(fadeTimer);
+    }, 120);
+  }
+  // gdy przeglądarka zablokowała start – ponów po pierwszym geście gdziekolwiek
+  function retry() { disarm(); if (started && !playing) { fadeMs = 0; cmd('setVolume', [vol]); cmd('playVideo'); } }
+  function arm() { addEventListener('pointerdown', retry, true); addEventListener('keydown', retry, true); }
+  function disarm() { removeEventListener('pointerdown', retry, true); removeEventListener('keydown', retry, true); }
+  function play(ms) {
+    wantPlay = true; started = true; fadeMs = ms || 0; show(); make();
     if (!ready) return;
-    player.playVideo();
-    clearTimeout(watchdog); watchdog = setTimeout(() => { if (!playing) box.classList.add('blocked'); }, 2500); // przeglądarka zablokowała autoodtwarzanie – zostaje ▶
+    cmd('setVolume', [fadeMs ? 0 : vol]); cmd('playVideo');
+    clearTimeout(watchdog); watchdog = setTimeout(() => { if (!playing) arm(); }, 3000);
   }
-  function pause() { wantPlay = false; held = false; if (ready) player.pauseVideo(); }
-  document.getElementById('rtoggle').addEventListener('click', () => { playing ? pause() : play(); });
-  document.getElementById('rclose').addEventListener('click', () => { pause(); box.classList.remove('show'); setTimeout(() => { box.hidden = true; }, 500); });
-  document.addEventListener('hsc:intro-sound-done', play, { once: true });
-  afterIntro(() => setTimeout(() => { if (!wantPlay) show(); }, 2500));
+  function show() { if (!box.hidden) return; box.hidden = false; requestAnimationFrame(() => box.classList.add('show')); }
+  btn.addEventListener('click', () => {
+    if (!started || (!playing && !held)) { muted = false; save(); ui(); play(0); return; } // jeszcze nie gra – klik startuje
+    muted = !muted; cmd(muted ? 'mute' : 'unMute'); save(); ui();
+  });
+  slider.addEventListener('input', () => {
+    vol = +slider.value; clearInterval(fadeTimer); fadeMs = 0; cmd('setVolume', [vol]);
+    if (muted && vol > 0) { muted = false; cmd('unMute'); }
+    save(); ui();
+  });
+  ui();
+  make(); // iframe ładuje się w tle już podczas intra, żeby start był natychmiastowy
+  document.addEventListener('hsc:intro-sound-done', () => play(7000), { once: true });
+  afterIntro(() => setTimeout(show, 1200));
   return {
-    hold() { if (playing) { held = true; player.pauseVideo(); } },
-    release() { if (held) { held = false; player.playVideo(); } }
+    hold() { if (playing) { held = true; cmd('pauseVideo'); } },       // odtwarzacz strony otwarty – pauza
+    release() { if (held) { held = false; cmd('playVideo'); } }
   };
 })();
 init();
@@ -1697,6 +1722,20 @@ init();
     const sg = ac.createGain(); sg.gain.setValueAtTime(.7, t0); sg.gain.exponentialRampToValueAtTime(.001, t0 + 1.3); sub.connect(sg); sg.connect(master); sub.start(t0); sub.stop(t0 + 1.3);
     return 2.7;
   }
+  function riserSound(len) { // narastający szum (pasmo 150→3500 Hz) + dron 48→96 Hz, na końcu uderzenie i krótki ogon
+    if (!ac || ac.state !== 'running') return;
+    const t0 = ac.currentTime;
+    const ns = noise(len + .4); const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.2;
+    bp.frequency.setValueAtTime(150, t0); bp.frequency.exponentialRampToValueAtTime(3500, t0 + len);
+    const g = ac.createGain(); g.gain.setValueAtTime(.001, t0); g.gain.exponentialRampToValueAtTime(.7, t0 + len); g.gain.exponentialRampToValueAtTime(.001, t0 + len + .35);
+    ns.connect(bp); bp.connect(g); g.connect(master); ns.start(t0); ns.stop(t0 + len + .4);
+    const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(48, t0); o.frequency.exponentialRampToValueAtTime(96, t0 + len);
+    const trem = ac.createOscillator(); trem.frequency.setValueAtTime(4, t0); trem.frequency.exponentialRampToValueAtTime(16, t0 + len);
+    const tg = ac.createGain(); tg.gain.value = .25; trem.connect(tg);
+    const og = ac.createGain(); og.gain.setValueAtTime(.001, t0); og.gain.exponentialRampToValueAtTime(.6, t0 + len); og.gain.exponentialRampToValueAtTime(.001, t0 + len + .3); tg.connect(og.gain);
+    o.connect(og); og.connect(master); o.start(t0); o.stop(t0 + len + .3); trem.start(t0); trem.stop(t0 + len + .3);
+    thud(t0 + len, 64, .8, .7);
+  }
   function whooshSound() {
     if (!ac || ac.state !== 'running') return;
     const t = ac.currentTime;
@@ -1742,8 +1781,10 @@ init();
     whooshSound();
     setTimeout(() => { document.body.classList.remove('intro'); }, 1050);   // kurtyna zakryła ekran – strona pod spodem
     setTimeout(() => document.dispatchEvent(new Event('hsc:intro-done')), 1500); // kurtyna schodzi – hero wjeżdża
-    setTimeout(() => document.dispatchEvent(new Event('hsc:intro-sound-done')), 3300); // dźwięki intra wyciszone – startuje beat w tle
-    setTimeout(() => { el.remove(); if (ac) { try { master.gain.linearRampToValueAtTime(0, ac.currentTime + .6); setTimeout(() => ac.close(), 800); } catch {} } }, 2400);
+    setTimeout(() => el.remove(), 2400);
+    setTimeout(() => riserSound(3.2), 2200);                                        // przejście: narastający szum + dron, uderzenie na wejście beatu
+    setTimeout(() => document.dispatchEvent(new Event('hsc:intro-sound-done')), 4600); // beat wchodzi cicho pod ogonem przejścia i rośnie
+    setTimeout(() => { if (ac) { try { master.gain.linearRampToValueAtTime(0, ac.currentTime + 1); setTimeout(() => ac.close(), 1200); } catch {} } }, 6200);
   }
   function onKey(e) { // Esc pomija; inne klawisze najpierw odblokowują dźwięk, Enter/Spacja przy grającym dźwięku pomijają
     if (e.key === 'Escape') return leave();
