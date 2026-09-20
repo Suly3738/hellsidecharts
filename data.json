@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T04:17:31.104Z",
+  "generatedAt": "2026-09-20T04:52:33.157Z",
   "chartDate": "2026-09-20",
   "prevDate": "2026-09-19",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 2
   },
   "totals": {
-    "labelViews": 425,
+    "labelViews": 430,
     "tracks": 2,
     "artists": 2,
     "subscribers": 8,
     "channelViews": 273,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 41,
+    "viewsDelta": 46,
     "firstRelease": "13 wrz 2026",
     "snapshots": 2,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
+      "views": 165,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -107,7 +107,7 @@
       "move": 0,
       "peak": 2,
       "weeks": 1,
-      "viewsDelta": 33,
+      "viewsDelta": 38,
       "daysAtTop": 0,
       "tier": 0
     }
@@ -131,7 +131,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
+      "views": 165,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "tier": 0,
@@ -146,13 +146,13 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
+      "views": 165,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 90,
-      "progress": 40
+      "missing": 85,
+      "progress": 43
     },
     {
       "id": "PqJv58Venx0",
@@ -177,7 +177,7 @@
     },
     {
       "date": "2026-09-20",
-      "total": 425,
+      "total": 430,
       "top": "PqJv58Venx0",
       "topViews": 265
     }
@@ -221,7 +221,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
+      "views": 165,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -229,7 +229,7 @@
       "move": 0,
       "peak": 2,
       "weeks": 1,
-      "viewsDelta": 33
+      "viewsDelta": 38
     }
   ],
   "rising": [
@@ -239,12 +239,12 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
-      "viewsDelta": 33,
+      "views": 165,
+      "viewsDelta": 38,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 26
+      "pct": 29.9
     },
     {
       "pos": 2,
@@ -266,7 +266,7 @@
       "name": "740FREDO",
       "tracks": 1,
       "views": 265,
-      "share": 62.4,
+      "share": 61.6,
       "viewsDelta": 8,
       "bestPos": 1,
       "top": {
@@ -287,15 +287,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 160,
-      "share": 37.6,
-      "viewsDelta": 33,
+      "views": 165,
+      "share": 38.4,
+      "viewsDelta": 38,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 160,
+        "views": 165,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -327,14 +327,14 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 160,
+      "views": 165,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": true,
-      "viewsDelta": 33
+      "viewsDelta": 38
     },
     {
       "id": "PqJv58Venx0",
