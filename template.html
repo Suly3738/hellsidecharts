@@ -6,6 +6,9 @@
 <title>Hellside Charts</title>
 <meta name="theme-color" content="#050405">
 <meta http-equiv="Cache-Control" content="no-cache">
+<!-- CSP: strona jest w 100% statyczna; skrypty tylko własne (inline), obrazy tylko z YouTube, ramki tylko youtube-nocookie. Gdyby coś kiedyś wstrzyknęło obcy skrypt/ramkę/formularz – przeglądarka to zablokuje. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="logo.png?v=1">
 <script>
 // Wykrywanie nieaktualnej kopii w cache przeglądarki: porównuje wersję tej strony z version.json (pobranym z pominięciem cache)
