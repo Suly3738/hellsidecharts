@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-20T21:15:53.401Z",
-  "chartDate": "2026-09-20",
+  "generatedAt": "2026-09-20T22:15:58.968Z",
+  "chartDate": "2026-09-21",
   "prevDate": "2026-09-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
@@ -69,7 +69,7 @@
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 89,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 2,
+    "snapshots": 3,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -87,9 +87,9 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": 15,
-      "daysAtTop": 2,
+      "daysAtTop": 3,
       "tier": 1
     },
     {
@@ -106,7 +106,7 @@
       "prevPos": 2,
       "move": 0,
       "peak": 2,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": 74,
       "daysAtTop": 0,
       "tier": 0
@@ -125,7 +125,7 @@
       "prevPos": null,
       "move": "new",
       "peak": 3,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": null,
       "daysAtTop": 0,
       "tier": null
@@ -212,6 +212,12 @@
       "total": 507,
       "top": "PqJv58Venx0",
       "topViews": 272
+    },
+    {
+      "date": "2026-09-21",
+      "total": 507,
+      "top": "PqJv58Venx0",
+      "topViews": 272
     }
   ],
   "tracks": {
@@ -249,7 +255,7 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": 15
     },
     {
@@ -266,7 +272,7 @@
       "prevPos": 2,
       "move": 0,
       "peak": 2,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": 74
     },
     {
@@ -283,7 +289,7 @@
       "prevPos": null,
       "move": "new",
       "peak": 3,
-      "weeks": 1,
+      "weeks": 2,
       "viewsDelta": null
     }
   ],
@@ -365,15 +371,15 @@
     {
       "id": "PqJv58Venx0",
       "from": "2026-09-19",
-      "to": "2026-09-20",
-      "days": 2,
+      "to": "2026-09-21",
+      "days": 3,
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "fromText": "19 wrz 2026",
-      "toText": "20 wrz 2026"
+      "toText": "21 wrz 2026"
     }
   ],
   "latest": [
