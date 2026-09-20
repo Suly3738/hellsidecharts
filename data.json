@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T17:15:04.226Z",
+  "generatedAt": "2026-09-20T18:18:47.666Z",
   "chartDate": "2026-09-20",
   "prevDate": "2026-09-19",
   "channel": {
@@ -416,7 +416,7 @@
       "thumbLarge": "https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg",
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
-      "isNew": true,
+      "isNew": false,
       "viewsDelta": 12
     }
   ]
