@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-21T21:16:49.023Z",
-  "chartDate": "2026-09-21",
+  "generatedAt": "2026-09-21T22:17:02.704Z",
+  "chartDate": "2026-09-22",
   "prevDate": "2026-09-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
@@ -69,7 +69,7 @@
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 119,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 3,
+    "snapshots": 4,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 2,
       "viewsDelta": 13,
-      "daysAtTop": 3,
+      "daysAtTop": 4,
       "tier": 1
     },
     {
@@ -228,6 +228,12 @@
     },
     {
       "date": "2026-09-21",
+      "total": 618,
+      "top": "PqJv58Venx0",
+      "topViews": 270
+    },
+    {
+      "date": "2026-09-22",
       "total": 618,
       "top": "PqJv58Venx0",
       "topViews": 270
@@ -384,15 +390,15 @@
     {
       "id": "PqJv58Venx0",
       "from": "2026-09-19",
-      "to": "2026-09-21",
-      "days": 3,
+      "to": "2026-09-22",
+      "days": 4,
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "fromText": "19 wrz 2026",
-      "toText": "21 wrz 2026"
+      "toText": "22 wrz 2026"
     }
   ],
   "latest": [
