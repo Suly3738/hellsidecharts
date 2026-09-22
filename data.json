@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-22T21:15:55.301Z",
-  "chartDate": "2026-09-22",
+  "generatedAt": "2026-09-22T22:16:22.191Z",
+  "chartDate": "2026-09-23",
   "prevDate": "2026-09-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
@@ -69,7 +69,7 @@
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 168,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 4,
+    "snapshots": 5,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 2,
       "viewsDelta": 149,
-      "daysAtTop": 1,
+      "daysAtTop": 2,
       "tier": 1
     },
     {
@@ -234,6 +234,12 @@
     },
     {
       "date": "2026-09-22",
+      "total": 743,
+      "top": "e2dKOOVYiaE",
+      "topViews": 276
+    },
+    {
+      "date": "2026-09-23",
       "total": 743,
       "top": "e2dKOOVYiaE",
       "topViews": 276
@@ -390,15 +396,15 @@
     {
       "id": "e2dKOOVYiaE",
       "from": "2026-09-22",
-      "to": "2026-09-22",
-      "days": 1,
+      "to": "2026-09-23",
+      "days": 2,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "fromText": "22 wrz 2026",
-      "toText": "22 wrz 2026"
+      "toText": "23 wrz 2026"
     },
     {
       "id": "PqJv58Venx0",
