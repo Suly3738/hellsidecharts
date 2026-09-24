@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-24T21:16:45.252Z",
-  "chartDate": "2026-09-24",
+  "generatedAt": "2026-09-24T22:17:40.476Z",
+  "chartDate": "2026-09-25",
   "prevDate": "2026-09-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
@@ -61,7 +61,7 @@
     "allTimePoolSize": 3
   },
   "totals": {
-    "labelViews": 854,
+    "labelViews": 855,
     "tracks": 3,
     "artists": 2,
     "subscribers": 8,
@@ -69,7 +69,7 @@
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 222,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 6,
+    "snapshots": 7,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 2,
       "viewsDelta": 189,
-      "daysAtTop": 3,
+      "daysAtTop": 4,
       "tier": 1
     },
     {
@@ -118,7 +118,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 248,
+      "views": 249,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -163,7 +163,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 248,
+      "views": 249,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 0,
@@ -178,12 +178,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 248,
+      "views": 249,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 2,
+      "missing": 1,
       "progress": 99
     },
     {
@@ -247,6 +247,12 @@
     {
       "date": "2026-09-24",
       "total": 854,
+      "top": "e2dKOOVYiaE",
+      "topViews": 316
+    },
+    {
+      "date": "2026-09-25",
+      "total": 855,
       "top": "e2dKOOVYiaE",
       "topViews": 316
     }
@@ -313,7 +319,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 248,
+      "views": 249,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -357,7 +363,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 2,
-      "views": 538,
+      "views": 539,
       "share": 63,
       "viewsDelta": 33,
       "bestPos": 2,
@@ -402,15 +408,15 @@
     {
       "id": "e2dKOOVYiaE",
       "from": "2026-09-22",
-      "to": "2026-09-24",
-      "days": 3,
+      "to": "2026-09-25",
+      "days": 4,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "fromText": "22 wrz 2026",
-      "toText": "24 wrz 2026"
+      "toText": "25 wrz 2026"
     },
     {
       "id": "PqJv58Venx0",
@@ -432,7 +438,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 248,
+      "views": 249,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
