@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T05:16:54.403Z",
+  "generatedAt": "2026-09-25T06:23:28.961Z",
   "chartDate": "2026-09-25",
   "prevDate": "2026-09-19",
   "channel": {
@@ -61,7 +61,7 @@
     "allTimePoolSize": 3
   },
   "totals": {
-    "labelViews": 869,
+    "labelViews": 866,
     "tracks": 3,
     "artists": 2,
     "subscribers": 8,
@@ -118,7 +118,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 253,
+      "views": 250,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -163,7 +163,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 253,
+      "views": 250,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 1,
@@ -204,13 +204,13 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 253,
+      "views": 250,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 247,
-      "progress": 1
+      "missing": 250,
+      "progress": 0
     }
   ],
   "timeline": [
@@ -252,7 +252,7 @@
     },
     {
       "date": "2026-09-25",
-      "total": 869,
+      "total": 866,
       "top": "e2dKOOVYiaE",
       "topViews": 323
     }
@@ -319,7 +319,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 253,
+      "views": 250,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -363,8 +363,8 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 2,
-      "views": 546,
-      "share": 62.8,
+      "views": 543,
+      "share": 62.7,
       "viewsDelta": 36,
       "bestPos": 2,
       "top": {
@@ -386,7 +386,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 323,
-      "share": 37.2,
+      "share": 37.3,
       "viewsDelta": 196,
       "bestPos": 1,
       "top": {
@@ -438,7 +438,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 253,
+      "views": 250,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
