@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T05:16:12.599Z",
+  "generatedAt": "2026-09-26T06:21:54.476Z",
   "chartDate": "2026-09-26",
   "prevDate": "2026-09-19",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 3
   },
   "totals": {
-    "labelViews": 910,
+    "labelViews": 914,
     "tracks": 3,
     "artists": 2,
     "subscribers": 8,
     "channelViews": 891,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 263,
+    "viewsDelta": 267,
     "firstRelease": "13 wrz 2026",
     "snapshots": 8,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
+      "views": 315,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -107,7 +107,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 2,
-      "viewsDelta": 54,
+      "viewsDelta": 58,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -150,7 +150,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
+      "views": 315,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "tier": 1,
@@ -191,13 +191,13 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
+      "views": 315,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 189,
-      "progress": 24
+      "missing": 185,
+      "progress": 26
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -258,7 +258,7 @@
     },
     {
       "date": "2026-09-26",
-      "total": 910,
+      "total": 914,
       "top": "e2dKOOVYiaE",
       "topViews": 336
     }
@@ -308,7 +308,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
+      "views": 315,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -316,7 +316,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 2,
-      "viewsDelta": 54
+      "viewsDelta": 58
     },
     {
       "pos": 3,
@@ -356,12 +356,12 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
-      "viewsDelta": 54,
+      "views": 315,
+      "viewsDelta": 58,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 21
+      "pct": 22.6
     }
   ],
   "artists": [
@@ -369,15 +369,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 2,
-      "views": 574,
-      "share": 63.1,
-      "viewsDelta": 54,
+      "views": 578,
+      "share": 63.2,
+      "viewsDelta": 58,
       "bestPos": 2,
       "top": {
         "id": "PqJv58Venx0",
         "song": "WEDNESDAY!",
         "title": "740FREDO - WEDNESDAY!",
-        "views": 311,
+        "views": 315,
         "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
         "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"
       },
@@ -392,7 +392,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 336,
-      "share": 36.9,
+      "share": 36.8,
       "viewsDelta": 209,
       "bestPos": 1,
       "top": {
@@ -472,14 +472,14 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 311,
+      "views": 315,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg",
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 54
+      "viewsDelta": 58
     }
   ]
 }
