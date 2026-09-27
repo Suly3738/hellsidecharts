@@ -13,6 +13,6 @@
     "license":  "ISC",
     "type":  "commonjs",
     "dependencies":  {
-                         "youtubei.js":  "^18.0.0"
+                         "youtubei.js":  "^18.1.0"
                      }
 }
