@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-28T21:18:23.836Z",
-  "chartDate": "2026-09-28",
-  "prevDate": "2026-09-21",
+  "generatedAt": "2026-09-28T22:17:56.396Z",
+  "chartDate": "2026-09-29",
+  "prevDate": "2026-09-22",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -67,9 +67,9 @@
     "subscribers": 9,
     "channelViews": 967,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 393,
+    "viewsDelta": 268,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 10,
+    "snapshots": 11,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -84,12 +84,12 @@
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "prevPos": 2,
-      "move": 1,
+      "prevPos": 1,
+      "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 134,
-      "daysAtTop": 7,
+      "viewsDelta": 91,
+      "daysAtTop": 8,
       "tier": 1
     },
     {
@@ -103,11 +103,11 @@
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "prevPos": 1,
-      "move": -1,
+      "prevPos": 2,
+      "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 65,
+      "viewsDelta": 59,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -126,7 +126,7 @@
       "move": 0,
       "peak": 3,
       "weeks": 3,
-      "viewsDelta": 194,
+      "viewsDelta": 118,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -273,6 +273,12 @@
       "total": 1011,
       "top": "e2dKOOVYiaE",
       "topViews": 367
+    },
+    {
+      "date": "2026-09-29",
+      "total": 1011,
+      "top": "e2dKOOVYiaE",
+      "topViews": 367
     }
   ],
   "tracks": {
@@ -307,11 +313,11 @@
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "prevPos": 2,
-      "move": 1,
+      "prevPos": 1,
+      "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 134
+      "viewsDelta": 91
     },
     {
       "pos": 2,
@@ -324,11 +330,11 @@
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "prevPos": 1,
-      "move": -1,
+      "prevPos": 2,
+      "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 65
+      "viewsDelta": 59
     },
     {
       "pos": 3,
@@ -345,7 +351,7 @@
       "move": 0,
       "peak": 3,
       "weeks": 3,
-      "viewsDelta": 194
+      "viewsDelta": 118
     }
   ],
   "rising": [
@@ -356,11 +362,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 309,
-      "viewsDelta": 194,
+      "viewsDelta": 118,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 168.7
+      "pct": 61.8
     },
     {
       "pos": 2,
@@ -369,11 +375,11 @@
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "views": 367,
-      "viewsDelta": 134,
+      "viewsDelta": 91,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 57.5
+      "pct": 33
     },
     {
       "pos": 3,
@@ -382,11 +388,11 @@
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 335,
-      "viewsDelta": 65,
+      "viewsDelta": 59,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 24.1
+      "pct": 21.4
     }
   ],
   "artists": [
@@ -396,7 +402,7 @@
       "tracks": 2,
       "views": 644,
       "share": 63.7,
-      "viewsDelta": 259,
+      "viewsDelta": 177,
       "bestPos": 2,
       "top": {
         "id": "PqJv58Venx0",
@@ -418,7 +424,7 @@
       "tracks": 1,
       "views": 367,
       "share": 36.3,
-      "viewsDelta": 134,
+      "viewsDelta": 91,
       "bestPos": 1,
       "top": {
         "id": "e2dKOOVYiaE",
@@ -439,15 +445,15 @@
     {
       "id": "e2dKOOVYiaE",
       "from": "2026-09-22",
-      "to": "2026-09-28",
-      "days": 7,
+      "to": "2026-09-29",
+      "days": 8,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "fromText": "22 wrz 2026",
-      "toText": "28 wrz 2026"
+      "toText": "29 wrz 2026"
     },
     {
       "id": "PqJv58Venx0",
@@ -476,7 +482,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 194
+      "viewsDelta": 118
     },
     {
       "id": "e2dKOOVYiaE",
@@ -490,7 +496,7 @@
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 134
+      "viewsDelta": 91
     },
     {
       "id": "PqJv58Venx0",
@@ -504,7 +510,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 65
+      "viewsDelta": 59
     }
   ]
 }
