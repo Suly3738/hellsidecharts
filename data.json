@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T11:18:13.443Z",
+  "generatedAt": "2026-09-28T12:24:45.415Z",
   "chartDate": "2026-09-28",
   "prevDate": "2026-09-21",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 3
   },
   "totals": {
-    "labelViews": 998,
+    "labelViews": 999,
     "tracks": 3,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 967,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 380,
+    "viewsDelta": 381,
     "firstRelease": "13 wrz 2026",
     "snapshots": 10,
     "firstSnapshot": "2026-09-19"
@@ -118,7 +118,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
+      "views": 303,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -126,7 +126,7 @@
       "move": 0,
       "peak": 3,
       "weeks": 3,
-      "viewsDelta": 187,
+      "viewsDelta": 188,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -163,7 +163,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
+      "views": 303,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 1,
@@ -204,12 +204,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
+      "views": 303,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 198,
+      "missing": 197,
       "progress": 21
     }
   ],
@@ -270,7 +270,7 @@
     },
     {
       "date": "2026-09-28",
-      "total": 998,
+      "total": 999,
       "top": "e2dKOOVYiaE",
       "topViews": 363
     }
@@ -337,7 +337,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
+      "views": 303,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -345,7 +345,7 @@
       "move": 0,
       "peak": 3,
       "weeks": 3,
-      "viewsDelta": 187
+      "viewsDelta": 188
     }
   ],
   "rising": [
@@ -355,12 +355,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
-      "viewsDelta": 187,
+      "views": 303,
+      "viewsDelta": 188,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 162.6
+      "pct": 163.5
     },
     {
       "pos": 2,
@@ -394,9 +394,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 2,
-      "views": 635,
-      "share": 63.6,
-      "viewsDelta": 250,
+      "views": 636,
+      "share": 63.7,
+      "viewsDelta": 251,
       "bestPos": 2,
       "top": {
         "id": "PqJv58Venx0",
@@ -417,7 +417,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 363,
-      "share": 36.4,
+      "share": 36.3,
       "viewsDelta": 130,
       "bestPos": 1,
       "top": {
@@ -469,14 +469,14 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 302,
+      "views": 303,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 187
+      "viewsDelta": 188
     },
     {
       "id": "e2dKOOVYiaE",
