@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T04:19:48.759Z",
+  "generatedAt": "2026-10-02T05:18:30.818Z",
   "chartDate": "2026-10-02",
   "prevDate": "2026-09-25",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 3
   },
   "totals": {
-    "labelViews": 1098,
+    "labelViews": 1099,
     "tracks": 3,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 1077,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 204,
+    "viewsDelta": 205,
     "firstRelease": "13 wrz 2026",
     "snapshots": 14,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
+      "views": 360,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -107,7 +107,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 55,
+      "viewsDelta": 56,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -150,7 +150,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
+      "views": 360,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "tier": 1,
@@ -191,12 +191,12 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
+      "views": 360,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 141,
+      "missing": 140,
       "progress": 44
     },
     {
@@ -294,7 +294,7 @@
     },
     {
       "date": "2026-10-02",
-      "total": 1098,
+      "total": 1099,
       "top": "e2dKOOVYiaE",
       "topViews": 387
     }
@@ -344,7 +344,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
+      "views": 360,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -352,7 +352,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 3,
-      "viewsDelta": 55
+      "viewsDelta": 56
     },
     {
       "pos": 3,
@@ -405,12 +405,12 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
-      "viewsDelta": 55,
+      "views": 360,
+      "viewsDelta": 56,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 18.1
+      "pct": 18.4
     }
   ],
   "artists": [
@@ -418,15 +418,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 2,
-      "views": 711,
+      "views": 712,
       "share": 64.8,
-      "viewsDelta": 147,
+      "viewsDelta": 148,
       "bestPos": 2,
       "top": {
         "id": "PqJv58Venx0",
         "song": "WEDNESDAY!",
         "title": "740FREDO - WEDNESDAY!",
-        "views": 359,
+        "views": 360,
         "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
         "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg"
       },
@@ -521,14 +521,14 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 359,
+      "views": 360,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg",
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 55
+      "viewsDelta": 56
     }
   ]
 }
