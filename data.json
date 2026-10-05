@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T08:22:05.668Z",
+  "generatedAt": "2026-10-05T09:22:23.774Z",
   "chartDate": "2026-10-05",
   "prevDate": "2026-09-28",
   "channel": {
@@ -61,7 +61,7 @@
     "allTimePoolSize": 4
   },
   "totals": {
-    "labelViews": 1269,
+    "labelViews": 1270,
     "tracks": 4,
     "artists": 2,
     "subscribers": 9,
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 86,
+      "views": 87,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -197,13 +197,13 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 86,
+      "views": 87,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 0,
       "nextName": "Żar",
-      "missing": 14,
-      "progress": 86
+      "missing": 13,
+      "progress": 87
     },
     {
       "id": "e2dKOOVYiaE",
@@ -344,7 +344,7 @@
     },
     {
       "date": "2026-10-05",
-      "total": 1269,
+      "total": 1270,
       "top": "e2dKOOVYiaE",
       "topViews": 411
     }
@@ -434,7 +434,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 86,
+      "views": 87,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -491,7 +491,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 3,
-      "views": 858,
+      "views": 859,
       "share": 67.6,
       "viewsDelta": 128,
       "bestPos": 2,
@@ -566,7 +566,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 86,
+      "views": 87,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
