@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T08:20:49.159Z",
+  "generatedAt": "2026-10-06T09:20:13.176Z",
   "chartDate": "2026-10-06",
   "prevDate": "2026-09-29",
   "channel": {
@@ -61,7 +61,7 @@
     "allTimePoolSize": 4
   },
   "totals": {
-    "labelViews": 1328,
+    "labelViews": 1327,
     "tracks": 4,
     "artists": 2,
     "subscribers": 9,
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 124,
+      "views": 123,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -195,7 +195,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 124,
+      "views": 123,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 0,
@@ -249,13 +249,13 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 124,
+      "views": 123,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 126,
-      "progress": 16
+      "missing": 127,
+      "progress": 15
     }
   ],
   "timeline": [
@@ -363,7 +363,7 @@
     },
     {
       "date": "2026-10-06",
-      "total": 1328,
+      "total": 1327,
       "top": "e2dKOOVYiaE",
       "topViews": 422
     }
@@ -453,7 +453,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 124,
+      "views": 123,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -510,7 +510,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 3,
-      "views": 906,
+      "views": 905,
       "share": 68.2,
       "viewsDelta": 110,
       "bestPos": 2,
@@ -585,7 +585,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 124,
+      "views": 123,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
