@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-07T21:19:28.009Z",
-  "chartDate": "2026-10-07",
-  "prevDate": "2026-09-30",
+  "generatedAt": "2026-10-07T22:16:51.700Z",
+  "chartDate": "2026-10-08",
+  "prevDate": "2026-10-01",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,15 +61,15 @@
     "allTimePoolSize": 4
   },
   "totals": {
-    "labelViews": 1381,
+    "labelViews": 1382,
     "tracks": 4,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 1365,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 162,
+    "viewsDelta": 138,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 19,
+    "snapshots": 20,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -88,8 +88,8 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 49,
-      "daysAtTop": 16,
+      "viewsDelta": 42,
+      "daysAtTop": 17,
       "tier": 1
     },
     {
@@ -107,7 +107,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 69,
+      "viewsDelta": 59,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -126,7 +126,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 44,
+      "viewsDelta": 37,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 152,
+      "views": 153,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -195,7 +195,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 152,
+      "views": 153,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 0,
@@ -236,12 +236,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 152,
+      "views": 153,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 98,
+      "missing": 97,
       "progress": 35
     },
     {
@@ -372,6 +372,12 @@
       "total": 1381,
       "top": "e2dKOOVYiaE",
       "topViews": 427
+    },
+    {
+      "date": "2026-10-08",
+      "total": 1382,
+      "top": "e2dKOOVYiaE",
+      "topViews": 427
     }
   ],
   "tracks": {
@@ -416,7 +422,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 49
+      "viewsDelta": 42
     },
     {
       "pos": 2,
@@ -433,7 +439,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 69
+      "viewsDelta": 59
     },
     {
       "pos": 3,
@@ -450,7 +456,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 44
+      "viewsDelta": 37
     },
     {
       "pos": 4,
@@ -459,7 +465,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 152,
+      "views": 153,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -478,11 +484,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 408,
-      "viewsDelta": 69,
+      "viewsDelta": 59,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 20.4
+      "pct": 16.9
     },
     {
       "pos": 2,
@@ -491,11 +497,11 @@
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "views": 427,
-      "viewsDelta": 49,
+      "viewsDelta": 42,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 13
+      "pct": 10.9
     },
     {
       "pos": 3,
@@ -504,11 +510,11 @@
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 394,
-      "viewsDelta": 44,
+      "viewsDelta": 37,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 12.6
+      "pct": 10.4
     }
   ],
   "artists": [
@@ -516,9 +522,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 3,
-      "views": 954,
+      "views": 955,
       "share": 69.1,
-      "viewsDelta": 113,
+      "viewsDelta": 96,
       "bestPos": 2,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -540,7 +546,7 @@
       "tracks": 1,
       "views": 427,
       "share": 30.9,
-      "viewsDelta": 49,
+      "viewsDelta": 42,
       "bestPos": 1,
       "top": {
         "id": "e2dKOOVYiaE",
@@ -561,15 +567,15 @@
     {
       "id": "e2dKOOVYiaE",
       "from": "2026-09-22",
-      "to": "2026-10-07",
-      "days": 16,
+      "to": "2026-10-08",
+      "days": 17,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "fromText": "22 wrz 2026",
-      "toText": "7 paź 2026"
+      "toText": "8 paź 2026"
     },
     {
       "id": "PqJv58Venx0",
@@ -591,7 +597,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 152,
+      "views": 153,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
@@ -612,7 +618,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 69
+      "viewsDelta": 59
     },
     {
       "id": "e2dKOOVYiaE",
@@ -626,7 +632,7 @@
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 49
+      "viewsDelta": 42
     },
     {
       "id": "PqJv58Venx0",
@@ -640,7 +646,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 44
+      "viewsDelta": 37
     }
   ]
 }
