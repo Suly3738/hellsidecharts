@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-08T21:19:29.212Z",
-  "chartDate": "2026-10-08",
-  "prevDate": "2026-10-01",
+  "generatedAt": "2026-10-08T22:19:25.217Z",
+  "chartDate": "2026-10-09",
+  "prevDate": "2026-10-02",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -67,9 +67,9 @@
     "subscribers": 9,
     "channelViews": 1407,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 157,
+    "viewsDelta": 133,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 20,
+    "snapshots": 21,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -88,8 +88,8 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 50,
-      "daysAtTop": 17,
+      "viewsDelta": 45,
+      "daysAtTop": 18,
       "tier": 1
     },
     {
@@ -107,7 +107,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 69,
+      "viewsDelta": 62,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -126,7 +126,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 38,
+      "viewsDelta": 26,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -378,6 +378,12 @@
       "total": 1413,
       "top": "e2dKOOVYiaE",
       "topViews": 435
+    },
+    {
+      "date": "2026-10-09",
+      "total": 1413,
+      "top": "e2dKOOVYiaE",
+      "topViews": 435
     }
   ],
   "tracks": {
@@ -422,7 +428,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 50
+      "viewsDelta": 45
     },
     {
       "pos": 2,
@@ -439,7 +445,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 69
+      "viewsDelta": 62
     },
     {
       "pos": 3,
@@ -456,7 +462,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 38
+      "viewsDelta": 26
     },
     {
       "pos": 4,
@@ -484,11 +490,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 418,
-      "viewsDelta": 69,
+      "viewsDelta": 62,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 19.8
+      "pct": 17.4
     },
     {
       "pos": 2,
@@ -497,11 +503,11 @@
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "views": 435,
-      "viewsDelta": 50,
+      "viewsDelta": 45,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 13
+      "pct": 11.5
     },
     {
       "pos": 3,
@@ -510,11 +516,11 @@
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 395,
-      "viewsDelta": 38,
+      "viewsDelta": 26,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 10.6
+      "pct": 7
     }
   ],
   "artists": [
@@ -524,7 +530,7 @@
       "tracks": 3,
       "views": 978,
       "share": 69.2,
-      "viewsDelta": 107,
+      "viewsDelta": 88,
       "bestPos": 2,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -546,7 +552,7 @@
       "tracks": 1,
       "views": 435,
       "share": 30.8,
-      "viewsDelta": 50,
+      "viewsDelta": 45,
       "bestPos": 1,
       "top": {
         "id": "e2dKOOVYiaE",
@@ -567,15 +573,15 @@
     {
       "id": "e2dKOOVYiaE",
       "from": "2026-09-22",
-      "to": "2026-10-08",
-      "days": 17,
+      "to": "2026-10-09",
+      "days": 18,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "fromText": "22 wrz 2026",
-      "toText": "8 paź 2026"
+      "toText": "9 paź 2026"
     },
     {
       "id": "PqJv58Venx0",
@@ -618,7 +624,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 69
+      "viewsDelta": 62
     },
     {
       "id": "e2dKOOVYiaE",
@@ -632,7 +638,7 @@
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 50
+      "viewsDelta": 45
     },
     {
       "id": "PqJv58Venx0",
@@ -646,7 +652,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 38
+      "viewsDelta": 26
     }
   ]
 }
