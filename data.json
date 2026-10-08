@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T23:15:39.266Z",
+  "generatedAt": "2026-10-08T00:28:15.628Z",
   "chartDate": "2026-10-08",
   "prevDate": "2026-10-01",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 4
   },
   "totals": {
-    "labelViews": 1386,
+    "labelViews": 1387,
     "tracks": 4,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 1365,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 140,
+    "viewsDelta": 141,
     "firstRelease": "13 wrz 2026",
     "snapshots": 20,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
+      "views": 409,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -107,7 +107,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 59,
+      "viewsDelta": 60,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -169,7 +169,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
+      "views": 409,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 1,
@@ -223,13 +223,13 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
+      "views": 409,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 92,
-      "progress": 63
+      "missing": 91,
+      "progress": 64
     },
     {
       "id": "LbltsJKmLdQ",
@@ -375,7 +375,7 @@
     },
     {
       "date": "2026-10-08",
-      "total": 1386,
+      "total": 1387,
       "top": "e2dKOOVYiaE",
       "topViews": 429
     }
@@ -431,7 +431,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
+      "views": 409,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -439,7 +439,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 59
+      "viewsDelta": 60
     },
     {
       "pos": 3,
@@ -483,12 +483,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
-      "viewsDelta": 59,
+      "views": 409,
+      "viewsDelta": 60,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 16.9
+      "pct": 17.2
     },
     {
       "pos": 2,
@@ -522,15 +522,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 3,
-      "views": 957,
-      "share": 69,
-      "viewsDelta": 96,
+      "views": 958,
+      "share": 69.1,
+      "viewsDelta": 97,
       "bestPos": 2,
       "top": {
         "id": "fpTg6Q4nbIs",
         "song": "APF",
         "title": "740FREDO - APF",
-        "views": 408,
+        "views": 409,
         "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
         "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg"
       },
@@ -545,7 +545,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 429,
-      "share": 31,
+      "share": 30.9,
       "viewsDelta": 44,
       "bestPos": 1,
       "top": {
@@ -611,14 +611,14 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 408,
+      "views": 409,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 59
+      "viewsDelta": 60
     },
     {
       "id": "e2dKOOVYiaE",
