@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T22:19:25.217Z",
+  "generatedAt": "2026-10-08T23:17:52.860Z",
   "chartDate": "2026-10-09",
   "prevDate": "2026-10-02",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 4
   },
   "totals": {
-    "labelViews": 1413,
+    "labelViews": 1428,
     "tracks": 4,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 1407,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 133,
+    "viewsDelta": 144,
     "firstRelease": "13 wrz 2026",
     "snapshots": 21,
     "firstSnapshot": "2026-09-19"
@@ -80,7 +80,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
+      "views": 438,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -88,7 +88,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 45,
+      "viewsDelta": 48,
       "daysAtTop": 18,
       "tier": 1
     },
@@ -99,7 +99,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
+      "views": 424,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -107,7 +107,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 62,
+      "viewsDelta": 68,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -118,7 +118,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
+      "views": 397,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -126,7 +126,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 26,
+      "viewsDelta": 28,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 165,
+      "views": 169,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -156,7 +156,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
+      "views": 438,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "tier": 1,
@@ -169,7 +169,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
+      "views": 424,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 1,
@@ -182,7 +182,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
+      "views": 397,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "tier": 1,
@@ -195,7 +195,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 165,
+      "views": 169,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 0,
@@ -210,52 +210,52 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
+      "views": 438,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 65,
-      "progress": 74
+      "missing": 62,
+      "progress": 75
     },
     {
       "id": "fpTg6Q4nbIs",
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
+      "views": 424,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 82,
-      "progress": 67
+      "missing": 76,
+      "progress": 70
     },
     {
       "id": "LbltsJKmLdQ",
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 165,
+      "views": 169,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 85,
-      "progress": 43
+      "missing": 81,
+      "progress": 46
     },
     {
       "id": "PqJv58Venx0",
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
+      "views": 397,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 105,
-      "progress": 58
+      "missing": 103,
+      "progress": 59
     }
   ],
   "timeline": [
@@ -381,9 +381,9 @@
     },
     {
       "date": "2026-10-09",
-      "total": 1413,
+      "total": 1428,
       "top": "e2dKOOVYiaE",
-      "topViews": 435
+      "topViews": 438
     }
   ],
   "tracks": {
@@ -420,7 +420,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
+      "views": 438,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -428,7 +428,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 45
+      "viewsDelta": 48
     },
     {
       "pos": 2,
@@ -437,7 +437,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
+      "views": 424,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -445,7 +445,7 @@
       "move": 1,
       "peak": 2,
       "weeks": 4,
-      "viewsDelta": 62
+      "viewsDelta": 68
     },
     {
       "pos": 3,
@@ -454,7 +454,7 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
+      "views": 397,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
@@ -462,7 +462,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 4,
-      "viewsDelta": 26
+      "viewsDelta": 28
     },
     {
       "pos": 4,
@@ -471,7 +471,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 165,
+      "views": 169,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -489,12 +489,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
-      "viewsDelta": 62,
+      "views": 424,
+      "viewsDelta": 68,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 17.4
+      "pct": 19.1
     },
     {
       "pos": 2,
@@ -502,12 +502,12 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
-      "viewsDelta": 45,
+      "views": 438,
+      "viewsDelta": 48,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 11.5
+      "pct": 12.3
     },
     {
       "pos": 3,
@@ -515,12 +515,12 @@
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
-      "viewsDelta": 26,
+      "views": 397,
+      "viewsDelta": 28,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 7
+      "pct": 7.6
     }
   ],
   "artists": [
@@ -528,15 +528,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 3,
-      "views": 978,
-      "share": 69.2,
-      "viewsDelta": 88,
+      "views": 990,
+      "share": 69.3,
+      "viewsDelta": 96,
       "bestPos": 2,
       "top": {
         "id": "fpTg6Q4nbIs",
         "song": "APF",
         "title": "740FREDO - APF",
-        "views": 418,
+        "views": 424,
         "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
         "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg"
       },
@@ -550,15 +550,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 435,
-      "share": 30.8,
-      "viewsDelta": 45,
+      "views": 438,
+      "share": 30.7,
+      "viewsDelta": 48,
       "bestPos": 1,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 435,
+        "views": 438,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -603,7 +603,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 165,
+      "views": 169,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
@@ -617,42 +617,42 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 418,
+      "views": 424,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 62
+      "viewsDelta": 68
     },
     {
       "id": "e2dKOOVYiaE",
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 435,
+      "views": 438,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 45
+      "viewsDelta": 48
     },
     {
       "id": "PqJv58Venx0",
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
-      "views": 395,
+      "views": 397,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/PqJv58Venx0/hqdefault.jpg",
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 26
+      "viewsDelta": 28
     }
   ]
 }
