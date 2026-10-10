@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:17:27.714Z",
+  "generatedAt": "2026-10-10T11:16:47.529Z",
   "chartDate": "2026-10-10",
   "prevDate": "2026-10-03",
   "channel": {
@@ -61,7 +61,7 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 1524,
+    "labelViews": 1526,
     "tracks": 5,
     "artists": 2,
     "subscribers": 9,
@@ -156,7 +156,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 41,
+      "views": 43,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -255,13 +255,13 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 41,
+      "views": 43,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 0,
       "nextName": "Żar",
-      "missing": 59,
-      "progress": 41
+      "missing": 57,
+      "progress": 43
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -419,7 +419,7 @@
     },
     {
       "date": "2026-10-10",
-      "total": 1524,
+      "total": 1526,
       "top": "e2dKOOVYiaE",
       "topViews": 445
     }
@@ -532,7 +532,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 41,
+      "views": 43,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -589,7 +589,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1079,
+      "views": 1081,
       "share": 70.8,
       "viewsDelta": 105,
       "bestPos": 2,
@@ -664,7 +664,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 41,
+      "views": 43,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
