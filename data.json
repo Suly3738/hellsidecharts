@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T03:18:26.821Z",
+  "generatedAt": "2026-10-10T04:18:41.803Z",
   "chartDate": "2026-10-10",
   "prevDate": "2026-10-03",
   "channel": {
@@ -55,14 +55,14 @@
   "stats": {
     "source": "YouTube Data API",
     "inexact": 0,
-    "totalVideos": 4,
+    "totalVideos": 5,
     "excluded": [],
-    "nowPoolSize": 4,
-    "allTimePoolSize": 4
+    "nowPoolSize": 5,
+    "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 1467,
-    "tracks": 4,
+    "labelViews": 1471,
+    "tracks": 5,
     "artists": 2,
     "subscribers": 9,
     "channelViews": 1428,
@@ -148,6 +148,25 @@
       "viewsDelta": null,
       "daysAtTop": 0,
       "tier": 0
+    },
+    {
+      "pos": 5,
+      "id": "mNgVoXvDhHE",
+      "isLatest": true,
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 4,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "publishedText": "10 paź 2026",
+      "prevPos": null,
+      "move": "new",
+      "peak": 5,
+      "weeks": 1,
+      "viewsDelta": null,
+      "daysAtTop": 0,
+      "tier": null
     }
   ],
   "certs": [
@@ -243,6 +262,19 @@
       "nextName": "Piekło",
       "missing": 65,
       "progress": 74
+    },
+    {
+      "id": "mNgVoXvDhHE",
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 4,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "nextTier": 0,
+      "nextName": "Żar",
+      "missing": 96,
+      "progress": 4
     },
     {
       "id": "PqJv58Venx0",
@@ -387,12 +419,18 @@
     },
     {
       "date": "2026-10-10",
-      "total": 1467,
+      "total": 1471,
       "top": "e2dKOOVYiaE",
       "topViews": 443
     }
   ],
   "tracks": {
+    "mNgVoXvDhHE": {
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE"
+    },
     "LbltsJKmLdQ": {
       "artist": "740FREDO",
       "song": "BEAST",
@@ -486,6 +524,23 @@
       "peak": 4,
       "weeks": 2,
       "viewsDelta": null
+    },
+    {
+      "pos": 5,
+      "id": "mNgVoXvDhHE",
+      "isLatest": true,
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 4,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "publishedText": "10 paź 2026",
+      "prevPos": null,
+      "move": "new",
+      "peak": 5,
+      "weeks": 1,
+      "viewsDelta": null
     }
   ],
   "rising": [
@@ -533,9 +588,9 @@
     {
       "pos": 1,
       "name": "740FREDO",
-      "tracks": 3,
-      "views": 1024,
-      "share": 69.8,
+      "tracks": 4,
+      "views": 1028,
+      "share": 69.9,
       "viewsDelta": 100,
       "bestPos": 2,
       "top": {
@@ -547,9 +602,9 @@
         "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg"
       },
       "newest": {
-        "id": "LbltsJKmLdQ",
-        "song": "BEAST",
-        "publishedText": "4 paź 2026"
+        "id": "mNgVoXvDhHE",
+        "song": "SNOOVERS (DISS SOSA)",
+        "publishedText": "10 paź 2026"
       }
     },
     {
@@ -557,7 +612,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 443,
-      "share": 30.2,
+      "share": 30.1,
       "viewsDelta": 49,
       "bestPos": 1,
       "top": {
@@ -604,6 +659,20 @@
     }
   ],
   "latest": [
+    {
+      "id": "mNgVoXvDhHE",
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 4,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
+      "publishedAt": "2026-10-10T03:46:14Z",
+      "publishedText": "10 paź 2026",
+      "isNew": true,
+      "viewsDelta": null
+    },
     {
       "id": "LbltsJKmLdQ",
       "artist": "740FREDO",
