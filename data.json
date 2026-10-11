@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T13:18:50.348Z",
+  "generatedAt": "2026-10-11T14:17:49.109Z",
   "chartDate": "2026-10-11",
   "prevDate": "2026-10-04",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 1798,
+    "labelViews": 1809,
     "tracks": 5,
     "artists": 2,
-    "subscribers": 10,
+    "subscribers": 11,
     "channelViews": 1490,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 345,
+    "viewsDelta": 347,
     "firstRelease": "13 wrz 2026",
     "snapshots": 23,
     "firstSnapshot": "2026-09-19"
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 236,
+      "views": 245,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -156,7 +156,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
+      "views": 235,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -164,7 +164,7 @@
       "move": -1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": 186,
+      "viewsDelta": 188,
       "daysAtTop": 0,
       "tier": 0
     }
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 236,
+      "views": 245,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 0,
@@ -227,7 +227,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
+      "views": 235,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 0,
@@ -242,26 +242,26 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 236,
+      "views": 245,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 14,
-      "progress": 91
+      "missing": 5,
+      "progress": 97
     },
     {
       "id": "LbltsJKmLdQ",
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
+      "views": 235,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 1,
       "nextName": "Ogień",
-      "missing": 17,
-      "progress": 89
+      "missing": 15,
+      "progress": 90
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -438,7 +438,7 @@
     },
     {
       "date": "2026-10-11",
-      "total": 1798,
+      "total": 1809,
       "top": "fpTg6Q4nbIs",
       "topViews": 456
     }
@@ -534,7 +534,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 236,
+      "views": 245,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -551,7 +551,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
+      "views": 235,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -559,7 +559,7 @@
       "move": -1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": 186
+      "viewsDelta": 188
     }
   ],
   "rising": [
@@ -569,12 +569,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
-      "viewsDelta": 186,
+      "views": 235,
+      "viewsDelta": 188,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
-      "pct": 395.7
+      "pct": 400
     },
     {
       "pos": 2,
@@ -621,9 +621,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1343,
-      "share": 74.7,
-      "viewsDelta": 296,
+      "views": 1354,
+      "share": 74.8,
+      "viewsDelta": 298,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -644,7 +644,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 455,
-      "share": 25.3,
+      "share": 25.2,
       "viewsDelta": 49,
       "bestPos": 2,
       "top": {
@@ -709,7 +709,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 236,
+      "views": 245,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
@@ -723,14 +723,14 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 233,
+      "views": 235,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": true,
-      "viewsDelta": 186
+      "viewsDelta": 188
     },
     {
       "id": "fpTg6Q4nbIs",
