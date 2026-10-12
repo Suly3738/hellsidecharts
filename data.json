@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T06:28:43.375Z",
+  "generatedAt": "2026-10-12T07:24:27.893Z",
   "chartDate": "2026-10-12",
   "prevDate": "2026-10-05",
   "channel": {
@@ -61,7 +61,7 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 1887,
+    "labelViews": 1888,
     "tracks": 5,
     "artists": 2,
     "subscribers": 11,
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 1,
@@ -281,12 +281,12 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 215,
+      "missing": 214,
       "progress": 14
     },
     {
@@ -444,7 +444,7 @@
     },
     {
       "date": "2026-10-12",
-      "total": 1887,
+      "total": 1888,
       "top": "fpTg6Q4nbIs",
       "topViews": 465
     }
@@ -540,7 +540,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -627,7 +627,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1430,
+      "views": 1431,
       "share": 75.8,
       "viewsDelta": 252,
       "bestPos": 1,
@@ -715,7 +715,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
