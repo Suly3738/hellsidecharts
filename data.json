@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-16T21:26:17.064Z",
-  "chartDate": "2026-10-16",
-  "prevDate": "2026-10-09",
+  "generatedAt": "2026-10-16T22:27:35.377Z",
+  "chartDate": "2026-10-17",
+  "prevDate": "2026-10-10",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -67,9 +67,9 @@
     "subscribers": 13,
     "channelViews": 2030,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 265,
+    "viewsDelta": 387,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 28,
+    "snapshots": 29,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -88,8 +88,8 @@
       "move": 1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 78,
-      "daysAtTop": 6,
+      "viewsDelta": 61,
+      "daysAtTop": 7,
       "tier": 2
     },
     {
@@ -107,7 +107,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 36,
+      "viewsDelta": 23,
       "daysAtTop": 19,
       "tier": 1
     },
@@ -126,7 +126,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 47,
+      "viewsDelta": 38,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -141,11 +141,11 @@
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
-      "prevPos": null,
-      "move": "new",
+      "prevPos": 5,
+      "move": 1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": null,
+      "viewsDelta": 192,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -164,7 +164,7 @@
       "move": -1,
       "peak": 4,
       "weeks": 3,
-      "viewsDelta": 104,
+      "viewsDelta": 73,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -471,6 +471,12 @@
       "total": 2079,
       "top": "fpTg6Q4nbIs",
       "topViews": 508
+    },
+    {
+      "date": "2026-10-17",
+      "total": 2079,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 508
     }
   ],
   "tracks": {
@@ -521,7 +527,7 @@
       "move": 1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 78
+      "viewsDelta": 61
     },
     {
       "pos": 2,
@@ -538,7 +544,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 36
+      "viewsDelta": 23
     },
     {
       "pos": 3,
@@ -555,7 +561,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 47
+      "viewsDelta": 38
     },
     {
       "pos": 4,
@@ -568,11 +574,11 @@
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
-      "prevPos": null,
-      "move": "new",
+      "prevPos": 5,
+      "move": 1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": null
+      "viewsDelta": 192
     },
     {
       "pos": 5,
@@ -589,61 +595,74 @@
       "move": -1,
       "peak": 4,
       "weeks": 3,
-      "viewsDelta": 104
+      "viewsDelta": 73
     }
   ],
   "rising": [
     {
       "pos": 1,
+      "id": "mNgVoXvDhHE",
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 362,
+      "viewsDelta": 192,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "publishedText": "10 paź 2026",
+      "pct": 112.9
+    },
+    {
+      "pos": 2,
       "id": "LbltsJKmLdQ",
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
       "views": 286,
-      "viewsDelta": 104,
+      "viewsDelta": 73,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
-      "pct": 57.1
+      "pct": 34.3
     },
     {
-      "pos": 2,
+      "pos": 3,
       "id": "fpTg6Q4nbIs",
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 508,
-      "viewsDelta": 78,
+      "viewsDelta": 61,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 18.1
+      "pct": 13.6
     },
     {
-      "pos": 3,
+      "pos": 4,
       "id": "PqJv58Venx0",
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 447,
-      "viewsDelta": 47,
+      "viewsDelta": 38,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 11.8
+      "pct": 9.3
     },
     {
-      "pos": 4,
+      "pos": 5,
       "id": "e2dKOOVYiaE",
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "views": 476,
-      "viewsDelta": 36,
+      "viewsDelta": 23,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 8.2
+      "pct": 5.1
     }
   ],
   "artists": [
@@ -653,7 +672,7 @@
       "tracks": 4,
       "views": 1603,
       "share": 77.1,
-      "viewsDelta": 229,
+      "viewsDelta": 364,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -675,7 +694,7 @@
       "tracks": 1,
       "views": 476,
       "share": 22.9,
-      "viewsDelta": 36,
+      "viewsDelta": 23,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
@@ -696,15 +715,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-10-16",
-      "days": 6,
+      "to": "2026-10-17",
+      "days": 7,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "16 paź 2026"
+      "toText": "17 paź 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -746,7 +765,7 @@
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": true,
-      "viewsDelta": null
+      "viewsDelta": 192
     },
     {
       "id": "LbltsJKmLdQ",
@@ -760,7 +779,7 @@
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": false,
-      "viewsDelta": 104
+      "viewsDelta": 73
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -774,7 +793,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 78
+      "viewsDelta": 61
     },
     {
       "id": "e2dKOOVYiaE",
@@ -788,7 +807,7 @@
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 36
+      "viewsDelta": 23
     },
     {
       "id": "PqJv58Venx0",
@@ -802,7 +821,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 47
+      "viewsDelta": 38
     }
   ]
 }
