@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T17:27:02.031Z",
+  "generatedAt": "2026-10-16T18:31:18.351Z",
   "chartDate": "2026-10-16",
   "prevDate": "2026-10-09",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2073,
+    "labelViews": 2076,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2030,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 260,
+    "viewsDelta": 262,
     "firstRelease": "13 wrz 2026",
     "snapshots": 28,
     "firstSnapshot": "2026-09-19"
@@ -80,7 +80,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
+      "views": 507,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -88,7 +88,7 @@
       "move": 1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 76,
+      "viewsDelta": 77,
       "daysAtTop": 6,
       "tier": 2
     },
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 361,
+      "views": 362,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -156,7 +156,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -164,7 +164,7 @@
       "move": -1,
       "peak": 4,
       "weeks": 3,
-      "viewsDelta": 103,
+      "viewsDelta": 104,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -175,7 +175,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
+      "views": 507,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 2,
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 361,
+      "views": 362,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 1,
@@ -227,7 +227,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 1,
@@ -268,25 +268,25 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 361,
+      "views": 362,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 139,
-      "progress": 44
+      "missing": 138,
+      "progress": 45
     },
     {
       "id": "LbltsJKmLdQ",
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 215,
+      "missing": 214,
       "progress": 14
     },
     {
@@ -294,12 +294,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
+      "views": 507,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 3,
       "nextName": "Inferno",
-      "missing": 494,
+      "missing": 493,
       "progress": 1
     }
   ],
@@ -468,9 +468,9 @@
     },
     {
       "date": "2026-10-16",
-      "total": 2073,
+      "total": 2076,
       "top": "fpTg6Q4nbIs",
-      "topViews": 506
+      "topViews": 507
     }
   ],
   "tracks": {
@@ -513,7 +513,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
+      "views": 507,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -521,7 +521,7 @@
       "move": 1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 76
+      "viewsDelta": 77
     },
     {
       "pos": 2,
@@ -564,7 +564,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 361,
+      "views": 362,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -581,7 +581,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -589,7 +589,7 @@
       "move": -1,
       "peak": 4,
       "weeks": 3,
-      "viewsDelta": 103
+      "viewsDelta": 104
     }
   ],
   "rising": [
@@ -599,12 +599,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
-      "viewsDelta": 103,
+      "views": 286,
+      "viewsDelta": 104,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
-      "pct": 56.6
+      "pct": 57.1
     },
     {
       "pos": 2,
@@ -612,12 +612,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
-      "viewsDelta": 76,
+      "views": 507,
+      "viewsDelta": 77,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 17.7
+      "pct": 17.9
     },
     {
       "pos": 3,
@@ -651,15 +651,15 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1597,
-      "share": 77,
-      "viewsDelta": 224,
+      "views": 1600,
+      "share": 77.1,
+      "viewsDelta": 226,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
         "song": "APF",
         "title": "740FREDO - APF",
-        "views": 506,
+        "views": 507,
         "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
         "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg"
       },
@@ -674,7 +674,7 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 476,
-      "share": 23,
+      "share": 22.9,
       "viewsDelta": 36,
       "bestPos": 2,
       "top": {
@@ -739,7 +739,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 361,
+      "views": 362,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
@@ -753,28 +753,28 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 285,
+      "views": 286,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": false,
-      "viewsDelta": 103
+      "viewsDelta": 104
     },
     {
       "id": "fpTg6Q4nbIs",
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 506,
+      "views": 507,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 76
+      "viewsDelta": 77
     },
     {
       "id": "e2dKOOVYiaE",
