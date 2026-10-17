@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T15:25:30.093Z",
+  "generatedAt": "2026-10-17T18:22:38.867Z",
   "chartDate": "2026-10-17",
   "prevDate": "2026-10-10",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2097,
+    "labelViews": 2101,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2072,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 405,
+    "viewsDelta": 409,
     "firstRelease": "13 wrz 2026",
     "snapshots": 29,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
+      "views": 479,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -107,7 +107,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 24,
+      "viewsDelta": 26,
       "daysAtTop": 19,
       "tier": 1
     },
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
+      "views": 374,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -145,7 +145,7 @@
       "move": 1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": 202,
+      "viewsDelta": 204,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -188,7 +188,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
+      "views": 479,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "tier": 1,
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
+      "views": 374,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 1,
@@ -242,13 +242,13 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
+      "views": 479,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 23,
-      "progress": 91
+      "missing": 21,
+      "progress": 92
     },
     {
       "id": "PqJv58Venx0",
@@ -268,13 +268,13 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
+      "views": 374,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 128,
-      "progress": 49
+      "missing": 126,
+      "progress": 50
     },
     {
       "id": "LbltsJKmLdQ",
@@ -474,7 +474,7 @@
     },
     {
       "date": "2026-10-17",
-      "total": 2097,
+      "total": 2101,
       "top": "fpTg6Q4nbIs",
       "topViews": 511
     }
@@ -536,7 +536,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
+      "views": 479,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -544,7 +544,7 @@
       "move": -1,
       "peak": 1,
       "weeks": 5,
-      "viewsDelta": 24
+      "viewsDelta": 26
     },
     {
       "pos": 3,
@@ -570,7 +570,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
+      "views": 374,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -578,7 +578,7 @@
       "move": 1,
       "peak": 4,
       "weeks": 2,
-      "viewsDelta": 202
+      "viewsDelta": 204
     },
     {
       "pos": 5,
@@ -605,12 +605,12 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
-      "viewsDelta": 202,
+      "views": 374,
+      "viewsDelta": 204,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
-      "pct": 118.8
+      "pct": 120
     },
     {
       "pos": 2,
@@ -657,12 +657,12 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
-      "viewsDelta": 24,
+      "views": 479,
+      "viewsDelta": 26,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 5.3
+      "pct": 5.7
     }
   ],
   "artists": [
@@ -670,9 +670,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1620,
-      "share": 77.3,
-      "viewsDelta": 381,
+      "views": 1622,
+      "share": 77.2,
+      "viewsDelta": 383,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -692,15 +692,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 477,
-      "share": 22.7,
-      "viewsDelta": 24,
+      "views": 479,
+      "share": 22.8,
+      "viewsDelta": 26,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 477,
+        "views": 479,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -758,14 +758,14 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 372,
+      "views": 374,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": false,
-      "viewsDelta": 202
+      "viewsDelta": 204
     },
     {
       "id": "LbltsJKmLdQ",
@@ -800,14 +800,14 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 477,
+      "views": 479,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 24
+      "viewsDelta": 26
     },
     {
       "id": "PqJv58Venx0",
