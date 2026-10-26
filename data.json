@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-25T21:38:12.686Z",
-  "chartDate": "2026-10-25",
-  "prevDate": "2026-10-18",
+  "generatedAt": "2026-10-26T00:05:06.322Z",
+  "chartDate": "2026-10-26",
+  "prevDate": "2026-10-19",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,15 +61,15 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2252,
+    "labelViews": 2253,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2249,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 120,
+    "viewsDelta": 102,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 37,
+    "snapshots": 38,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -87,9 +87,9 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 48,
-      "daysAtTop": 15,
+      "weeks": 7,
+      "viewsDelta": 44,
+      "daysAtTop": 16,
       "tier": 2
     },
     {
@@ -106,8 +106,8 @@
       "prevPos": 2,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 7,
+      "weeks": 7,
+      "viewsDelta": 5,
       "daysAtTop": 19,
       "tier": 1
     },
@@ -125,8 +125,8 @@
       "prevPos": 3,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 23,
+      "weeks": 7,
+      "viewsDelta": 19,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -137,15 +137,15 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
+      "views": 407,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
       "prevPos": 4,
       "move": 0,
       "peak": 4,
-      "weeks": 3,
-      "viewsDelta": 27,
+      "weeks": 4,
+      "viewsDelta": 24,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -163,8 +163,8 @@
       "prevPos": 5,
       "move": 0,
       "peak": 4,
-      "weeks": 4,
-      "viewsDelta": 15,
+      "weeks": 5,
+      "viewsDelta": 10,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
+      "views": 407,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 1,
@@ -268,13 +268,13 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
+      "views": 407,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 94,
-      "progress": 62
+      "missing": 93,
+      "progress": 63
     },
     {
       "id": "LbltsJKmLdQ",
@@ -525,6 +525,12 @@
       "total": 2252,
       "top": "fpTg6Q4nbIs",
       "topViews": 571
+    },
+    {
+      "date": "2026-10-26",
+      "total": 2253,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 571
     }
   ],
   "tracks": {
@@ -574,8 +580,8 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 48
+      "weeks": 7,
+      "viewsDelta": 44
     },
     {
       "pos": 2,
@@ -591,8 +597,8 @@
       "prevPos": 2,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 7
+      "weeks": 7,
+      "viewsDelta": 5
     },
     {
       "pos": 3,
@@ -608,8 +614,8 @@
       "prevPos": 3,
       "move": 0,
       "peak": 1,
-      "weeks": 6,
-      "viewsDelta": 23
+      "weeks": 7,
+      "viewsDelta": 19
     },
     {
       "pos": 4,
@@ -618,15 +624,15 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
+      "views": 407,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
       "prevPos": 4,
       "move": 0,
       "peak": 4,
-      "weeks": 3,
-      "viewsDelta": 27
+      "weeks": 4,
+      "viewsDelta": 24
     },
     {
       "pos": 5,
@@ -642,8 +648,8 @@
       "prevPos": 5,
       "move": 0,
       "peak": 4,
-      "weeks": 4,
-      "viewsDelta": 15
+      "weeks": 5,
+      "viewsDelta": 10
     }
   ],
   "rising": [
@@ -654,11 +660,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 571,
-      "viewsDelta": 48,
+      "viewsDelta": 44,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 9.2
+      "pct": 8.3
     },
     {
       "pos": 2,
@@ -666,12 +672,12 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
-      "viewsDelta": 27,
+      "views": 407,
+      "viewsDelta": 24,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
-      "pct": 7.1
+      "pct": 6.3
     },
     {
       "pos": 3,
@@ -680,11 +686,11 @@
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 475,
-      "viewsDelta": 23,
+      "viewsDelta": 19,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 5.1
+      "pct": 4.2
     },
     {
       "pos": 4,
@@ -693,11 +699,11 @@
       "song": "BEAST",
       "title": "740FREDO - BEAST",
       "views": 310,
-      "viewsDelta": 15,
+      "viewsDelta": 10,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
-      "pct": 5.1
+      "pct": 3.3
     },
     {
       "pos": 5,
@@ -706,11 +712,11 @@
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "views": 490,
-      "viewsDelta": 7,
+      "viewsDelta": 5,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 1.4
+      "pct": 1
     }
   ],
   "artists": [
@@ -718,9 +724,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1762,
-      "share": 78.2,
-      "viewsDelta": 113,
+      "views": 1763,
+      "share": 78.3,
+      "viewsDelta": 97,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -741,8 +747,8 @@
       "name": "740VICEJAVIER",
       "tracks": 1,
       "views": 490,
-      "share": 21.8,
-      "viewsDelta": 7,
+      "share": 21.7,
+      "viewsDelta": 5,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
@@ -763,15 +769,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-10-25",
-      "days": 15,
+      "to": "2026-10-26",
+      "days": 16,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "25 paź 2026"
+      "toText": "26 paź 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -806,14 +812,14 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 406,
+      "views": 407,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": false,
-      "viewsDelta": 27
+      "viewsDelta": 24
     },
     {
       "id": "LbltsJKmLdQ",
@@ -827,7 +833,7 @@
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": false,
-      "viewsDelta": 15
+      "viewsDelta": 10
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -841,7 +847,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 48
+      "viewsDelta": 44
     },
     {
       "id": "e2dKOOVYiaE",
@@ -855,7 +861,7 @@
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 7
+      "viewsDelta": 5
     },
     {
       "id": "PqJv58Venx0",
@@ -869,7 +875,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 23
+      "viewsDelta": 19
     }
   ]
 }
