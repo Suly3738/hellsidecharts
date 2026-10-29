@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:46:43.291Z",
+  "generatedAt": "2026-10-29T16:50:41.490Z",
   "chartDate": "2026-10-29",
   "prevDate": "2026-10-22",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2271,
+    "labelViews": 2272,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2271,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 66,
+    "viewsDelta": 67,
     "firstRelease": "13 wrz 2026",
     "snapshots": 41,
     "firstSnapshot": "2026-09-19"
@@ -99,7 +99,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
+      "views": 495,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -107,7 +107,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 5,
+      "viewsDelta": 6,
       "daysAtTop": 19,
       "tier": 1
     },
@@ -188,7 +188,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
+      "views": 495,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "tier": 1,
@@ -242,12 +242,12 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
+      "views": 495,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 6,
+      "missing": 5,
       "progress": 98
     },
     {
@@ -546,7 +546,7 @@
     },
     {
       "date": "2026-10-29",
-      "total": 2271,
+      "total": 2272,
       "top": "fpTg6Q4nbIs",
       "topViews": 579
     }
@@ -608,7 +608,7 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
+      "views": 495,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
@@ -616,7 +616,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 5
+      "viewsDelta": 6
     },
     {
       "pos": 3,
@@ -716,12 +716,12 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
-      "viewsDelta": 5,
+      "views": 495,
+      "viewsDelta": 6,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
-      "pct": 1
+      "pct": 1.2
     },
     {
       "pos": 5,
@@ -764,15 +764,15 @@
       "pos": 2,
       "name": "740VICEJAVIER",
       "tracks": 1,
-      "views": 494,
+      "views": 495,
       "share": 21.8,
-      "viewsDelta": 5,
+      "viewsDelta": 6,
       "bestPos": 2,
       "top": {
         "id": "e2dKOOVYiaE",
         "song": "MIJAM KONKURENCJE",
         "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-        "views": 494,
+        "views": 495,
         "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
         "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg"
       },
@@ -872,14 +872,14 @@
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
-      "views": 494,
+      "views": 495,
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/e2dKOOVYiaE/hqdefault.jpg",
       "publishedAt": "2026-09-19T00:46:43Z",
       "publishedText": "19 wrz 2026",
       "isNew": false,
-      "viewsDelta": 5
+      "viewsDelta": 6
     },
     {
       "id": "PqJv58Venx0",
