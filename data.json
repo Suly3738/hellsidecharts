@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-31T22:24:11.011Z",
-  "chartDate": "2026-10-31",
-  "prevDate": "2026-10-24",
+  "generatedAt": "2026-11-01T02:04:21.267Z",
+  "chartDate": "2026-11-01",
+  "prevDate": "2026-10-25",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,15 +61,15 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2282,
+    "labelViews": 2283,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2281,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 38,
+    "viewsDelta": 31,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 43,
+    "snapshots": 44,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -88,8 +88,8 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 24,
-      "daysAtTop": 21,
+      "viewsDelta": 17,
+      "daysAtTop": 22,
       "tier": 2
     },
     {
@@ -126,7 +126,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 3,
+      "viewsDelta": 2,
       "daysAtTop": 3,
       "tier": 1
     },
@@ -156,7 +156,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 312,
+      "views": 313,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -164,7 +164,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 5,
-      "viewsDelta": 2,
+      "viewsDelta": 3,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -227,7 +227,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 312,
+      "views": 313,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 1,
@@ -281,12 +281,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 312,
+      "views": 313,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 188,
+      "missing": 187,
       "progress": 25
     },
     {
@@ -561,6 +561,12 @@
       "total": 2282,
       "top": "fpTg6Q4nbIs",
       "topViews": 588
+    },
+    {
+      "date": "2026-11-01",
+      "total": 2283,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 588
     }
   ],
   "tracks": {
@@ -611,7 +617,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 24
+      "viewsDelta": 17
     },
     {
       "pos": 2,
@@ -645,7 +651,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 7,
-      "viewsDelta": 3
+      "viewsDelta": 2
     },
     {
       "pos": 4,
@@ -671,7 +677,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 312,
+      "views": 313,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
@@ -679,7 +685,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 5,
-      "viewsDelta": 2
+      "viewsDelta": 3
     }
   ],
   "rising": [
@@ -690,11 +696,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 588,
-      "viewsDelta": 24,
+      "viewsDelta": 17,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 4.3
+      "pct": 3
     },
     {
       "pos": 2,
@@ -724,29 +730,29 @@
     },
     {
       "pos": 4,
+      "id": "LbltsJKmLdQ",
+      "artist": "740FREDO",
+      "song": "BEAST",
+      "title": "740FREDO - BEAST",
+      "views": 313,
+      "viewsDelta": 3,
+      "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
+      "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
+      "publishedText": "4 paź 2026",
+      "pct": 1
+    },
+    {
+      "pos": 5,
       "id": "PqJv58Venx0",
       "artist": "740FREDO",
       "song": "WEDNESDAY!",
       "title": "740FREDO - WEDNESDAY!",
       "views": 477,
-      "viewsDelta": 3,
+      "viewsDelta": 2,
       "url": "https://www.youtube.com/watch?v=PqJv58Venx0",
       "thumb": "https://i.ytimg.com/vi/PqJv58Venx0/mqdefault.jpg",
       "publishedText": "13 wrz 2026",
-      "pct": 0.6
-    },
-    {
-      "pos": 5,
-      "id": "LbltsJKmLdQ",
-      "artist": "740FREDO",
-      "song": "BEAST",
-      "title": "740FREDO - BEAST",
-      "views": 312,
-      "viewsDelta": 2,
-      "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
-      "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
-      "publishedText": "4 paź 2026",
-      "pct": 0.6
+      "pct": 0.4
     }
   ],
   "artists": [
@@ -754,9 +760,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1787,
+      "views": 1788,
       "share": 78.3,
-      "viewsDelta": 33,
+      "viewsDelta": 26,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -799,15 +805,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-10-31",
-      "days": 21,
+      "to": "2026-11-01",
+      "days": 22,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "31 paź 2026"
+      "toText": "1 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -856,14 +862,14 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 312,
+      "views": 313,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": false,
-      "viewsDelta": 2
+      "viewsDelta": 3
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -877,7 +883,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 24
+      "viewsDelta": 17
     },
     {
       "id": "e2dKOOVYiaE",
@@ -905,7 +911,7 @@
       "publishedAt": "2026-09-13T18:00:06Z",
       "publishedText": "13 wrz 2026",
       "isNew": false,
-      "viewsDelta": 3
+      "viewsDelta": 2
     }
   ]
 }
