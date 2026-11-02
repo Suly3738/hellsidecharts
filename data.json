@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T07:33:44.910Z",
+  "generatedAt": "2026-11-02T18:10:50.518Z",
   "chartDate": "2026-11-02",
   "prevDate": "2026-10-26",
   "channel": {
@@ -61,13 +61,13 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2289,
+    "labelViews": 2290,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
     "channelViews": 2286,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 24,
+    "viewsDelta": 25,
     "firstRelease": "13 wrz 2026",
     "snapshots": 45,
     "firstSnapshot": "2026-09-19"
@@ -137,7 +137,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
+      "views": 413,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -145,7 +145,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 5,
-      "viewsDelta": 3,
+      "viewsDelta": 4,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -214,7 +214,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
+      "views": 413,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "tier": 1,
@@ -268,12 +268,12 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
+      "views": 413,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 88,
+      "missing": 87,
       "progress": 65
     },
     {
@@ -570,7 +570,7 @@
     },
     {
       "date": "2026-11-02",
-      "total": 2289,
+      "total": 2290,
       "top": "fpTg6Q4nbIs",
       "topViews": 591
     }
@@ -666,7 +666,7 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
+      "views": 413,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
@@ -674,7 +674,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 5,
-      "viewsDelta": 3
+      "viewsDelta": 4
     },
     {
       "pos": 5,
@@ -710,6 +710,19 @@
     },
     {
       "pos": 2,
+      "id": "mNgVoXvDhHE",
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 413,
+      "viewsDelta": 4,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "publishedText": "10 paź 2026",
+      "pct": 1
+    },
+    {
+      "pos": 3,
       "id": "e2dKOOVYiaE",
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
@@ -720,19 +733,6 @@
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
       "pct": 0.6
-    },
-    {
-      "pos": 3,
-      "id": "mNgVoXvDhHE",
-      "artist": "740FREDO",
-      "song": "SNOOVERS (DISS SOSA)",
-      "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
-      "viewsDelta": 3,
-      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
-      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
-      "publishedText": "10 paź 2026",
-      "pct": 0.7
     },
     {
       "pos": 4,
@@ -766,9 +766,9 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1794,
+      "views": 1795,
       "share": 78.4,
-      "viewsDelta": 21,
+      "viewsDelta": 22,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -854,14 +854,14 @@
       "artist": "740FREDO",
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 412,
+      "views": 413,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/mNgVoXvDhHE/hqdefault.jpg",
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": false,
-      "viewsDelta": 3
+      "viewsDelta": 4
     },
     {
       "id": "LbltsJKmLdQ",
