@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-16T20:15:56.130Z",
-  "chartDate": "2026-11-16",
-  "prevDate": "2026-11-09",
+  "generatedAt": "2026-11-17T03:39:54.871Z",
+  "chartDate": "2026-11-17",
+  "prevDate": "2026-11-10",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -67,9 +67,9 @@
     "subscribers": 13,
     "channelViews": 2363,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 30,
+    "viewsDelta": 29,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 59,
+    "snapshots": 60,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -88,8 +88,8 @@
       "move": 0,
       "peak": 1,
       "weeks": 10,
-      "viewsDelta": 19,
-      "daysAtTop": 37,
+      "viewsDelta": 18,
+      "daysAtTop": 38,
       "tier": 2
     },
     {
@@ -657,6 +657,12 @@
       "total": 2363,
       "top": "fpTg6Q4nbIs",
       "topViews": 637
+    },
+    {
+      "date": "2026-11-17",
+      "total": 2363,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 637
     }
   ],
   "tracks": {
@@ -707,7 +713,7 @@
       "move": 0,
       "peak": 1,
       "weeks": 10,
-      "viewsDelta": 19
+      "viewsDelta": 18
     },
     {
       "pos": 2,
@@ -786,11 +792,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 637,
-      "viewsDelta": 19,
+      "viewsDelta": 18,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 3.1
+      "pct": 2.9
     },
     {
       "pos": 2,
@@ -839,7 +845,7 @@
       "tracks": 4,
       "views": 1865,
       "share": 78.9,
-      "viewsDelta": 29,
+      "viewsDelta": 28,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -882,15 +888,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-16",
-      "days": 37,
+      "to": "2026-11-17",
+      "days": 38,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "16 lis 2026"
+      "toText": "17 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -960,7 +966,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 19
+      "viewsDelta": 18
     },
     {
       "id": "e2dKOOVYiaE",
