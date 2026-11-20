@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-19T21:21:15.085Z",
-  "chartDate": "2026-11-19",
-  "prevDate": "2026-11-12",
+  "generatedAt": "2026-11-20T02:58:09.067Z",
+  "chartDate": "2026-11-20",
+  "prevDate": "2026-11-13",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -65,9 +65,9 @@
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
-    "channelViews": 2364,
+    "channelViews": 2391,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 45,
+    "viewsDelta": 35,
     "firstRelease": "13 wrz 2026",
     "snapshots": 62,
     "firstSnapshot": "2026-09-19"
@@ -87,9 +87,9 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
-      "viewsDelta": 22,
-      "daysAtTop": 40,
+      "weeks": 9,
+      "viewsDelta": 16,
+      "daysAtTop": 41,
       "tier": 2
     },
     {
@@ -145,7 +145,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 7,
-      "viewsDelta": 7,
+      "viewsDelta": 3,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -309,12 +309,6 @@
       "total": 384,
       "top": "PqJv58Venx0",
       "topViews": 257
-    },
-    {
-      "date": "2026-09-20",
-      "total": 507,
-      "top": "PqJv58Venx0",
-      "topViews": 272
     },
     {
       "date": "2026-09-21",
@@ -675,6 +669,12 @@
       "total": 2391,
       "top": "fpTg6Q4nbIs",
       "topViews": 647
+    },
+    {
+      "date": "2026-11-20",
+      "total": 2391,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 647
     }
   ],
   "tracks": {
@@ -724,8 +724,8 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
-      "viewsDelta": 22
+      "weeks": 9,
+      "viewsDelta": 16
     },
     {
       "pos": 2,
@@ -776,7 +776,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 7,
-      "viewsDelta": 7
+      "viewsDelta": 3
     },
     {
       "pos": 5,
@@ -804,11 +804,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 647,
-      "viewsDelta": 22,
+      "viewsDelta": 16,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 3.5
+      "pct": 2.5
     },
     {
       "pos": 2,
@@ -825,19 +825,6 @@
     },
     {
       "pos": 3,
-      "id": "mNgVoXvDhHE",
-      "artist": "740FREDO",
-      "song": "SNOOVERS (DISS SOSA)",
-      "title": "740FREDO - SNOOVERS (DISS SOSA)",
-      "views": 431,
-      "viewsDelta": 7,
-      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
-      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
-      "publishedText": "10 paź 2026",
-      "pct": 1.7
-    },
-    {
-      "pos": 4,
       "id": "e2dKOOVYiaE",
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
@@ -848,6 +835,19 @@
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "publishedText": "19 wrz 2026",
       "pct": 0.6
+    },
+    {
+      "pos": 4,
+      "id": "mNgVoXvDhHE",
+      "artist": "740FREDO",
+      "song": "SNOOVERS (DISS SOSA)",
+      "title": "740FREDO - SNOOVERS (DISS SOSA)",
+      "views": 431,
+      "viewsDelta": 3,
+      "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
+      "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
+      "publishedText": "10 paź 2026",
+      "pct": 0.7
     },
     {
       "pos": 5,
@@ -870,7 +870,7 @@
       "tracks": 4,
       "views": 1890,
       "share": 79,
-      "viewsDelta": 42,
+      "viewsDelta": 32,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -913,15 +913,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-19",
-      "days": 40,
+      "to": "2026-11-20",
+      "days": 41,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "19 lis 2026"
+      "toText": "20 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -963,7 +963,7 @@
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": false,
-      "viewsDelta": 7
+      "viewsDelta": 3
     },
     {
       "id": "LbltsJKmLdQ",
@@ -991,7 +991,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 22
+      "viewsDelta": 16
     },
     {
       "id": "e2dKOOVYiaE",
