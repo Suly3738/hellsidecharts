@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-20T19:57:18.594Z",
-  "chartDate": "2026-11-20",
-  "prevDate": "2026-11-13",
+  "generatedAt": "2026-11-21T01:20:23.219Z",
+  "chartDate": "2026-11-21",
+  "prevDate": "2026-11-14",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,7 +61,7 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2397,
+    "labelViews": 2399,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
@@ -69,7 +69,7 @@
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 41,
     "firstRelease": "13 wrz 2026",
-    "snapshots": 62,
+    "snapshots": 63,
     "firstSnapshot": "2026-09-19"
   },
   "now": [
@@ -80,7 +80,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 9,
       "viewsDelta": 18,
-      "daysAtTop": 41,
+      "daysAtTop": 42,
       "tier": 2
     },
     {
@@ -175,7 +175,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "tier": 2,
@@ -281,12 +281,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "nextTier": 3,
       "nextName": "Inferno",
-      "missing": 351,
+      "missing": 349,
       "progress": 30
     },
     {
@@ -675,6 +675,12 @@
       "total": 2397,
       "top": "fpTg6Q4nbIs",
       "topViews": 649
+    },
+    {
+      "date": "2026-11-21",
+      "total": 2399,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 651
     }
   ],
   "tracks": {
@@ -717,7 +723,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
@@ -803,12 +809,12 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "viewsDelta": 18,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 2.9
+      "pct": 2.8
     },
     {
       "pos": 2,
@@ -868,7 +874,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1895,
+      "views": 1897,
       "share": 79.1,
       "viewsDelta": 37,
       "bestPos": 1,
@@ -876,7 +882,7 @@
         "id": "fpTg6Q4nbIs",
         "song": "APF",
         "title": "740FREDO - APF",
-        "views": 649,
+        "views": 651,
         "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
         "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg"
       },
@@ -913,15 +919,15 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-20",
-      "days": 41,
+      "to": "2026-11-21",
+      "days": 42,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "20 lis 2026"
+      "toText": "21 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
@@ -984,7 +990,7 @@
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
-      "views": 649,
+      "views": 651,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/fpTg6Q4nbIs/hqdefault.jpg",
