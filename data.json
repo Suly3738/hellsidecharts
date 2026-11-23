@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-22T18:24:24.347Z",
-  "chartDate": "2026-11-22",
-  "prevDate": "2026-11-15",
+  "generatedAt": "2026-11-23T00:09:25.568Z",
+  "chartDate": "2026-11-23",
+  "prevDate": "2026-11-16",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -61,7 +61,7 @@
     "allTimePoolSize": 5
   },
   "totals": {
-    "labelViews": 2411,
+    "labelViews": 2412,
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
@@ -87,9 +87,9 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 9,
-      "viewsDelta": 22,
-      "daysAtTop": 43,
+      "weeks": 10,
+      "viewsDelta": 21,
+      "daysAtTop": 44,
       "tier": 2
     },
     {
@@ -106,9 +106,9 @@
       "prevPos": 2,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
+      "weeks": 11,
       "viewsDelta": 4,
-      "daysAtTop": 18,
+      "daysAtTop": 17,
       "tier": 2
     },
     {
@@ -125,7 +125,7 @@
       "prevPos": 3,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
+      "weeks": 11,
       "viewsDelta": 15,
       "daysAtTop": 3,
       "tier": 1
@@ -144,7 +144,7 @@
       "prevPos": 4,
       "move": 0,
       "peak": 4,
-      "weeks": 7,
+      "weeks": 8,
       "viewsDelta": 3,
       "daysAtTop": 0,
       "tier": 1
@@ -156,15 +156,15 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
+      "views": 325,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
       "prevPos": 5,
       "move": 0,
       "peak": 4,
-      "weeks": 8,
-      "viewsDelta": 5,
+      "weeks": 9,
+      "viewsDelta": 6,
       "daysAtTop": 0,
       "tier": 1
     }
@@ -227,7 +227,7 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
+      "views": 325,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "tier": 1,
@@ -268,12 +268,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
+      "views": 325,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "nextTier": 2,
       "nextName": "Piekło",
-      "missing": 176,
+      "missing": 175,
       "progress": 30
     },
     {
@@ -315,12 +315,6 @@
       "total": 618,
       "top": "PqJv58Venx0",
       "topViews": 270
-    },
-    {
-      "date": "2026-09-23",
-      "total": 809,
-      "top": "e2dKOOVYiaE",
-      "topViews": 305
     },
     {
       "date": "2026-09-24",
@@ -681,6 +675,12 @@
       "total": 2411,
       "top": "fpTg6Q4nbIs",
       "topViews": 658
+    },
+    {
+      "date": "2026-11-23",
+      "total": 2412,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 658
     }
   ],
   "tracks": {
@@ -730,8 +730,8 @@
       "prevPos": 1,
       "move": 0,
       "peak": 1,
-      "weeks": 9,
-      "viewsDelta": 22
+      "weeks": 10,
+      "viewsDelta": 21
     },
     {
       "pos": 2,
@@ -747,7 +747,7 @@
       "prevPos": 2,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
+      "weeks": 11,
       "viewsDelta": 4
     },
     {
@@ -764,7 +764,7 @@
       "prevPos": 3,
       "move": 0,
       "peak": 1,
-      "weeks": 10,
+      "weeks": 11,
       "viewsDelta": 15
     },
     {
@@ -781,7 +781,7 @@
       "prevPos": 4,
       "move": 0,
       "peak": 4,
-      "weeks": 7,
+      "weeks": 8,
       "viewsDelta": 3
     },
     {
@@ -791,15 +791,15 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
+      "views": 325,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
       "prevPos": 5,
       "move": 0,
       "peak": 4,
-      "weeks": 8,
-      "viewsDelta": 5
+      "weeks": 9,
+      "viewsDelta": 6
     }
   ],
   "rising": [
@@ -810,11 +810,11 @@
       "song": "APF",
       "title": "740FREDO - APF",
       "views": 658,
-      "viewsDelta": 22,
+      "viewsDelta": 21,
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "publishedText": "20 wrz 2026",
-      "pct": 3.5
+      "pct": 3.3
     },
     {
       "pos": 2,
@@ -835,12 +835,12 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
-      "viewsDelta": 5,
+      "views": 325,
+      "viewsDelta": 6,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "publishedText": "4 paź 2026",
-      "pct": 1.6
+      "pct": 1.9
     },
     {
       "pos": 4,
@@ -874,7 +874,7 @@
       "pos": 1,
       "name": "740FREDO",
       "tracks": 4,
-      "views": 1909,
+      "views": 1910,
       "share": 79.2,
       "viewsDelta": 45,
       "bestPos": 1,
@@ -919,27 +919,27 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-22",
-      "days": 43,
+      "to": "2026-11-23",
+      "days": 44,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "22 lis 2026"
+      "toText": "23 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
-      "from": "2026-09-23",
+      "from": "2026-09-24",
       "to": "2026-10-10",
-      "days": 18,
+      "days": 17,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
-      "fromText": "23 wrz 2026",
+      "fromText": "24 wrz 2026",
       "toText": "10 paź 2026"
     },
     {
@@ -976,14 +976,14 @@
       "artist": "740FREDO",
       "song": "BEAST",
       "title": "740FREDO - BEAST",
-      "views": 324,
+      "views": 325,
       "url": "https://www.youtube.com/watch?v=LbltsJKmLdQ",
       "thumb": "https://i.ytimg.com/vi/LbltsJKmLdQ/mqdefault.jpg",
       "thumbLarge": "https://i.ytimg.com/vi/LbltsJKmLdQ/hqdefault.jpg",
       "publishedAt": "2026-10-04T15:57:36Z",
       "publishedText": "4 paź 2026",
       "isNew": false,
-      "viewsDelta": 5
+      "viewsDelta": 6
     },
     {
       "id": "fpTg6Q4nbIs",
@@ -997,7 +997,7 @@
       "publishedAt": "2026-09-20T14:06:35Z",
       "publishedText": "20 wrz 2026",
       "isNew": false,
-      "viewsDelta": 22
+      "viewsDelta": 21
     },
     {
       "id": "e2dKOOVYiaE",
