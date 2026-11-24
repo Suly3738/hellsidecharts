@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-23T21:10:51.475Z",
-  "chartDate": "2026-11-23",
-  "prevDate": "2026-11-16",
+  "generatedAt": "2026-11-24T05:52:32.098Z",
+  "chartDate": "2026-11-24",
+  "prevDate": "2026-11-17",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -65,7 +65,7 @@
     "tracks": 5,
     "artists": 2,
     "subscribers": 13,
-    "channelViews": 2412,
+    "channelViews": 2413,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
     "viewsDelta": 50,
     "firstRelease": "13 wrz 2026",
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 10,
       "viewsDelta": 22,
-      "daysAtTop": 44,
+      "daysAtTop": 45,
       "tier": 2
     },
     {
@@ -108,7 +108,7 @@
       "peak": 1,
       "weeks": 11,
       "viewsDelta": 4,
-      "daysAtTop": 17,
+      "daysAtTop": 16,
       "tier": 2
     },
     {
@@ -315,12 +315,6 @@
       "total": 618,
       "top": "PqJv58Venx0",
       "topViews": 270
-    },
-    {
-      "date": "2026-09-24",
-      "total": 854,
-      "top": "e2dKOOVYiaE",
-      "topViews": 316
     },
     {
       "date": "2026-09-25",
@@ -681,6 +675,12 @@
       "total": 2413,
       "top": "fpTg6Q4nbIs",
       "topViews": 659
+    },
+    {
+      "date": "2026-11-24",
+      "total": 2413,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 659
     }
   ],
   "tracks": {
@@ -919,27 +919,27 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-23",
-      "days": 44,
+      "to": "2026-11-24",
+      "days": 45,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "23 lis 2026"
+      "toText": "24 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
-      "from": "2026-09-24",
+      "from": "2026-09-25",
       "to": "2026-10-10",
-      "days": 17,
+      "days": 16,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
-      "fromText": "24 wrz 2026",
+      "fromText": "25 wrz 2026",
       "toText": "10 paź 2026"
     },
     {
