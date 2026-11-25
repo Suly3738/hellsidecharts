@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-24T17:27:41.845Z",
-  "chartDate": "2026-11-24",
-  "prevDate": "2026-11-17",
+  "generatedAt": "2026-11-25T02:12:45.870Z",
+  "chartDate": "2026-11-25",
+  "prevDate": "2026-11-18",
   "channel": {
     "title": "HELLSIDE RECORDS",
     "url": "https://www.youtube.com/@HELLSIDERECORDS"
@@ -67,7 +67,7 @@
     "subscribers": 13,
     "channelViews": 2413,
     "channelCreatedAt": "2026-09-13T12:42:24.227131Z",
-    "viewsDelta": 50,
+    "viewsDelta": 49,
     "firstRelease": "13 wrz 2026",
     "snapshots": 63,
     "firstSnapshot": "2026-09-19"
@@ -89,7 +89,7 @@
       "peak": 1,
       "weeks": 10,
       "viewsDelta": 22,
-      "daysAtTop": 45,
+      "daysAtTop": 46,
       "tier": 2
     },
     {
@@ -108,7 +108,7 @@
       "peak": 1,
       "weeks": 11,
       "viewsDelta": 4,
-      "daysAtTop": 16,
+      "daysAtTop": 15,
       "tier": 2
     },
     {
@@ -145,7 +145,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 8,
-      "viewsDelta": 3,
+      "viewsDelta": 2,
       "daysAtTop": 0,
       "tier": 1
     },
@@ -315,12 +315,6 @@
       "total": 618,
       "top": "PqJv58Venx0",
       "topViews": 270
-    },
-    {
-      "date": "2026-09-25",
-      "total": 894,
-      "top": "e2dKOOVYiaE",
-      "topViews": 330
     },
     {
       "date": "2026-09-26",
@@ -681,6 +675,12 @@
       "total": 2413,
       "top": "fpTg6Q4nbIs",
       "topViews": 659
+    },
+    {
+      "date": "2026-11-25",
+      "total": 2413,
+      "top": "fpTg6Q4nbIs",
+      "topViews": 659
     }
   ],
   "tracks": {
@@ -782,7 +782,7 @@
       "move": 0,
       "peak": 4,
       "weeks": 8,
-      "viewsDelta": 3
+      "viewsDelta": 2
     },
     {
       "pos": 5,
@@ -862,11 +862,11 @@
       "song": "SNOOVERS (DISS SOSA)",
       "title": "740FREDO - SNOOVERS (DISS SOSA)",
       "views": 432,
-      "viewsDelta": 3,
+      "viewsDelta": 2,
       "url": "https://www.youtube.com/watch?v=mNgVoXvDhHE",
       "thumb": "https://i.ytimg.com/vi/mNgVoXvDhHE/mqdefault.jpg",
       "publishedText": "10 paź 2026",
-      "pct": 0.7
+      "pct": 0.5
     }
   ],
   "artists": [
@@ -876,7 +876,7 @@
       "tracks": 4,
       "views": 1911,
       "share": 79.2,
-      "viewsDelta": 46,
+      "viewsDelta": 45,
       "bestPos": 1,
       "top": {
         "id": "fpTg6Q4nbIs",
@@ -919,27 +919,27 @@
     {
       "id": "fpTg6Q4nbIs",
       "from": "2026-10-11",
-      "to": "2026-11-24",
-      "days": 45,
+      "to": "2026-11-25",
+      "days": 46,
       "artist": "740FREDO",
       "song": "APF",
       "title": "740FREDO - APF",
       "thumb": "https://i.ytimg.com/vi/fpTg6Q4nbIs/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=fpTg6Q4nbIs",
       "fromText": "11 paź 2026",
-      "toText": "24 lis 2026"
+      "toText": "25 lis 2026"
     },
     {
       "id": "e2dKOOVYiaE",
-      "from": "2026-09-25",
+      "from": "2026-09-26",
       "to": "2026-10-10",
-      "days": 16,
+      "days": 15,
       "artist": "740VICEJAVIER",
       "song": "MIJAM KONKURENCJE",
       "title": "740VICEJAVIER - MIJAM KONKURENCJE",
       "thumb": "https://i.ytimg.com/vi/e2dKOOVYiaE/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=e2dKOOVYiaE",
-      "fromText": "25 wrz 2026",
+      "fromText": "26 wrz 2026",
       "toText": "10 paź 2026"
     },
     {
@@ -969,7 +969,7 @@
       "publishedAt": "2026-10-10T03:46:14Z",
       "publishedText": "10 paź 2026",
       "isNew": false,
-      "viewsDelta": 3
+      "viewsDelta": 2
     },
     {
       "id": "LbltsJKmLdQ",
